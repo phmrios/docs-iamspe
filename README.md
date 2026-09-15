@@ -57,3 +57,7 @@ Em **Settings → Pages**, defina a fonte como **Deploy from a branch**,
 selecione a branch `main` e a pasta `/ (root)`. Não há workflow de GitHub
 Actions neste repositório — o próprio GitHub Pages serve os arquivos como
 estão na branch a cada push.
+
+O domínio customizado (`docs.pedro-rios.com`) é definido pelo arquivo
+`CNAME` na raiz do repositório e configurado também em **Settings → Pages
+→ Custom domain**.
