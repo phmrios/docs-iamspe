@@ -5,21 +5,28 @@ Biblioteca pública de documentos em PDF, hospedada no GitHub Pages.
 Site estático (HTML, CSS e JavaScript vanilla), sem backend, sem banco de
 dados e sem autenticação. Todo conteúdo publicado é considerado público.
 
+O deploy é feito pelo próprio GitHub Pages a partir da branch `main`
+("Deploy from a branch"), sem GitHub Actions. Por isso, `data/files.json`
+precisa ser gerado **localmente, antes do commit**.
+
 ## Como adicionar um novo documento
 
-1. Acesse a pasta `pdfs/` neste repositório no GitHub.
-2. Clique em **Add file → Upload files**.
-3. Selecione o arquivo PDF (use um nome legível, ex.: `Choque Séptico.pdf`).
-4. Faça o commit direto na branch `main`.
+1. Coloque o arquivo PDF dentro da pasta `pdfs/` (use um nome legível, ex.:
+   `Choque Séptico.pdf`).
+2. Gere a lista atualizada de documentos:
+   ```bash
+   node scripts/generate-file-list.js
+   ```
+3. Faça commit do PDF novo **e** do `data/files.json` atualizado.
+4. Dê push para a branch `main`.
 
-Depois do commit, o GitHub Actions gera automaticamente a lista de
-documentos (`data/files.json`) e publica a nova versão do site no GitHub
-Pages. Nenhuma edição manual é necessária.
+O GitHub Pages publica a nova versão do site automaticamente após o push.
 
 ## Como remover ou renomear um documento
 
-Basta excluir ou renomear o arquivo dentro de `pdfs/` e fazer o commit. O
-próximo deploy atualizará a biblioteca automaticamente.
+Exclua ou renomeie o arquivo dentro de `pdfs/`, rode novamente
+`node scripts/generate-file-list.js`, e faça commit e push das duas
+alterações (o arquivo em `pdfs/` e o `data/files.json`).
 
 ## Estrutura do projeto
 
@@ -30,9 +37,8 @@ docs-iamspe/
 │   ├── css/style.css
 │   └── js/app.js
 ├── pdfs/                  # PDFs publicados (nome do arquivo = nome exibido)
-├── data/files.json        # gerado automaticamente, não editar manualmente
-├── scripts/generate-file-list.js
-└── .github/workflows/build.yml
+├── data/files.json        # gerado localmente pelo script, não editar manualmente
+└── scripts/generate-file-list.js
 ```
 
 ## Rodando localmente
@@ -47,7 +53,7 @@ npx serve .
 
 ## Configuração do GitHub Pages
 
-Em **Settings → Pages**, defina a fonte como **GitHub Actions**. O workflow
-em `.github/workflows/build.yml` cuida do build e do deploy a cada push na
-branch `main`.
-# docs-iamspe
+Em **Settings → Pages**, defina a fonte como **Deploy from a branch**,
+selecione a branch `main` e a pasta `/ (root)`. Não há workflow de GitHub
+Actions neste repositório — o próprio GitHub Pages serve os arquivos como
+estão na branch a cada push.

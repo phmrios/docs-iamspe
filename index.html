@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Docs IAMSPE</title>
+    <meta name="description" content="Biblioteca de documentos em PDF." />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+        <h1>Docs IAMSPE</h1>
+        <p class="author">Dr. Pedro Rios</p>
+      </header>
+
+      <main>
+        <div class="search-wrapper">
+          <label for="search" class="visually-hidden"
+            >Pesquisar documentos</label
+          >
+          <input
+            type="search"
+            id="search"
+            placeholder="Pesquisar documentos..."
+            autocomplete="off"
+          />
+        </div>
+
+        <p id="counter" class="counter" aria-live="polite"></p>
+
+        <ul id="doc-list" class="doc-list"></ul>
+
+        <p id="status-message" class="status-message" hidden></p>
+      </main>
+    </div>
+
+    <script src="./assets/js/app.js"></script>
+  </body>
+</html>
