@@ -57,9 +57,9 @@
 
   function updateCounter(visibleCount, totalCount, isFiltered) {
     if (isFiltered) {
-      counterEl.textContent = visibleCount + " de " + totalCount + " PDFs";
+      counterEl.textContent = visibleCount + " de " + totalCount + " documentos";
     } else {
-      counterEl.textContent = totalCount + " PDFs disponíveis";
+      counterEl.textContent = totalCount + " documentos disponíveis";
     }
   }
 

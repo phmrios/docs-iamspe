@@ -5,6 +5,7 @@ const path = require("path");
 
 const PDFS_DIR = path.join(__dirname, "..", "pdfs");
 const OUTPUT_FILE = path.join(__dirname, "..", "data", "files.json");
+const ALLOWED_EXTENSIONS = [".pdf", ".docx"];
 
 function listPdfFiles(dir) {
   if (!fs.existsSync(dir)) {
@@ -15,7 +16,7 @@ function listPdfFiles(dir) {
     .readdirSync(dir, { withFileTypes: true })
     .filter((entry) => entry.isFile())
     .map((entry) => entry.name)
-    .filter((name) => path.extname(name).toLowerCase() === ".pdf");
+    .filter((name) => ALLOWED_EXTENSIONS.includes(path.extname(name).toLowerCase()));
 }
 
 function sortFiles(files) {
@@ -32,7 +33,7 @@ function main() {
   fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true });
   fs.writeFileSync(OUTPUT_FILE, JSON.stringify(files, null, 2) + "\n");
 
-  console.log(`Gerado ${OUTPUT_FILE} com ${files.length} PDF(s).`);
+  console.log(`Gerado ${OUTPUT_FILE} com ${files.length} arquivo(s).`);
 }
 
 main();
