@@ -16,7 +16,18 @@ function listPdfFiles(dir) {
     .readdirSync(dir, { withFileTypes: true })
     .filter((entry) => entry.isFile())
     .map((entry) => entry.name)
-    .filter((name) => ALLOWED_EXTENSIONS.includes(path.extname(name).toLowerCase()));
+    .filter((name) => ALLOWED_EXTENSIONS.includes(path.extname(name).toLowerCase()))
+    .map((name) => {
+      // macOS decomposes accented characters (NFD) when creating files, but
+      // GitHub Pages' CDN normalizes request URLs to NFC before matching
+      // against the repo's stored filenames, causing 404s. Renaming the file
+      // on disk keeps the URL, the JSON entry, and the git blob name in sync.
+      const normalized = name.normalize("NFC");
+      if (normalized !== name) {
+        fs.renameSync(path.join(dir, name), path.join(dir, normalized));
+      }
+      return normalized;
+    });
 }
 
 function sortFiles(files) {

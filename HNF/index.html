@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protocolo de Heparinização EV — UTI IAMSPE</title>
+  <meta name="description" content="Protocolo institucional de infusão contínua de Heparina Não Fracionada em BIC, com calculadora de dose inicial, titulação por TTPa, vigilância de TIH e reversão com Protamina.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Pular para o conteúdo do protocolo</a>
+
+  <noscript>
+    <p style="background:#fff1f2;color:#881337;padding:1rem;margin:0;text-align:center;font-weight:700;">
+      Esta página precisa de JavaScript habilitado para calcular doses e exibir as tabelas de titulação.
+    </p>
+  </noscript>
+
+  <div class="page">
+
+    <a class="site-return no-print" href="../ferramentas/index.html">
+      <svg class="icon" aria-hidden="true" data-lucide="arrow-left"></svg>
+      Voltar para Ferramentas
+    </a>
+
+    <header class="page-header">
+      <div class="header-top">
+        <div class="brand">
+          <div class="brand-logo">
+            <img id="iamspeLogoImg" src="https://portais.iamspe.sp.gov.br/boletim-medico/assets/images/logo_iamspe3.png" alt="Logotipo do IAMSPE">
+            <span id="iamspeLogoFallback" class="brand-logo-fallback" hidden>IAMSPE</span>
+          </div>
+          <div class="brand-names">
+            <div class="agency">
+              <span class="agency-name">Governo do Estado de São Paulo</span>
+              <span class="agency-badge">HSPE</span>
+            </div>
+            <p class="unit">Instituto de Assistência Médica ao Servidor Público Estadual • Serviço de Terapia Intensiva Adulto</p>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <span class="unit-tag">
+            <svg class="icon" aria-hidden="true" data-lucide="building-2"></svg>
+            UTI Adulto
+          </span>
+        </div>
+      </div>
+
+      <div class="header-title-row">
+        <div>
+          <p class="eyebrow">
+            <svg class="icon" aria-hidden="true" data-lucide="shield-alert"></svg>
+            UTI / Medicina Intensiva • Diretriz Clínica de Alta Segurança
+          </p>
+          <h1>Protocolo de Heparinização EV UTI IAMSPE</h1>
+          <p class="header-summary">
+            Protocolo padronizado de infusão contínua de Heparina Não Fracionada (HNF) em bomba de infusão contínua (BIC)
+            com titulação por Razão TTPa, regulação e controle de exames, vigilância de TIH (Escore 4Ts), suporte por
+            imagem (POCUS / TC 24h) e reversão com Protamina.
+          </p>
+        </div>
+
+        <button id="printButton" type="button" class="print-button no-print">
+          <svg class="icon" aria-hidden="true" data-lucide="printer"></svg>
+          Imprimir / salvar em PDF
+        </button>
+      </div>
+
+      <div class="resource-panel" aria-label="Recursos disponíveis na unidade">
+        <div class="resource-item" data-available="true">
+          <svg class="icon" aria-hidden="true" data-lucide="check-circle-2"></svg>
+          <span><strong>Monitorização:</strong> TTPa / Razão R (Ativo)</span>
+        </div>
+        <div class="resource-item" data-available="false">
+          <svg class="icon" aria-hidden="true" data-lucide="x-circle"></svg>
+          <span><strong>Viscoelastometria:</strong> Não disponível (usar TTPa + POCUS)</span>
+        </div>
+        <div class="resource-item" data-available="true">
+          <svg class="icon" aria-hidden="true" data-lucide="scan-line"></svg>
+          <span><strong>POCUS Beira-Leito:</strong> Disponível 24h</span>
+        </div>
+        <div class="resource-item" data-available="true">
+          <svg class="icon" aria-hidden="true" data-lucide="brain-circuit"></svg>
+          <span><strong>Imagem 24h:</strong> TC / RNM de Urgência</span>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <div class="section-grid">
+
+        <section class="card span-5" aria-labelledby="heading-diluicao">
+          <div>
+            <h2 id="heading-diluicao" class="card-header">
+              <svg class="icon" aria-hidden="true" data-lucide="droplet"></svg>
+              1. Diluição Padrão &amp; Segurança da Infusão
+            </h2>
+
+            <div class="solution-highlight">
+              <p class="label">Solução Padronizada UTI (100 UI/mL)</p>
+              <p class="value">Heparina Não Fracionada 25.000 UI (5 mL) + SF 0,9% 245 mL</p>
+              <p class="detail"><strong>Volume Total:</strong> 250 mL | <strong>Concentração:</strong> 100 UI/mL | <strong>Validade:</strong> 24h em BIC.</p>
+            </div>
+
+            <ul class="check-list">
+              <li>
+                <svg class="icon icon--ok" aria-hidden="true" data-lucide="check"></svg>
+                <span>Acesso venoso dedicado (central ou periférico calibroso). Não infundir outras drogas na mesma via.</span>
+              </li>
+              <li>
+                <svg class="icon icon--ok" aria-hidden="true" data-lucide="check"></svg>
+                <span>Uso obrigatório em <strong>Bomba de Infusão Contínua (BIC)</strong> com dupla checagem na alteração de vazão.</span>
+              </li>
+              <li>
+                <svg class="icon icon--warn" aria-hidden="true" data-lucide="alert-triangle"></svg>
+                <span><strong>Omitir Bolus Inicial:</strong> Idosos &gt; 70 anos, IMC &lt; 18,5, ClCr &lt; 30 mL/min, pós-trombolítico imediato ou alto risco de sangramento.</span>
+              </li>
+            </ul>
+          </div>
+
+          <p class="general-care-note">
+            <strong>Cuidados Gerais:</strong> Evitar injeções IM, AINEs ou punções arteriais não compressíveis durante a anticoagulação plena.
+          </p>
+        </section>
+
+        <section class="card span-7 no-print" aria-labelledby="heading-calculadora">
+          <div class="card-header-group">
+            <h2 id="heading-calculadora" class="card-header" style="border:0;padding:0;margin:0;">
+              <svg class="icon" aria-hidden="true" data-lucide="calculator"></svg>
+              Calculadora de Dose e Infusão Inicial
+            </h2>
+            <span class="pill pill--teal">Solução 100 UI/mL</span>
+          </div>
+
+          <form class="form-grid form-grid--3" novalidate>
+            <div class="field" id="calcWeightField">
+              <label for="calcWeight">Peso Real (kg)</label>
+              <input type="number" id="calcWeight" name="calcWeight" value="70" min="1" max="300" step="0.1"
+                     inputmode="decimal" aria-describedby="calcWeightError">
+              <p id="calcWeightError" class="field-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="calcIndication">Indicação Clínica</label>
+              <select id="calcIndication" name="calcIndication"></select>
+            </div>
+
+            <div class="info-box">
+              <span class="label">Teto Máximo de Bolus</span>
+              <span id="calcMaxBolusInfo" class="value">Até 10.000 UI</span>
+            </div>
+          </form>
+
+          <div id="initialDoseResultPanel" class="result-panel" aria-live="polite" aria-atomic="true" data-state="valid">
+            <div class="result">
+              <p class="label">Bolus de Ataque (EV Direto)</p>
+              <p class="value" id="resBolusDose">—</p>
+              <p class="detail" id="resBolusVol"></p>
+            </div>
+            <div class="result result--rate">
+              <p class="label">Vazão Inicial na BIC (mL/h)</p>
+              <p class="value" id="resRateMl">—</p>
+              <p class="detail" id="resRateUi"></p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section class="card" aria-labelledby="heading-exames">
+        <div class="card-header-group">
+          <h2 id="heading-exames" class="card-header" style="border:0;padding:0;margin:0;">
+            <svg class="icon" aria-hidden="true" data-lucide="clipboard-list"></svg>
+            2. Regulação e Rotina de Exames (Monitorização por TTPa)
+          </h2>
+          <span class="pill pill--teal">Rotina Padronizada UTI IAMSPE</span>
+        </div>
+
+        <div class="section-grid" style="grid-template-columns:1fr;">
+          <div class="section-grid" style="display:grid;grid-template-columns:1fr;gap:var(--space-4);">
+            <div class="card" style="box-shadow:none;background:var(--color-surface-alt);">
+              <h3 class="card-header" style="font-size:var(--font-size-base);">
+                <span class="visually-hidden">Passo 1:</span> Exames Baseline (Pré-Início)
+              </h3>
+              <ul class="criteria-list">
+                <li><span>Coagulograma (TTPa, TP, INR)</span><span class="points">Obrigatório</span></li>
+                <li><span>Fibrinogênio (Clauss)</span><span class="points">Linha de Base</span></li>
+                <li><span>Hemograma Completo (Plaquetas)</span><span class="points">Obrigatório</span></li>
+                <li><span>Ureia, Creatinina, TGO/TGP</span><span class="points">Ajuste de Risco</span></li>
+                <li><span>Tipagem Sanguínea (ABO/Rh)</span><span class="points">Reserva Preventiva</span></li>
+              </ul>
+            </div>
+
+            <div class="card" style="box-shadow:none;background:#eefcfa;">
+              <h3 class="card-header" style="font-size:var(--font-size-base);">
+                <span class="visually-hidden">Passo 2:</span> Coletas &amp; Titulação de TTPa
+              </h3>
+              <ul class="check-list">
+                <li>
+                  <svg class="icon icon--ok" aria-hidden="true" data-lucide="clock"></svg>
+                  <span><strong>Coleta de TTPa rigorosa 6 horas</strong> após início da infusão ou qualquer reajuste de velocidade na BIC.</span>
+                </li>
+                <li>
+                  <svg class="icon icon--ok" aria-hidden="true" data-lucide="check-check"></svg>
+                  <span>Após <strong>2 exames consecutivos no alvo</strong> (Razão 1,5 a 2,5), mudar controle para <strong>1x ao dia (24h)</strong>.</span>
+                </li>
+                <li>
+                  <svg class="icon icon--warn" aria-hidden="true" data-lucide="alert-circle"></svg>
+                  <span>Se TTPa flutuante ou Razão &gt; 4,0: manter controle a cada 6h e solicitar revisão médica presencial.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="card" style="box-shadow:none;background:var(--color-surface-alt);">
+              <h3 class="card-header" style="font-size:var(--font-size-base);">
+                <span class="visually-hidden">Passo 3:</span> Vigilância de Complicações &amp; TIH
+              </h3>
+              <ul class="criteria-list">
+                <li><span>Plaquetograma Diário (D1 ao D14)</span><span class="points">Rastreio TIH</span></li>
+                <li><span>Hemoglobina / Hematócrito</span><span class="points">1x ao dia (mínimo)</span></li>
+              </ul>
+              <p class="callout callout--critical" style="margin-top:var(--space-2);">
+                <svg class="icon" aria-hidden="true" data-lucide="alert-octagon"></svg>
+                <strong>Critério de Suspeita de TIH:</strong> Queda &gt; 50% das plaquetas vs baseline ou Plaquetas &lt; 100.000/µL. Calcular Escore 4Ts.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="heading-titulacao">
+        <div class="card-header-group">
+          <div>
+            <h2 id="heading-titulacao" class="card-header" style="border:0;padding:0;margin:0;">
+              <svg class="icon" aria-hidden="true" data-lucide="sliders"></svg>
+              3. Tabela de Titulação Dinâmica por TTPa / Razão R (100 UI/mL)
+            </h2>
+            <p class="card-subtitle">Diretriz CHEST / Raschke adaptada para solução de 25.000 UI em 250 mL (100 UI/mL).</p>
+          </div>
+          <span class="pill pill--amber">Ajustes Baseados no Peso Real</span>
+        </div>
+
+        <div class="table-scroll">
+          <table class="data-table">
+            <caption class="visually-hidden">Ajuste de re-bolus e de vazão na BIC conforme a faixa de TTPa encontrada</caption>
+            <thead>
+              <tr>
+                <th scope="col">Razão TTPa (Pac/Contr)</th>
+                <th scope="col">TTPa (Segundos)</th>
+                <th scope="col">Re-Bolus EV (Ataque)</th>
+                <th scope="col">Ajuste na BIC (UI/kg/h)</th>
+                <th scope="col">Ajuste na BIC (mL/h)</th>
+                <th scope="col">Próximo TTPa</th>
+              </tr>
+            </thead>
+            <tbody id="titrationTableBody">
+              <tr><td colspan="6" class="table-loading-note">Carregando tabela de titulação…</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="simulator no-print">
+          <h3 class="simulator-title">
+            <svg class="icon" aria-hidden="true" data-lucide="refresh-cw"></svg>
+            Simulador de Titulação &amp; Reajuste em Tempo Real
+          </h3>
+
+          <form class="form-grid form-grid--3" novalidate>
+            <div class="field" id="titWeightField">
+              <label for="titWeight">Peso Real (kg)</label>
+              <input type="number" id="titWeight" name="titWeight" value="70" min="1" max="300" step="0.1"
+                     inputmode="decimal" aria-describedby="titWeightError">
+              <p id="titWeightError" class="field-error" role="alert"></p>
+            </div>
+            <div class="field" id="titRateField">
+              <label for="titCurrentRate">Vazão Atual da BIC (mL/h)</label>
+              <input type="number" id="titCurrentRate" name="titCurrentRate" value="12.6" min="0" step="0.1"
+                     inputmode="decimal" aria-describedby="titRateError">
+              <p id="titRateError" class="field-error" role="alert"></p>
+            </div>
+            <div class="field" id="titTtpaField">
+              <label for="titTtpaValue">TTPa Atual Encontrado (segundos)</label>
+              <input type="number" id="titTtpaValue" name="titTtpaValue" value="40" min="1" max="300" step="1"
+                     inputmode="decimal" aria-describedby="titTtpaError">
+              <p id="titTtpaError" class="field-error" role="alert"></p>
+            </div>
+          </form>
+
+          <dl class="simulator-results" aria-live="polite" aria-atomic="true">
+            <div>
+              <dt>Conduta no Bolus EV</dt>
+              <dd id="titResBolus">—</dd>
+            </div>
+            <div>
+              <dt>Ajuste de Vazão na BIC</dt>
+              <dd id="titResRate">—</dd>
+            </div>
+            <div>
+              <dt>Próximo Controle</dt>
+              <dd id="titResNext">—</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <div class="section-grid">
+        <section class="card span-7" aria-labelledby="heading-protamina">
+          <div class="card-header-group">
+            <h2 id="heading-protamina" class="card-header section-title--alert" style="border:0;padding:0;margin:0;">
+              <svg class="icon" aria-hidden="true" data-lucide="shield-alert"></svg>
+              4. Protocolo de Reversão de Urgência: Sulfato de Protamina
+            </h2>
+            <span class="pill" style="background:var(--color-critical-bg);color:var(--color-critical-text);">Sangramento Grave / TTPa Crítico</span>
+          </div>
+
+          <p class="callout callout--critical">
+            <strong>Regra de Neutralização Direta:</strong> 1 mg de Sulfato de Protamina neutraliza aproximadamente 100 UI de Heparina Não Fracionada.
+          </p>
+
+          <div class="table-scroll" style="margin-top:var(--space-3);">
+            <table class="data-table">
+              <caption class="visually-hidden">Dose de protamina recomendada conforme o tempo desde o desligamento da BIC</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Tempo desde o Desligamento da BIC</th>
+                  <th scope="col">Dose de Protamina Recomendada</th>
+                </tr>
+              </thead>
+              <tbody id="protamineTableBody">
+                <tr><td colspan="2" class="table-loading-note">Carregando tabela de reversão…</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note-grid">
+            <p class="note note--warning">
+              <strong>Infusão lenta máxima:</strong> Dose máxima isolada 50 mg. Infundir EV lentamente em no mínimo 10 minutos (taxa máx 5 mg/min) para evitar hipotensão severa e anafilaxia.
+            </p>
+            <p class="note note--info">
+              <strong>Investigação por imagem 24h:</strong> Em quedas abruptas de Hb ou choque: realizar POCUS imediato (FAST/retroperitônio) + TC/RNM 24h para afastar sangramentos ocultos.
+            </p>
+          </div>
+        </section>
+
+        <section class="card span-5" aria-labelledby="heading-4ts">
+          <div>
+            <h2 id="heading-4ts" class="card-header">
+              <svg class="icon" aria-hidden="true" data-lucide="activity"></svg>
+              Escore 4Ts - Suspeita de TIH (HIT)
+            </h2>
+
+            <ul class="criteria-list">
+              <li><span>1. <strong>Thrombocytopenia:</strong> Queda &gt; 50% ou nadir 20-100k</span><span class="points">+2 pts</span></li>
+              <li><span>2. <strong>Timing:</strong> Queda entre Dias 5 e 10 de uso</span><span class="points">+2 pts</span></li>
+              <li><span>3. <strong>Thrombosis:</strong> Nova trombose comprovada / necrose</span><span class="points">+2 pts</span></li>
+              <li><span>4. <strong>oTher cause:</strong> Nenhuma outra causa evidente</span><span class="points">+2 pts</span></li>
+            </ul>
+
+            <div class="conduct-box">
+              <p class="conduct-title">Conduta na TIH (Escore 4Ts ≥ 4):</p>
+              <p>• Suspender TODA Heparina imediatamente (EV e SC).</p>
+              <p>• NÃO transfundir plaquetas de rotina (risco trombótico).</p>
+              <p>• Migrar para Anticoagulante Não-Heparínico (ex: Fondaparinux).</p>
+            </div>
+          </div>
+
+          <p class="transition-note">
+            <strong>Transição EV → DOAC / Warfarin:</strong> Para HBPM/DOAC, aplicar a 1ª dose SC/VO no momento do desligamento da BIC. Para Warfarin, manter sobreposição por no mínimo 5 dias até INR 2,0 a 3,0.
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <footer class="page-footer">
+      <h2 class="card-header" style="font-size:var(--font-size-base);">
+        <svg class="icon" aria-hidden="true" data-lucide="book-open"></svg>
+        Referencial Bibliográfico &amp; Diretrizes Institucionais IAMSPE
+      </h2>
+      <div class="references-grid">
+        <p><strong>1. CHEST Guidelines (2012/2024):</strong> Garcia DA, et al. Parenteral Anticoagulants: Antithrombotic Therapy and Prevention of Thrombosis, 9th ed. Chest 2012; 141(2 Suppl):e24S-e43S.</p>
+        <p><strong>2. ESC Pulmonary Embolism Guidelines (2020):</strong> Konstantinides SV, et al. 2019 ESC Guidelines for the diagnosis and management of acute pulmonary embolism. Eur Heart J. 2020; 41(4):543-603.</p>
+        <p><strong>3. Hospital Israelita Albert Einstein (2023):</strong> Guia do Episódio de Cuidado: Infusão Intravenosa de Heparina Não Fracionada em Pacientes com Doença Cardiovascular (Versão 4, CPTW271.4).</p>
+        <p><strong>4. Leeds Teaching Hospitals NHS Trust (2024):</strong> Heparin (unfractionated) Continuous Intravenous Infusion Prescription and Administration Record for Adults (MID Ref: LTH0168).</p>
+        <p><strong>5. SBC Diretrizes de Coronariopatia Aguda (2021):</strong> Nicolau JC, et al. Diretrizes da Sociedade Brasileira de Cardiologia sobre Angina Instável e IAM sem Supradesnível de ST. Arq Bras Cardiol. 2021; 117(1):181-264.</p>
+        <p><strong>6. ESC ACS Guidelines (2021/2023):</strong> Collet JP, et al. 2020 ESC Guidelines for the management of acute coronary syndromes in patients presenting without persistent ST-segment elevation. Eur Heart J. 2021; 42(14):1289-1367.</p>
+      </div>
+      <p class="footer-tagline">Protocolo de Heparinização EV UTI IAMSPE • Documento médico guiado por TTPa / Razão R, POCUS Beira-Leito e Neuroimagem 24h.</p>
+    </footer>
+
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="js/protocol-data.js"></script>
+  <script src="js/heparin-calculator.js"></script>
+  <script src="js/ui-controller.js"></script>
+</body>
+</html>

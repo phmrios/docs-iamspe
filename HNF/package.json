@@ -1,0 +1,8 @@
+{
+  "name": "protocolo-heparinizacao-ev-uti-iamspe",
+  "private": true,
+  "description": "Aba do protocolo institucional de heparinização EV da UTI Adulto IAMSPE. HTML/CSS/JS puro, sem build — o teste roda com o runner nativo do Node.",
+  "scripts": {
+    "test": "node --test \"tests/**/*.test.js\""
+  }
+}
