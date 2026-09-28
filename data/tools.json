@@ -3,5 +3,10 @@
     "title": "Protocolo de Heparinização EV — UTI IAMSPE",
     "description": "Calculadora de dose inicial, titulação por TTPa, vigilância de TIH e reversão com Protamina.",
     "url": "../HNF/index.html"
+  },
+  {
+    "title": "Evolução Alastair — Enfermaria",
+    "description": "Gerador do texto de evolução diária por leito, com destaque das alterações e cópia rápida.",
+    "url": "../EVO/index.html"
   }
 ]

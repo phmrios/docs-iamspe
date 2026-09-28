@@ -1,0 +1,401 @@
+<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Evolução Alastair</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Public+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  --bg:#EDF1F0; --paper:#FAFCFB; --ink:#16302C; --muted:#5A6F6A; --line:#D2DCD9; --dotgrid:#C9D5D2;
+  --accent:#1F6F63; --accent-ink:#FFFFFF; --accent-soft:#DCEDE9;
+  --abn:#B0501A; --abn-soft:#F6E4D6; --miss:#9B3434;
+  --sans:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0E1615; --paper:#152120; --ink:#DCE7E3; --muted:#8EA39D; --line:#293835; --dotgrid:#24322F;
+    --accent:#5CC2AE; --accent-ink:#0B1A17; --accent-soft:#1B3531;
+    --abn:#F0A267; --abn-soft:#3A2717; --miss:#F08A8A;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0E1615; --paper:#152120; --ink:#DCE7E3; --muted:#8EA39D; --line:#293835; --dotgrid:#24322F;
+  --accent:#5CC2AE; --accent-ink:#0B1A17; --accent-soft:#1B3531;
+  --abn:#F0A267; --abn-soft:#3A2717; --miss:#F08A8A;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.45;padding-inline:16px;padding-block:20px 40px}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 20px}
+h1{font-size:22px;font-weight:700;margin:0;letter-spacing:-.01em;text-wrap:balance}
+h1 span{font-family:var(--mono);font-weight:400;font-size:13px;color:var(--muted);letter-spacing:.02em;margin-left:8px}
+.legend{display:flex;gap:14px;font-family:var(--mono);font-size:11.5px;color:var(--muted);flex-wrap:wrap}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:0}
+
+/* leitos */
+.beds{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.bed{font:600 13px var(--mono);border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:6px;padding:6px 10px;cursor:pointer;display:flex;gap:7px;align-items:center}
+.bed[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.bed .n{font-weight:400;font-size:11px;padding:1px 5px;border-radius:9px;background:var(--abn-soft);color:var(--abn)}
+.bed[aria-pressed="true"] .n{background:var(--abn);color:var(--paper)}
+.bed.add{border-style:dashed;color:var(--muted);font-weight:400}
+
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:18px;align-items:start}
+@media (max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}}
+
+.sheet{background:var(--paper);border:1px solid var(--line);border-radius:10px;overflow:hidden;
+  background-image:radial-gradient(var(--dotgrid) 1px,transparent 1.2px);background-size:18px 18px;background-position:9px 9px}
+.pt{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line);background:var(--paper)}
+.pt label{font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.pt input[type=text]{font:600 14px var(--mono);width:7.5em;max-width:100%}
+.pt .grp{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pt .sp{flex:1}
+.linkbtn{font:500 12.5px var(--sans);background:none;border:1px solid var(--line);color:var(--muted);border-radius:6px;padding:5px 10px;cursor:pointer}
+.linkbtn:hover{color:var(--ink);border-color:var(--muted)}
+.linkbtn.danger.armed{color:var(--miss);border-color:var(--miss)}
+
+.sec{font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--accent);padding:14px 16px 4px 16px;display:flex;align-items:center;gap:10px}
+.sec::after{content:"";flex:1;height:1px;background:var(--line)}
+.row{display:grid;grid-template-columns:14px 138px minmax(0,1fr);gap:4px 10px;align-items:center;padding:5px 16px}
+.row.sub .lbl{color:var(--muted)}
+.row.sub .lbl::before{content:"↳ ";color:var(--muted)}
+@media (max-width:560px){.row{grid-template-columns:14px minmax(0,1fr)}.row .opts{grid-column:2}}
+.mk{width:9px;height:9px;border-radius:50%;justify-self:center}
+.mk.ok{background:var(--accent)}
+.mk.abn{background:var(--abn);box-shadow:0 0 0 3px var(--abn-soft)}
+.lbl{font-size:13px;font-weight:600}
+.opts{display:flex;flex-wrap:wrap;gap:5px}
+.chip{font:400 13.5px var(--sans);display:inline-flex;align-items:center;gap:7px;padding:5px 11px 5px 9px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;line-height:1.2}
+.chip .dot{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--muted);flex:none}
+.chip:hover{border-color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);font-weight:600}
+.chip[aria-pressed="true"] .dot{background:var(--accent);border-color:var(--accent)}
+.chip.abn[aria-pressed="true"]{background:var(--abn-soft);border-color:var(--abn);color:var(--ink)}
+.chip.abn[aria-pressed="true"] .dot{background:var(--abn);border-color:var(--abn)}
+.chip.multi .dot{border-radius:2px}
+input[type=text]{font:400 14px var(--sans);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:6px 9px;width:100%;max-width:420px}
+input[type=text]::placeholder{color:var(--muted);opacity:.8}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.sheet .end{height:12px}
+
+/* saída */
+.out{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);background:var(--paper);border:1px solid var(--line);border-radius:10px;display:flex;flex-direction:column}
+.out-h{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.out-h b{font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.pill{font:600 11.5px var(--mono);padding:2px 8px;border-radius:999px}
+.pill.ok{background:var(--accent-soft);color:var(--accent)}
+.pill.abn{background:var(--abn-soft);color:var(--abn)}
+.out-h .sp{flex:1}
+.copy{font:600 13.5px var(--sans);background:var(--ink);color:var(--paper);border:0;border-radius:7px;padding:8px 14px;cursor:pointer}
+.copy.done{background:var(--accent);color:var(--accent-ink)}
+#txt{font-family:var(--serif);font-size:15.5px;line-height:1.62;padding:16px 18px 18px;margin:0;white-space:pre-wrap;max-height:calc(100vh - 150px);overflow:auto}
+#txt mark{background:var(--abn-soft);color:inherit;border-radius:3px;padding:0 2px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+#txt .miss{color:var(--miss);font-family:var(--mono);font-size:.85em;border-bottom:1px dashed var(--miss)}
+.site-return{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:13.5px;color:var(--accent);text-decoration:none}
+.site-return:hover{text-decoration:underline}
+.note{font-size:12px;color:var(--muted);padding:0 18px 14px}
+@media (prefers-reduced-motion:no-preference){.chip,.bed,.copy{transition:background .12s,border-color .12s,color .12s}}
+</style>
+
+<div class="wrap">
+  <a class="site-return" href="../ferramentas/index.html">← Voltar para Ferramentas</a>
+
+  <header>
+    <h1>Evolução Alastair <span>enfermaria · passagem diária</span></h1>
+    <div class="legend"><span><i style="background:var(--accent)"></i>dentro do esperado</span><span><i style="background:var(--abn)"></i>alterado</span></div>
+  </header>
+
+  <div class="beds" id="beds"></div>
+
+  <div class="grid">
+    <section class="sheet" aria-label="Grade de marcação">
+      <div class="pt">
+        <div class="grp"><label for="bedname">Leito</label><input type="text" id="bedname" placeholder="ex.: 12B" autocomplete="off"></div>
+        <div class="grp" id="sexgrp"></div>
+        <span class="sp"></span>
+        <button class="linkbtn" id="reset" type="button">Voltar ao padrão estável</button>
+        <button class="linkbtn danger" id="del" type="button">Remover leito</button>
+      </div>
+      <div id="rows"></div>
+      <div class="end"></div>
+    </section>
+
+    <aside class="out" aria-label="Texto da evolução">
+      <div class="out-h"><b>Evolução</b><span class="pill" id="count"></span><span class="sp"></span><button class="copy" id="copy" type="button">Copiar texto</button></div>
+      <p id="txt"></p>
+      <div class="note">Trechos alterados aparecem destacados aqui e saem como texto normal ao copiar. Os leitos ficam salvos apenas neste navegador; use o número do leito em vez do nome do paciente.</div>
+    </aside>
+  </div>
+</div>
+
+<script>
+(function(){
+const F = [
+  {sec:'Estado geral'},
+  {id:'acomp',label:'Acompanhante',opts:[['des','desacompanhado'],['aco','acompanhado']]},
+  {id:'acompQuem',sub:1,label:'Por quem',type:'text',ph:'ex.: filha, esposa',show:v=>v.acomp==='aco'},
+  {id:'evol',label:'Evolução',opts:[['mel','melhora clínica'],['est','clinicamente estável'],['pio','piora clínica',1]]},
+  {id:'hemo',label:'Hemodinâmica',opts:[['est','estável'],['ins','instável',1]]},
+  {id:'interc',label:'Intercorrências 24h',opts:[['sem','sem'],['com','com',1]]},
+  {id:'intercTxt',sub:1,label:'Quais',type:'text',ph:'ex.: queda do leito às 3h',show:v=>v.interc==='com'},
+
+  {sec:'Consciência'},
+  {id:'consc',label:'Nível',opts:[['cons','consciente'],['sono','sonolento',1]]},
+  {id:'contact',label:'Contato',opts:[['c','contactuante'],['p','pouco contactuante',1],['n','não contactuante',1]]},
+  {id:'orient',label:'Orientação',opts:[['o','orientado'],['d','desorientado',1]]},
+  {id:'queixa',label:'Queixas atuais',opts:[['sem','sem queixas'],['com','com queixas',1]]},
+  {id:'queixaTxt',sub:1,label:'Quais',type:'text',ph:'ex.: cefaleia holocraniana',show:v=>v.queixa==='com'},
+
+  {sec:'Sinais e eventos'},
+  {id:'febre',label:'Temperatura',opts:[['af','afebril'],['fe','febril',1]]},
+  {id:'tmax',sub:1,label:'Tmáx',type:'text',ph:'ex.: 38,4',show:v=>v.febre==='fe'},
+  {id:'episod',label:'Episódios',opts:[['sem','sem episódios'],['com','com episódios',1]]},
+  {id:'epTipos',sub:1,label:'Quais',type:'multi',show:v=>v.episod==='com',opts:[['hipotensão','hipotensão'],['hipertensão','hipertensão'],['hipoglicemia','hipoglicemia'],['hiperglicemia','hiperglicemia'],['dessaturação','dessaturação'],['outros','outros']]},
+  {id:'epOutro',sub:1,label:'Outros',type:'text',ph:'ex.: taquicardia',show:v=>v.episod==='com'&&v.epTipos.includes('outros')},
+
+  {sec:'Dor'},
+  {id:'dor',label:'Dor',opts:[['nega','nega'],['ref','refere',1]]},
+  {id:'dorLocal',sub:1,label:'Local',type:'text',ph:'ex.: em região lombar',show:v=>v.dor==='ref'},
+  {id:'dorInt',sub:1,label:'Intensidade',show:v=>v.dor==='ref',opts:[['leve','leve',1],['moderada','moderada',1],['intensa','intensa',1]]},
+
+  {sec:'Respiratório'},
+  {id:'resp',label:'Padrão',opts:[['conf','confortável'],['desc','desconforto',1]]},
+  {id:'sup',label:'Suporte',opts:[['aa','ar ambiente'],['cn','cateter nasal'],['masc','máscara'],['out','outro']]},
+  {id:'fluxo',sub:1,label:'Fluxo',type:'text',ph:'ex.: 2 L/min',show:v=>v.sup==='cn'||v.sup==='masc'},
+  {id:'supOut',sub:1,label:'Qual',type:'text',ph:'ex.: VNI intermitente',show:v=>v.sup==='out'},
+  {id:'disp',label:'Dispneia',opts:[['sem','sem'],['com','com',1]]},
+  {id:'esc',label:'Escalonar O₂',opts:[['sem','não precisou'],['com','precisou',1]]},
+
+  {sec:'Alimentação'},
+  {id:'aceit',label:'Aceitação',opts:[['boa','boa'],['regular','regular',1],['baixa','baixa',1]]},
+  {id:'via',label:'Via',opts:[['oral','oral'],['enteral','enteral'],['parenteral','parenteral']]},
+  {id:'naus',label:'Náuseas',opts:[['sem','sem'],['com','com',1]]},
+  {id:'vom',label:'Vômitos',opts:[['sem','sem'],['com','com',1]]},
+
+  {sec:'Diurese'},
+  {id:'diuVia',label:'Via',opts:[['esp','espontânea'],['svd','por SVD']]},
+  {id:'diuPres',label:'Presença',opts:[['pre','presente'],['red','reduzida',1],['aus','ausente',1]]},
+  {id:'diuVol',sub:1,label:'Volume',show:v=>v.diuPres!=='aus',opts:[['hab','habitual'],['aum','aumentado',1],['red','reduzido',1],['nq','não quantificado']]},
+  {id:'diuQx',label:'Queixas urinárias',opts:[['sem','sem'],['com','com',1]]},
+  {id:'diuQxTxt',sub:1,label:'Quais',type:'text',ph:'ex.: disúria',show:v=>v.diuQx==='com'},
+
+  {sec:'Evacuações'},
+  {id:'evac',label:'No período',opts:[['pre','presentes'],['sem','ausentes']]},
+  {id:'evacAsp',label:'Aspecto',opts:[['ok','sem alterações'],['dia','diarreia',1],['cons','constipação',1],['asp','fezes alteradas',1]]},
+  {id:'evacTxt',sub:1,label:'Detalhe',type:'text',ph:'ex.: melena, 3 episódios',show:v=>v.evacAsp==='asp'||v.evacAsp==='dia'},
+
+  {sec:'Mobilidade'},
+  {id:'deamb',label:'Deambulação',opts:[['sem','sem auxílio'],['com','com auxílio'],['leito','restrito ao leito',1]]},
+  {id:'lim',sub:1,label:'Limitações',show:v=>v.deamb!=='leito',opts:[['sem','sem'],['com','com',1]]},
+  {id:'mob',sub:1,label:'Intercorr. mobilização',show:v=>v.deamb!=='leito',opts:[['sem','sem'],['com','com',1]]},
+
+  {sec:'Sono'},
+  {id:'ciclo',label:'Ciclo sono-vigília',opts:[['pres','preservado'],['prej','prejudicado',1],['inv','invertido',1]]},
+  {id:'sono',label:'Qualidade',opts:[['sat','satisfatório'],['ins','insônia',1],['desp','despertares',1],['sonol','sonolência excessiva',1]]},
+
+  {sec:'Fechamento'},
+  {id:'demais',label:'Demais queixas',opts:[['nega','nega'],['ref','refere',1]]},
+  {id:'demaisTxt',sub:1,label:'Quais',type:'text',ph:'ex.: prurido em membros inferiores',show:v=>v.demais==='ref'}
+];
+
+const DEF = {acomp:'des',acompQuem:'',evol:'est',hemo:'est',interc:'sem',intercTxt:'',consc:'cons',contact:'c',orient:'o',queixa:'sem',queixaTxt:'',
+  febre:'af',tmax:'',episod:'sem',epTipos:[],epOutro:'',dor:'nega',dorLocal:'',dorInt:'leve',resp:'conf',sup:'aa',fluxo:'',supOut:'',disp:'sem',esc:'sem',
+  aceit:'boa',via:'oral',naus:'sem',vom:'sem',diuVia:'esp',diuPres:'pre',diuVol:'hab',diuQx:'sem',diuQxTxt:'',evac:'pre',evacAsp:'ok',evacTxt:'',
+  deamb:'sem',lim:'sem',mob:'sem',ciclo:'pres',sono:'sat',demais:'nega',demaisTxt:''};
+
+const KEY='evolucao-alastair-v1';
+const fresh=(name)=>({id:Math.random().toString(36).slice(2,9),name:name||'',sex:'M',v:JSON.parse(JSON.stringify(DEF))});
+
+let S=null;
+try{S=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){S=null}
+if(!S||!Array.isArray(S.p)||!S.p.length){
+  // exemplo inicial: um leito estável e um com alterações
+  const a=fresh('12A');
+  const b=fresh('14B'); b.sex='F';
+  Object.assign(b.v,{acomp:'aco',acompQuem:'filha',febre:'fe',tmax:'38,2',dor:'ref',dorLocal:'em hipogástrio',dorInt:'moderada',diuQx:'com',diuQxTxt:'disúria',aceit:'regular'});
+  S={p:[a,b],cur:a.id};
+}
+S.p.forEach(p=>{p.v=Object.assign(JSON.parse(JSON.stringify(DEF)),p.v)});
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const cur=()=>S.p.find(p=>p.id===S.cur)||S.p[0];
+
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const A=s=>'⟦'+s+'⟧';           // trecho alterado
+const M=s=>'⟪'+s+'⟫';           // falta preencher
+const t=s=>(s||'').trim();
+const joinPt=a=>a.length<2?(a[0]||''):a.slice(0,-1).join(', ')+' e '+a[a.length-1];
+
+function abnRows(p){
+  const v=p.v;let n=0;
+  F.forEach(f=>{ if(!f.opts||f.type==='multi')return; if(f.show&&!f.show(v))return;
+    const o=f.opts.find(o=>o[0]===v[f.id]); if(o&&o[2])n++; });
+  return n;
+}
+
+function build(p){
+  const v=p.v, fem=p.sex==='F', g=(m,f)=>fem?f:m, out=[];
+  // 1
+  let ac = v.acomp==='des' ? g('desacompanhado','desacompanhada')
+         : g('acompanhado','acompanhada')+(t(v.acompQuem)?' por '+t(v.acompQuem):'');
+  const evol={mel:'com melhora clínica',est:'clinicamente estável',pio:A('com piora clínica')}[v.evol];
+  const hemo=v.hemo==='est'?'estável':A('instável');
+  const intc=v.interc==='sem'?'sem intercorrências nas últimas 24 horas'
+     :A('com intercorrências nas últimas 24 horas')+' ('+(t(v.intercTxt)||M('especificar'))+')';
+  out.push(`Encontro paciente em leito de enfermaria, ${ac}, evoluindo ${evol} e hemodinamicamente ${hemo}, ${intc}.`);
+  // 2
+  const consc=v.consc==='cons'?'consciente':A(g('sonolento','sonolenta'));
+  const cont={c:'contactuante',p:A('pouco contactuante'),n:A('não contactuante')}[v.contact];
+  const ori=v.orient==='o'?g('orientado','orientada'):A(g('desorientado','desorientada'));
+  const qx=v.queixa==='sem'?'sem queixas atuais':(t(v.queixaTxt)?A('com queixa de '+t(v.queixaTxt)):A('com queixas atuais')+' '+M('especificar'));
+  out.push(`Encontra-se ${consc}, ${cont} e ${ori}, ${qx}.`);
+  // 3
+  let feb='Afebril';
+  if(v.febre==='fe'){let tm=t(v.tmax); if(tm&&/\d$/.test(tm))tm+=' °C'; feb=A('Febril')+(tm?' (Tmáx '+tm+')':'');}
+  let ep;
+  if(v.episod==='sem') ep='sem episódios de hipotensão, hipertensão, hipoglicemia, hiperglicemia ou dessaturação';
+  else{
+    const l=v.epTipos.filter(x=>x!=='outros'); if(v.epTipos.includes('outros')) l.push(t(v.epOutro)||M('outros'));
+    ep=A('com episódios de '+(l.length?joinPt(l):''))+(l.length?'':M('especificar'));
+  }
+  out.push(`${feb} no período, ${ep}.`);
+  // 4
+  out.push(v.dor==='nega'?'Nega dor ou outras queixas álgicas.'
+    :`${A('Refere dor'+(t(v.dorLocal)?' '+t(v.dorLocal):''))}, de intensidade ${A(v.dorInt)}.`);
+  // 5
+  const conf=v.resp==='conf'?'confortavelmente':A('com desconforto respiratório');
+  const fl=t(v.fluxo)?' a '+t(v.fluxo):'';
+  const sup={aa:'ar ambiente',cn:'O₂ por cateter nasal'+fl,masc:'O₂ por máscara'+fl,out:t(v.supOut)||M('especificar suporte')}[v.sup];
+  const disp=v.disp==='sem'?'sem dispneia':A('com dispneia');
+  let es;
+  if(v.sup==='aa') es=v.esc==='sem'?'sem necessidade de oxigênio suplementar':A('com necessidade de início de oxigênio suplementar');
+  else es=v.esc==='sem'?'sem necessidade de escalonamento do suporte de O₂':A('com necessidade de escalonamento do suporte de O₂');
+  out.push(`Respira ${conf} em ${sup}, ${disp}, ${es}.`);
+  // 6
+  const ace={boa:'boa',regular:A('regular'),baixa:A('baixa')}[v.aceit];
+  const via={oral:'via oral',enteral:'enteral',parenteral:'parenteral'}[v.via];
+  let nv;
+  if(v.naus==='sem'&&v.vom==='sem') nv='sem náuseas ou vômitos';
+  else if(v.naus==='com'&&v.vom==='com') nv=A('com náuseas e vômitos');
+  else if(v.naus==='com') nv=A('com náuseas')+', sem vômitos';
+  else nv='sem náuseas, '+A('com vômitos');
+  out.push(`Apresenta ${ace} aceitação da dieta ${via}, ${nv}.`);
+  // 7
+  const dv=v.diuVia==='esp'?'espontânea':'por SVD';
+  const dp={pre:'presente',red:A('reduzida'),aus:A('ausente')}[v.diuPres];
+  const vol=v.diuPres==='aus'?'':', '+{hab:'em volume habitual',aum:A('em volume aumentado'),red:A('em volume reduzido'),nq:'não quantificada'}[v.diuVol];
+  const dq=v.diuQx==='sem'?'sem queixas urinárias':(t(v.diuQxTxt)?A('com '+t(v.diuQxTxt)):A('com queixas urinárias')+' '+M('especificar'));
+  out.push(`Diurese ${dv}, ${dp}${vol}, ${dq}.`);
+  // 8
+  const det=t(v.evacTxt)?' ('+t(v.evacTxt)+')':'';
+  const asp={ok:'sem alterações',dia:A('com diarreia')+det,cons:A('com constipação'),asp:A('com alteração do aspecto das fezes')+(det||' '+M('descrever'))}[v.evacAsp];
+  if(v.evac==='pre') out.push(`Evacuações presentes no período, ${asp}.`);
+  else out.push(v.evacAsp==='ok'?'Sem evacuações no período.':`Sem evacuações no período, ${asp}.`);
+  // 9
+  if(v.deamb==='leito') out.push(A(g('Restrito ao leito','Restrita ao leito'))+'.');
+  else{
+    const d=v.deamb==='sem'?'Deambula sem auxílio':'Deambula com auxílio';
+    const li=v.lim==='sem'?'sem limitações':A('com limitações');
+    const mo=v.mob==='sem'?'sem intercorrências durante mobilização':A('com intercorrências durante mobilização');
+    out.push(`${d}, ${li}, ${mo}.`);
+  }
+  // 10
+  const ci={pres:'preservado',prej:A('prejudicado'),inv:A('invertido')}[v.ciclo];
+  const so={sat:'sono satisfatório',ins:A('insônia'),desp:A('despertares frequentes'),sonol:A('sonolência excessiva')}[v.sono];
+  out.push(`Mantém ciclo sono-vigília ${ci}, com ${so}.`);
+  // 11
+  out.push(v.demais==='nega'?'Nega demais queixas no momento.'
+    :(t(v.demaisTxt)?A('Refere ainda '+t(v.demaisTxt))+'.':A('Refere outras queixas')+' '+M('especificar')+'.'));
+  return out.join(' ');
+}
+const toHTML=s=>esc(s).replace(/⟦/g,'<mark>').replace(/⟧/g,'</mark>').replace(/⟪([^⟫]*)⟫/g,'<span class="miss">[$1]</span>');
+const toPlain=s=>s.replace(/[⟦⟧]/g,'').replace(/⟪([^⟫]*)⟫/g,'[$1]');
+
+const $=id=>document.getElementById(id);
+
+function renderBeds(){
+  $('beds').innerHTML=S.p.map(p=>{const n=abnRows(p);
+    return `<button class="bed" type="button" data-bed="${p.id}" aria-pressed="${p.id===S.cur}">${esc(p.name||'sem nome')}${n?`<span class="n">${n}</span>`:''}</button>`}).join('')
+    +`<button class="bed add" type="button" id="addbed">+ leito</button>`;
+}
+function renderRows(){
+  const p=cur(), v=p.v; let h='';
+  F.forEach(f=>{
+    if(f.sec){h+=`<div class="sec">${f.sec}</div>`;return;}
+    if(f.show&&!f.show(v))return;
+    const cls='row'+(f.sub?' sub':'');
+    if(f.type==='text'){
+      h+=`<div class="${cls}"><span class="mk"></span><label class="lbl" for="f-${f.id}">${f.label}</label><div class="opts"><input type="text" id="f-${f.id}" data-t="${f.id}" placeholder="${esc(f.ph||'')}" value="${esc(v[f.id]||'')}" autocomplete="off"></div></div>`;
+      return;
+    }
+    let mk='';
+    if(f.type==='multi'){ mk=v[f.id].length?'abn':''; }
+    else{ const o=f.opts.find(o=>o[0]===v[f.id]); mk=o?(o[2]?'abn':'ok'):''; }
+    const chips=f.opts.map(o=>{
+      const on=f.type==='multi'?v[f.id].includes(o[0]):v[f.id]===o[0];
+      const abn=o[2]||f.type==='multi';
+      return `<button type="button" class="chip${abn?' abn':''}${f.type==='multi'?' multi':''}" data-f="${f.id}" data-v="${esc(o[0])}" aria-pressed="${on}"><span class="dot"></span>${fixG(o[1],p)}</button>`;
+    }).join('');
+    h+=`<div class="${cls}"><span class="mk ${mk}"></span><span class="lbl">${f.label}</span><div class="opts" role="group" aria-label="${f.label}">${chips}</div></div>`;
+  });
+  $('rows').innerHTML=h;
+  $('bedname').value=p.name||'';
+  $('sexgrp').innerHTML='<label>Sexo</label>'+[['M','masc.'],['F','fem.']].map(s=>`<button type="button" class="chip" data-sex="${s[0]}" aria-pressed="${p.sex===s[0]}"><span class="dot"></span>${s[1]}</button>`).join('');
+}
+function fixG(label,p){
+  if(p.sex!=='F')return label;
+  return label.replace(/^(sonolento|orientado|desorientado|restrito|desacompanhado|acompanhado)/,m=>m.slice(0,-1)+'a');
+}
+function renderOut(){
+  const p=cur(), s=build(p), n=abnRows(p);
+  $('txt').innerHTML=toHTML(s);
+  const c=$('count'); c.className='pill '+(n?'abn':'ok'); c.textContent=n?(n+(n>1?' alterações':' alteração')):'sem alterações';
+}
+function all(){renderBeds();renderRows();renderOut();}
+
+document.addEventListener('click',e=>{
+  const ch=e.target.closest('[data-f]');
+  if(ch){
+    const p=cur(), f=F.find(x=>x.id===ch.dataset.f), val=ch.dataset.v;
+    if(f.type==='multi'){const a=p.v[f.id];const i=a.indexOf(val);i<0?a.push(val):a.splice(i,1);}
+    else p.v[f.id]=val;
+    save();renderBeds();renderRows();renderOut();
+    const again=document.querySelector(`[data-f="${f.id}"][data-v="${CSS.escape(val)}"]`); if(again)again.focus();
+    return;
+  }
+  const sx=e.target.closest('[data-sex]');
+  if(sx){cur().sex=sx.dataset.sex;save();renderRows();renderOut();return;}
+  const bd=e.target.closest('[data-bed]');
+  if(bd){S.cur=bd.dataset.bed;disarm();save();all();return;}
+  if(e.target.closest('#addbed')){const p=fresh('');S.p.push(p);S.cur=p.id;save();all();$('bedname').focus();return;}
+  if(e.target.closest('#reset')){const p=cur();p.v=JSON.parse(JSON.stringify(DEF));save();all();return;}
+  const del=e.target.closest('#del');
+  if(del){
+    if(!del.classList.contains('armed')){del.classList.add('armed');del.textContent='Confirmar remoção';return;}
+    S.p=S.p.filter(p=>p.id!==S.cur); if(!S.p.length)S.p.push(fresh(''));
+    S.cur=S.p[0].id; disarm(); save(); all(); return;
+  }
+  if(!e.target.closest('#del')) disarm();
+});
+function disarm(){const d=$('del');d.classList.remove('armed');d.textContent='Remover leito';}
+
+document.addEventListener('input',e=>{
+  const el=e.target;
+  if(el.dataset&&el.dataset.t){cur().v[el.dataset.t]=el.value;save();renderOut();}
+  else if(el.id==='bedname'){cur().name=el.value;save();renderBeds();}
+});
+
+$('copy').addEventListener('click',()=>{
+  const plain=toPlain(build(cur())), b=$('copy');
+  const ok=()=>{b.textContent='Copiado';b.classList.add('done');setTimeout(()=>{b.textContent='Copiar texto';b.classList.remove('done')},1600)};
+  const fallback=()=>{const r=document.createRange();r.selectNodeContents($('txt'));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Texto selecionado, use ⌘C';};
+  try{navigator.clipboard.writeText(plain).then(ok,fallback)}catch(err){fallback()}
+});
+
+all();
+})();
+</script>
+
+</body></html>
