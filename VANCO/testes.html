@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Testes — Vancomicina POP IAMSPE 2012</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <h1>Testes <span>conferência das regras contra o POP IAMSPE 2012</span></h1>
+  </header>
+
+  <main>
+    <section class="painel">
+      <h2>Matriz de rastreabilidade</h2>
+      <div class="tabela-rolagem">
+        <table>
+          <thead><tr><th>Regra</th><th>Origem</th><th>Implementada</th><th>Testada</th></tr></thead>
+          <tbody id="matriz"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="painel">
+      <h2 id="total"></h2>
+      <div class="tabela-rolagem">
+        <table>
+          <thead><tr><th>Regra</th><th>Caso</th><th>Esperado</th><th>Sistema</th><th>Status</th></tr></thead>
+          <tbody id="casos"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p><a href="index.html">Voltar à ferramenta</a></p>
+  </footer>
+
+  <script src="protocol-iamspe-2012.js"></script>
+  <script src="engine.js"></script>
+  <script src="tests.js"></script>
+  <script>
+    (function () {
+      var resultados = window.VANCO_TESTES;
+
+      function linha(corpo, celulas) {
+        var tr = document.createElement('tr');
+        celulas.forEach(function (c) {
+          var td = document.createElement('td');
+          td.textContent = c.texto != null ? c.texto : c;
+          if (c.classe) td.className = c.classe;
+          tr.appendChild(td);
+        });
+        corpo.appendChild(tr);
+      }
+
+      function status(ok) {
+        return { texto: ok ? 'APROVADO' : 'REPROVADO', classe: ok ? 'aprovado' : 'reprovado' };
+      }
+
+      var grupos = [];
+      resultados.forEach(function (r) {
+        var g = grupos.filter(function (x) { return x.regra === r.regra; })[0];
+        if (!g) grupos.push(g = { regra: r.regra, origem: r.origem, total: 0, aprovados: 0 });
+        g.total++;
+        if (r.aprovado) g.aprovados++;
+      });
+
+      grupos.forEach(function (g) {
+        var ok = g.aprovados === g.total;
+        linha(document.getElementById('matriz'), [g.regra, g.origem, 'Sim',
+          { texto: (ok ? 'Sim' : 'Falha') + ' (' + g.aprovados + '/' + g.total + ')', classe: ok ? 'aprovado' : 'reprovado' }]);
+      });
+
+      resultados.forEach(function (r) {
+        linha(document.getElementById('casos'), [r.regra, r.nome, r.esperado, r.obtido, status(r.aprovado)]);
+      });
+
+      var aprovados = resultados.filter(function (r) { return r.aprovado; }).length;
+      document.getElementById('total').textContent = aprovados + ' de ' + resultados.length + ' testes aprovados';
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vancomicina — POP IAMSPE 2012</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <a class="site-return" href="../ferramentas/index.html">← Voltar para Ferramentas</a>
+    <div class="topo-linha">
+      <h1>Vancomicina <span>monitorização sérica</span></h1>
+      <div class="protocolo-ativo">
+        <span class="rotulo">Protocolo ativo</span>
+        <strong id="protocolo-nome"></strong>
+        <span id="protocolo-versao"></span>
+      </div>
+    </div>
+    <p class="aviso-versao" id="aviso-versao"></p>
+  </header>
+
+  <main>
+    <fieldset class="seletor-hd">
+      <legend>Hemodiálise de alto fluxo</legend>
+      <label><input type="radio" name="hd" value="nao" checked> Não</label>
+      <label><input type="radio" name="hd" value="sim"> Sim</label>
+      <span class="dica" id="dica-hd"></span>
+    </fieldset>
+
+    <nav class="abas" role="tablist" aria-label="Módulos">
+      <button type="button" role="tab" data-aba="inicial" aria-selected="true">Dose inicial</button>
+      <button type="button" role="tab" data-aba="ajuste" aria-selected="false">Ajuste</button>
+      <button type="button" role="tab" data-aba="hd" aria-selected="false">Hemodiálise</button>
+      <button type="button" role="tab" data-aba="coleta" aria-selected="false">Coleta</button>
+    </nav>
+
+    <!-- DOSE INICIAL -->
+    <section class="painel" id="painel-inicial" role="tabpanel">
+      <form id="form-inicial" novalidate>
+        <div class="campos">
+          <label>Idade <small>anos</small>
+            <input name="idade" inputmode="decimal" autocomplete="off">
+          </label>
+          <div class="campo">
+            <span>Sexo</span>
+            <div class="opcoes">
+              <label><input type="radio" name="sexo" value="M"> Masculino</label>
+              <label><input type="radio" name="sexo" value="F"> Feminino</label>
+            </div>
+          </div>
+          <label>Peso <small>kg</small>
+            <input name="peso" inputmode="decimal" autocomplete="off">
+          </label>
+          <label>Creatinina sérica <small>mg/dL</small>
+            <input name="creatinina" inputmode="decimal" autocomplete="off">
+          </label>
+          <label class="largo">Data e hora da 1ª dose <small>opcional — calcula o horário da coleta</small>
+            <input name="primeiraDose" type="datetime-local">
+          </label>
+        </div>
+        <div class="mensagens" aria-live="polite"></div>
+        <button type="submit" class="principal">Calcular dose inicial</button>
+      </form>
+      <div class="saida" id="resultado-inicial" aria-live="polite"></div>
+    </section>
+
+    <!-- AJUSTE -->
+    <section class="painel" id="painel-ajuste" role="tabpanel" hidden>
+      <form id="form-ajuste" novalidate>
+        <div class="campos">
+          <label>Vancocinemia (vale) <small>mg/L</small>
+            <input name="vanco" inputmode="decimal" autocomplete="off">
+          </label>
+          <label>Esquema atual
+            <select name="esquema"></select>
+          </label>
+          <label class="caixa largo">
+            <input type="checkbox" name="anteriorNoAlvo">
+            A mensuração anterior também estava entre 15 e 20 mg/L
+          </label>
+          <label>Data e hora da última dose <small>opcional</small>
+            <input name="ultimaDose" type="datetime-local">
+          </label>
+          <label>Data e hora da coleta <small>opcional — confere se foi vale</small>
+            <input name="coletaEm" type="datetime-local">
+          </label>
+          <label class="largo">Data e hora da 1ª dose do novo esquema <small>opcional — calcula a próxima coleta</small>
+            <input name="inicioNovo" type="datetime-local">
+          </label>
+        </div>
+        <div class="mensagens" aria-live="polite"></div>
+        <button type="submit" class="principal">Interpretar vancocinemia</button>
+      </form>
+      <div class="saida" id="resultado-ajuste" aria-live="polite"></div>
+    </section>
+
+    <!-- HEMODIÁLISE -->
+    <section class="painel" id="painel-hd" role="tabpanel" hidden>
+      <form id="form-hd" novalidate>
+        <div class="campos">
+          <label>Peso <small>kg</small>
+            <input name="peso" inputmode="decimal" autocomplete="off">
+          </label>
+        </div>
+        <div class="mensagens" aria-live="polite"></div>
+        <button type="submit" class="principal">Consultar dose em hemodiálise</button>
+      </form>
+      <div class="saida" id="resultado-hd" aria-live="polite"></div>
+    </section>
+
+    <!-- COLETA -->
+    <section class="painel" id="painel-coleta" role="tabpanel" hidden>
+      <form id="form-coleta" novalidate>
+        <div class="campos">
+          <label class="largo">Regra de coleta
+            <select name="tipo">
+              <option value="antesDose">Antes de uma dose do esquema (vale)</option>
+              <option value="horasApos">Horas após um evento (1ª dose, alteração do esquema ou última mensuração)</option>
+            </select>
+          </label>
+          <label class="largo"><span id="rotulo-inicio">Data e hora da 1ª dose do esquema</span>
+            <input name="inicio" type="datetime-local">
+          </label>
+          <label data-tipo="antesDose">Intervalo entre doses
+            <select name="intervaloH">
+              <option value="8">8/8 h</option>
+              <option value="12" selected>12/12 h</option>
+              <option value="24">24/24 h</option>
+              <option value="48">48/48 h</option>
+              <option value="72">72/72 h</option>
+            </select>
+          </label>
+          <label data-tipo="antesDose">Coletar antes da dose nº
+            <select name="dose">
+              <option value="3">3ª dose</option>
+              <option value="4" selected>4ª dose</option>
+            </select>
+          </label>
+          <label data-tipo="antesDose">Antecedência <small>minutos</small>
+            <input name="antecedenciaMin" inputmode="numeric" value="30" autocomplete="off">
+          </label>
+          <label data-tipo="horasApos" hidden>Coletar após
+            <select name="horas">
+              <option value="12">12 h (após a última mensuração — faixa 21–40)</option>
+              <option value="24">24 h (após a 1ª dose — ClCr &lt; 10)</option>
+              <option value="48">48 h (após alteração do esquema)</option>
+            </select>
+          </label>
+        </div>
+        <div class="mensagens" aria-live="polite"></div>
+        <button type="submit" class="principal">Calcular horário da coleta</button>
+      </form>
+      <div class="saida" id="resultado-coleta" aria-live="polite"></div>
+    </section>
+
+    <section class="historico">
+      <div class="historico-topo">
+        <h2>Últimos cálculos</h2>
+        <button type="button" id="limpar-historico" class="discreto">Limpar histórico</button>
+      </div>
+      <ol id="lista-historico"></ol>
+      <p class="dica">Guardado apenas neste navegador. Nenhum dado identificador do paciente é solicitado ou enviado.</p>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p>Esta ferramenta executa as tabelas do POP e mostra a regra aplicada para conferência. Não substitui o julgamento clínico.</p>
+    <p><a href="testes.html">Testes e matriz de rastreabilidade</a></p>
+  </footer>
+
+  <script src="protocol-iamspe-2012.js"></script>
+  <script src="engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

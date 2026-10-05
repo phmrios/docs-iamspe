@@ -8,5 +8,10 @@
     "title": "Evolução Alastair — Enfermaria",
     "description": "Gerador do texto de evolução diária por leito, com destaque das alterações e cópia rápida.",
     "url": "../EVO/index.html"
+  },
+  {
+    "title": "Vancomicina — Monitorização Sérica (POP IAMSPE 2012)",
+    "description": "Calculadora de dose inicial, ajuste por vancocinemia, dose em hemodiálise e horário da coleta.",
+    "url": "../VANCO/index.html"
   }
 ]
