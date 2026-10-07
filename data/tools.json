@@ -13,5 +13,10 @@
     "title": "Vancomicina — Monitorização Sérica (POP IAMSPE 2012)",
     "description": "Calculadora de dose inicial, ajuste por vancocinemia, dose em hemodiálise e horário da coleta.",
     "url": "../VANCO/index.html"
+  },
+  {
+    "title": "Insulinoterapia e Controle Glicêmico — UTI IAMSPE",
+    "description": "Protocolo de insulina Lispro em BIC, titulação por glicemia, escala de correção SC, transição EV→SC e hipoglicemia.",
+    "url": "../INSULINA/index.html"
   }
 ]

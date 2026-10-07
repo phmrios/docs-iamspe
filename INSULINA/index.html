@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IAMSPE — Protocolo de Insulinoterapia & Controle Glicêmico na UTI</title>
+    <!-- Estilos embutidos: o arquivo não depende de internet -->
+    <style>
+*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-y-0{top:0;bottom:0}.inset-y-1{top:.25rem;bottom:.25rem}.-bottom-2{bottom:-.5rem}.-right-2{right:-.5rem}.bottom-5{bottom:1.25rem}.left-1\/2{left:50%}.right-5{right:1.25rem}.top-0{top:0}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-0\.5{margin-bottom:.125rem}.mb-1{margin-bottom:.25rem}.mb-1\.5{margin-bottom:.375rem}.mb-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.mb-3\.5{margin-bottom:.875rem}.mb-4{margin-bottom:1rem}.mt-0\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-1\.5{margin-top:.375rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-3\.5{margin-top:.875rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.block{display:block}.flex{display:flex}.table{display:table}.grid{display:grid}.hidden{display:none}.h-6{height:1.5rem}.h-7{height:1.75rem}.h-9{height:2.25rem}.max-h-80{max-height:20rem}.w-16{width:4rem}.w-24{width:6rem}.w-6{width:1.5rem}.w-9{width:2.25rem}.w-full{width:100%}.w-px{width:1px}.max-w-7xl{max-width:80rem}.max-w-md{max-width:28rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.cursor-pointer{cursor:pointer}.select-none{-webkit-user-select:none;-moz-user-select:none;user-select:none}.scroll-mt-20{scroll-margin-top:5rem}.list-inside{list-style-position:inside}.list-decimal{list-style-type:decimal}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-2\.5{gap:.625rem}.gap-3{gap:.75rem}.gap-3\.5{gap:.875rem}.gap-4{gap:1rem}.space-y-1>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.25rem*var(--tw-space-y-reverse))}.space-y-1\.5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.375rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.375rem*var(--tw-space-y-reverse))}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}.space-y-7>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.75rem*var(--tw-space-y-reverse))}.divide-y>:not([hidden])~:not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px*(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px*var(--tw-divide-y-reverse))}.divide-slate-100>:not([hidden])~:not([hidden]){--tw-divide-opacity:1;border-color:rgb(241 245 249/var(--tw-divide-opacity,1))}.divide-slate-200>:not([hidden])~:not([hidden]){--tw-divide-opacity:1;border-color:rgb(226 232 240/var(--tw-divide-opacity,1))}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.whitespace-pre-wrap{white-space:pre-wrap}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-sm{border-radius:.125rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-b-4{border-bottom-width:4px}.border-l-4{border-left-width:4px}.border-t{border-top-width:1px}.border-t-2{border-top-width:2px}.border-t-4{border-top-width:4px}.border-amber-200{--tw-border-opacity:1;border-color:rgb(253 230 138/var(--tw-border-opacity,1))}.border-amber-400{--tw-border-opacity:1;border-color:rgb(251 191 36/var(--tw-border-opacity,1))}.border-amber-500{--tw-border-opacity:1;border-color:rgb(245 158 11/var(--tw-border-opacity,1))}.border-emerald-200{--tw-border-opacity:1;border-color:rgb(167 243 208/var(--tw-border-opacity,1))}.border-emerald-300{--tw-border-opacity:1;border-color:rgb(110 231 183/var(--tw-border-opacity,1))}.border-emerald-500{--tw-border-opacity:1;border-color:rgb(16 185 129/var(--tw-border-opacity,1))}.border-iamspe-blue{--tw-border-opacity:1;border-color:rgb(0 91 142/var(--tw-border-opacity,1))}.border-iamspe-border{--tw-border-opacity:1;border-color:rgb(208 227 236/var(--tw-border-opacity,1))}.border-iamspe-cyan{--tw-border-opacity:1;border-color:rgb(0 131 187/var(--tw-border-opacity,1))}.border-iamspe-cyan\/40{border-color:rgba(0,131,187,.4)}.border-iamspe-lightgreen{--tw-border-opacity:1;border-color:rgb(132 196 76/var(--tw-border-opacity,1))}.border-indigo-300{--tw-border-opacity:1;border-color:rgb(165 180 252/var(--tw-border-opacity,1))}.border-rose-200{--tw-border-opacity:1;border-color:rgb(254 205 211/var(--tw-border-opacity,1))}.border-rose-300{--tw-border-opacity:1;border-color:rgb(253 164 175/var(--tw-border-opacity,1))}.border-rose-400{--tw-border-opacity:1;border-color:rgb(251 113 133/var(--tw-border-opacity,1))}.border-rose-400\/40{border-color:rgba(251,113,133,.4)}.border-rose-500{--tw-border-opacity:1;border-color:rgb(244 63 94/var(--tw-border-opacity,1))}.border-rose-500\/50{border-color:rgba(244,63,94,.5)}.border-rose-600{--tw-border-opacity:1;border-color:rgb(225 29 72/var(--tw-border-opacity,1))}.border-rose-800{--tw-border-opacity:1;border-color:rgb(159 18 57/var(--tw-border-opacity,1))}.border-sky-200{--tw-border-opacity:1;border-color:rgb(186 230 253/var(--tw-border-opacity,1))}.border-sky-300{--tw-border-opacity:1;border-color:rgb(125 211 252/var(--tw-border-opacity,1))}.border-sky-400{--tw-border-opacity:1;border-color:rgb(56 189 248/var(--tw-border-opacity,1))}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240/var(--tw-border-opacity,1))}.border-slate-300{--tw-border-opacity:1;border-color:rgb(203 213 225/var(--tw-border-opacity,1))}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85/var(--tw-border-opacity,1))}.border-yellow-300{--tw-border-opacity:1;border-color:rgb(253 224 71/var(--tw-border-opacity,1))}.border-l-amber-500{--tw-border-opacity:1;border-left-color:rgb(245 158 11/var(--tw-border-opacity,1))}.border-l-emerald-500{--tw-border-opacity:1;border-left-color:rgb(16 185 129/var(--tw-border-opacity,1))}.border-l-iamspe-blue{--tw-border-opacity:1;border-left-color:rgb(0 91 142/var(--tw-border-opacity,1))}.border-l-rose-500{--tw-border-opacity:1;border-left-color:rgb(244 63 94/var(--tw-border-opacity,1))}.border-t-emerald-600{--tw-border-opacity:1;border-top-color:rgb(5 150 105/var(--tw-border-opacity,1))}.border-t-rose-600{--tw-border-opacity:1;border-top-color:rgb(225 29 72/var(--tw-border-opacity,1))}.bg-amber-100{--tw-bg-opacity:1;background-color:rgb(254 243 199/var(--tw-bg-opacity,1))}.bg-amber-50{--tw-bg-opacity:1;background-color:rgb(255 251 235/var(--tw-bg-opacity,1))}.bg-emerald-100{--tw-bg-opacity:1;background-color:rgb(209 250 229/var(--tw-bg-opacity,1))}.bg-emerald-50{--tw-bg-opacity:1;background-color:rgb(236 253 245/var(--tw-bg-opacity,1))}.bg-iamspe-blue{--tw-bg-opacity:1;background-color:rgb(0 91 142/var(--tw-bg-opacity,1))}.bg-iamspe-cyan{--tw-bg-opacity:1;background-color:rgb(0 131 187/var(--tw-bg-opacity,1))}.bg-iamspe-cyan\/30{background-color:rgba(0,131,187,.3)}.bg-iamspe-dark{--tw-bg-opacity:1;background-color:rgb(0 26 44/var(--tw-bg-opacity,1))}.bg-iamspe-dark\/80{background-color:rgba(0,26,44,.8)}.bg-iamspe-darkgreen{--tw-bg-opacity:1;background-color:rgb(20 76 38/var(--tw-bg-opacity,1))}.bg-iamspe-green{--tw-bg-opacity:1;background-color:rgb(30 106 56/var(--tw-bg-opacity,1))}.bg-iamspe-light{--tw-bg-opacity:1;background-color:rgb(240 247 251/var(--tw-bg-opacity,1))}.bg-iamspe-lightgreen{--tw-bg-opacity:1;background-color:rgb(132 196 76/var(--tw-bg-opacity,1))}.bg-iamspe-navy{--tw-bg-opacity:1;background-color:rgb(0 43 73/var(--tw-bg-opacity,1))}.bg-indigo-50{--tw-bg-opacity:1;background-color:rgb(238 242 255/var(--tw-bg-opacity,1))}.bg-rose-100{--tw-bg-opacity:1;background-color:rgb(255 228 230/var(--tw-bg-opacity,1))}.bg-rose-50{--tw-bg-opacity:1;background-color:rgb(255 241 242/var(--tw-bg-opacity,1))}.bg-rose-500\/30{background-color:rgba(244,63,94,.3)}.bg-rose-600{--tw-bg-opacity:1;background-color:rgb(225 29 72/var(--tw-bg-opacity,1))}.bg-rose-900{--tw-bg-opacity:1;background-color:rgb(136 19 55/var(--tw-bg-opacity,1))}.bg-rose-950\/80{background-color:rgba(76,5,25,.8)}.bg-sky-100{--tw-bg-opacity:1;background-color:rgb(224 242 254/var(--tw-bg-opacity,1))}.bg-sky-50{--tw-bg-opacity:1;background-color:rgb(240 249 255/var(--tw-bg-opacity,1))}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249/var(--tw-bg-opacity,1))}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252/var(--tw-bg-opacity,1))}.bg-slate-500{--tw-bg-opacity:1;background-color:rgb(100 116 139/var(--tw-bg-opacity,1))}.bg-slate-800\/90{background-color:rgba(30,41,59,.9)}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.bg-yellow-50{--tw-bg-opacity:1;background-color:rgb(254 252 232/var(--tw-bg-opacity,1))}.bg-gradient-to-br{background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))}.from-white{--tw-gradient-from:#fff var(--tw-gradient-from-position);--tw-gradient-to:hsla(0,0%,100%,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.to-sky-50{--tw-gradient-to:#f0f9ff var(--tw-gradient-to-position)}.p-2{padding:.5rem}.p-2\.5{padding:.625rem}.p-3{padding:.75rem}.p-3\.5{padding:.875rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.px-1{padding-left:.25rem;padding-right:.25rem}.px-1\.5{padding-left:.375rem;padding-right:.375rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-2\.5{padding-left:.625rem;padding-right:.625rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-3\.5{padding-left:.875rem;padding-right:.875rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-2\.5{padding-top:.625rem;padding-bottom:.625rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-5{padding-top:1.25rem;padding-bottom:1.25rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pb-1{padding-bottom:.25rem}.pb-2{padding-bottom:.5rem}.pb-2\.5{padding-bottom:.625rem}.pb-3{padding-bottom:.75rem}.pl-3\.5{padding-left:.875rem}.pt-2{padding-top:.5rem}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}.font-sans{font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji}.text-2xl{font-size:1.5rem;line-height:2rem}.text-6xl{font-size:3.75rem;line-height:1}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-black{font-weight:900}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-normal{font-weight:400}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.tracking-tight{letter-spacing:-.025em}.tracking-wide{letter-spacing:.025em}.tracking-wider{letter-spacing:.05em}.text-amber-400{--tw-text-opacity:1;color:rgb(251 191 36/var(--tw-text-opacity,1))}.text-amber-600{--tw-text-opacity:1;color:rgb(217 119 6/var(--tw-text-opacity,1))}.text-amber-700{--tw-text-opacity:1;color:rgb(180 83 9/var(--tw-text-opacity,1))}.text-amber-800{--tw-text-opacity:1;color:rgb(146 64 14/var(--tw-text-opacity,1))}.text-amber-900{--tw-text-opacity:1;color:rgb(120 53 15/var(--tw-text-opacity,1))}.text-amber-950{--tw-text-opacity:1;color:rgb(69 26 3/var(--tw-text-opacity,1))}.text-emerald-100{--tw-text-opacity:1;color:rgb(209 250 229/var(--tw-text-opacity,1))}.text-emerald-600{--tw-text-opacity:1;color:rgb(5 150 105/var(--tw-text-opacity,1))}.text-emerald-700{--tw-text-opacity:1;color:rgb(4 120 87/var(--tw-text-opacity,1))}.text-emerald-800{--tw-text-opacity:1;color:rgb(6 95 70/var(--tw-text-opacity,1))}.text-emerald-900{--tw-text-opacity:1;color:rgb(6 78 59/var(--tw-text-opacity,1))}.text-emerald-950{--tw-text-opacity:1;color:rgb(2 44 34/var(--tw-text-opacity,1))}.text-iamspe-blue{--tw-text-opacity:1;color:rgb(0 91 142/var(--tw-text-opacity,1))}.text-iamspe-cyan{--tw-text-opacity:1;color:rgb(0 131 187/var(--tw-text-opacity,1))}.text-iamspe-navy{--tw-text-opacity:1;color:rgb(0 43 73/var(--tw-text-opacity,1))}.text-indigo-700{--tw-text-opacity:1;color:rgb(67 56 202/var(--tw-text-opacity,1))}.text-indigo-950{--tw-text-opacity:1;color:rgb(30 27 75/var(--tw-text-opacity,1))}.text-rose-100{--tw-text-opacity:1;color:rgb(255 228 230/var(--tw-text-opacity,1))}.text-rose-200{--tw-text-opacity:1;color:rgb(254 205 211/var(--tw-text-opacity,1))}.text-rose-300{--tw-text-opacity:1;color:rgb(253 164 175/var(--tw-text-opacity,1))}.text-rose-400{--tw-text-opacity:1;color:rgb(251 113 133/var(--tw-text-opacity,1))}.text-rose-600{--tw-text-opacity:1;color:rgb(225 29 72/var(--tw-text-opacity,1))}.text-rose-700{--tw-text-opacity:1;color:rgb(190 18 60/var(--tw-text-opacity,1))}.text-rose-800{--tw-text-opacity:1;color:rgb(159 18 57/var(--tw-text-opacity,1))}.text-rose-900{--tw-text-opacity:1;color:rgb(136 19 55/var(--tw-text-opacity,1))}.text-rose-950{--tw-text-opacity:1;color:rgb(76 5 25/var(--tw-text-opacity,1))}.text-sky-200{--tw-text-opacity:1;color:rgb(186 230 253/var(--tw-text-opacity,1))}.text-sky-300{--tw-text-opacity:1;color:rgb(125 211 252/var(--tw-text-opacity,1))}.text-sky-950{--tw-text-opacity:1;color:rgb(8 47 73/var(--tw-text-opacity,1))}.text-slate-100{--tw-text-opacity:1;color:rgb(241 245 249/var(--tw-text-opacity,1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240/var(--tw-text-opacity,1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225/var(--tw-text-opacity,1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105/var(--tw-text-opacity,1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85/var(--tw-text-opacity,1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59/var(--tw-text-opacity,1))}.text-slate-900{--tw-text-opacity:1;color:rgb(15 23 42/var(--tw-text-opacity,1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.text-yellow-950{--tw-text-opacity:1;color:rgb(66 32 6/var(--tw-text-opacity,1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.shadow{--tw-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color),0 1px 2px -1px var(--tw-shadow-color)}.shadow,.shadow-2xl{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color),0 4px 6px -4px var(--tw-shadow-color)}.shadow-lg,.shadow-md{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color),0 2px 4px -2px var(--tw-shadow-color)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgba(0,0,0,.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-300{transition-duration:.3s}html{scroll-behavior:smooth}@media print{*{-webkit-print-color-adjust:exact;print-color-adjust:exact}.no-print{display:none!important}body{background:#fff!important;color:#000!important}.shadow-lg,.shadow-md,.shadow-sm{box-shadow:none!important}.border{border-color:#cbd5e1!important}header{position:static!important}.rounded-2xl,.rounded-xl,li,tr{-moz-column-break-inside:avoid;break-inside:avoid}h2{-moz-column-break-after:avoid;break-after:avoid}}.selection\:bg-iamspe-cyan ::-moz-selection{--tw-bg-opacity:1;background-color:rgb(0 131 187/var(--tw-bg-opacity,1))}.selection\:bg-iamspe-cyan ::selection{--tw-bg-opacity:1;background-color:rgb(0 131 187/var(--tw-bg-opacity,1))}.selection\:text-white ::-moz-selection{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.selection\:text-white ::selection{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.selection\:bg-iamspe-cyan::-moz-selection{--tw-bg-opacity:1;background-color:rgb(0 131 187/var(--tw-bg-opacity,1))}.selection\:bg-iamspe-cyan::selection{--tw-bg-opacity:1;background-color:rgb(0 131 187/var(--tw-bg-opacity,1))}.selection\:text-white::-moz-selection{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.selection\:text-white::selection{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.hover\:bg-emerald-900:hover{--tw-bg-opacity:1;background-color:rgb(6 78 59/var(--tw-bg-opacity,1))}.hover\:bg-iamspe-navy:hover{--tw-bg-opacity:1;background-color:rgb(0 43 73/var(--tw-bg-opacity,1))}.hover\:bg-lime-500:hover{--tw-bg-opacity:1;background-color:rgb(132 204 22/var(--tw-bg-opacity,1))}.hover\:bg-rose-800:hover{--tw-bg-opacity:1;background-color:rgb(159 18 57/var(--tw-bg-opacity,1))}.hover\:bg-slate-800:hover{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.focus\:ring-iamspe-cyan:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(0 131 187/var(--tw-ring-opacity,1))}.disabled\:cursor-not-allowed:disabled{cursor:not-allowed}.disabled\:opacity-40:disabled{opacity:.4}@media (min-width:640px){.sm\:inline{display:inline}.sm\:w-24{width:6rem}.sm\:w-44{width:11rem}.sm\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.sm\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.sm\:flex-row{flex-direction:row}.sm\:items-center{align-items:center}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:px-8{padding-left:2rem;padding-right:2rem}.sm\:text-xl{font-size:1.25rem;line-height:1.75rem}}@media (min-width:768px){.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.md\:flex-row{flex-direction:row}.md\:items-center{align-items:center}.md\:justify-between{justify-content:space-between}}@media (min-width:1024px){.lg\:col-span-12{grid-column:span 12/span 12}.lg\:col-span-4{grid-column:span 4/span 4}.lg\:col-span-6{grid-column:span 6/span 6}.lg\:col-span-8{grid-column:span 8/span 8}.lg\:grid-cols-12{grid-template-columns:repeat(12,minmax(0,1fr))}.lg\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.lg\:px-10{padding-left:2.5rem;padding-right:2.5rem}.lg\:px-8{padding-left:2rem;padding-right:2rem}}
+.site-return{display:inline-block;margin-bottom:6px;font-size:13.5px;font-weight:600;color:#fff;text-decoration:none}
+.site-return:hover{text-decoration:underline}
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-iamspe-cyan selection:text-white">
+
+    <!-- Official IAMSPE Header with Brand Green -->
+    <header class="bg-iamspe-green text-white border-b-4 border-iamspe-lightgreen sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-3">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                <div class="flex items-center gap-3.5">
+                    <div>
+                        <a class="site-return no-print" href="../ferramentas/index.html">← Voltar para Ferramentas</a>
+                        <div class="flex items-center gap-2">
+                            <span class="bg-iamspe-lightgreen text-slate-900 font-black text-xs px-3 py-0.5 rounded uppercase tracking-wider">IAMSPE • HSPE</span>
+                            <span class="text-sm text-emerald-100 font-medium">Serviço de Terapia Intensiva Adulto</span>
+                        </div>
+                        <h1 class="text-lg sm:text-xl font-black tracking-tight text-white mt-0.5">
+                            Protocolo de Controle Glicêmico &amp; Insulinoterapia Lispro
+                        </h1>
+                        <p class="text-emerald-100 text-sm">
+                            Infusão EV Contínua (BIC) &bullet; Correção Subcutânea (SC) &bullet; Transição Segura &bullet; Atualização 2026
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Navigation Anchors & Print Action -->
+                <nav class="flex flex-wrap gap-1.5 text-sm font-semibold items-center no-print">
+                    <a href="#preparo" class="bg-iamspe-darkgreen hover:bg-emerald-900 text-emerald-100 hover:text-white px-2.5 py-1.5 rounded transition">1. Preparo</a>
+                    <a href="#fluxo" class="bg-iamspe-darkgreen hover:bg-emerald-900 text-emerald-100 hover:text-white px-2.5 py-1.5 rounded transition">2. Decisão Clínica</a>
+                    <a href="#titulacao" class="bg-iamspe-darkgreen hover:bg-emerald-900 text-emerald-100 hover:text-white px-2.5 py-1.5 rounded transition">3. Titulação BIC</a>
+                    <a href="#subcutaneo" class="bg-iamspe-darkgreen hover:bg-emerald-900 text-emerald-100 hover:text-white px-2.5 py-1.5 rounded transition">4. Escala SC</a>
+                    <a href="#transicao" class="bg-iamspe-darkgreen hover:bg-emerald-900 text-emerald-100 hover:text-white px-2.5 py-1.5 rounded transition">5. Transição</a>
+                    <a href="#hipoglicemia" class="bg-rose-900 hover:bg-rose-800 text-rose-100 px-2.5 py-1.5 rounded transition border border-rose-500/50">Hipoglicemia</a>
+                    <button onclick="window.print()" class="bg-iamspe-lightgreen hover:bg-lime-500 text-slate-900 font-bold px-3 py-1.5 rounded shadow transition flex items-center gap-1">
+                        Imprimir Guia
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Custom Safe Toast Box (Never uses alert()) -->
+    <div id="toastMessage" class="no-print hidden fixed bottom-5 right-5 z-50 max-w-md bg-iamspe-navy text-white px-4 py-3 rounded-xl shadow-2xl border-2 border-iamspe-cyan flex items-center gap-3 transition transform duration-300">
+        <span id="toastIcon" class="text-xl text-iamspe-cyan">&#10004;</span>
+        <span id="toastText" class="text-sm font-semibold">Aviso institucional</span>
+    </div>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-7">
+
+        <!-- EXCLUSÃO: CAD / EHH -->
+        <section class="bg-rose-50 border-l-4 border-rose-600 rounded-xl shadow-sm p-3.5 text-sm text-rose-950">
+            <strong class="uppercase">Não se aplica a cetoacidose diabética (CAD) nem a estado hiperglicêmico hiperosmolar (EHH).</strong>
+            Nesses casos, usar o protocolo específico.
+        </section>
+
+        <!-- INSTITUTIONAL KPIS FOR GLYCEMIC CONTROL -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+            <div class="bg-white rounded-xl shadow-sm p-4 border border-iamspe-border border-l-4 border-l-iamspe-blue">
+                <div class="text-sm font-bold text-iamspe-blue uppercase tracking-wider">Faixa Alvo Universal (UTI)</div>
+                <div class="text-2xl font-black text-iamspe-navy mt-0.5">140 – 180 <span class="text-sm font-normal text-slate-500">mg/dL</span></div>
+                <div class="text-sm text-slate-500 mt-0.5">Meta validada institucionalmente (HSPE)</div>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm p-4 border border-iamspe-border border-l-4 border-l-emerald-500">
+                <div class="text-sm font-bold text-emerald-700 uppercase tracking-wider">Tempo no Alvo (TIR)</div>
+                <div class="text-2xl font-black text-emerald-600 mt-0.5">&gt; 75% <span class="text-sm font-normal text-slate-500">das aferições</span></div>
+                <div class="text-sm text-slate-500 mt-0.5">Indicador assistencial de qualidade</div>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm p-4 border border-iamspe-border border-l-4 border-l-rose-500">
+                <div class="text-sm font-bold text-rose-700 uppercase tracking-wider">Gatilho de Hipoglicemia</div>
+                <div class="text-2xl font-black text-rose-600 mt-0.5">&lt; 70 <span class="text-sm font-normal text-slate-500">mg/dL</span></div>
+                <div class="text-sm text-slate-500 mt-0.5">Pausa imediata da BIC + 40 mL de Glicose 50% EV</div>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm p-4 border border-iamspe-border border-l-4 border-l-amber-500">
+                <div class="text-sm font-bold text-amber-700 uppercase tracking-wider">Velocidade Máxima de Queda</div>
+                <div class="text-2xl font-black text-amber-600 mt-0.5">&le; 50 <span class="text-sm font-normal text-slate-500">mg/dL/h</span></div>
+                <div class="text-sm text-slate-500 mt-0.5">Se a queda for maior: reduzir a vazão em 50%</div>
+            </div>
+        </section>
+        <!-- PROTOCOLO DE RESGATE EM HIPOGLICEMIA (GLICEMIA < 70 MG/DL) -->
+        <section id="hipoglicemia" class="scroll-mt-20">
+            <div class="bg-iamspe-navy text-white rounded-2xl shadow-lg p-5 border-2 border-rose-500">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-slate-700 pb-3 mb-3.5">
+                    <div>
+                        <span class="bg-rose-600 text-white font-black text-xs px-2.5 py-0.5 rounded-full uppercase tracking-wider">Emergência Médica</span>
+                        <h2 class="text-lg sm:text-xl font-black text-rose-400 mt-1">
+                            Protocolo de Resgate em Hipoglicemia (Glicemia &lt; 70 mg/dL)
+                        </h2>
+                        <p class="text-slate-300 text-sm mt-0.5">Tolerância zero na UTI. Interrupção imediata da infusão e reversão parenteral.</p>
+                    </div>
+                    <div class="bg-rose-950/80 border border-rose-800 px-4 py-2 rounded-xl text-center shrink-0">
+                        <div class="text-sm text-rose-300 uppercase font-bold">Ponto de Corte Crítico</div>
+                        <div class="text-xl font-black text-rose-400">&lt; 70 mg/dL</div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 text-sm">
+                    <div class="bg-slate-800/90 p-3.5 rounded-xl border border-slate-700 space-y-1.5">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-rose-600 text-white font-black w-6 h-6 rounded-full flex items-center justify-center text-sm shrink-0">1</span>
+                            <h3 class="font-bold text-rose-300 text-sm uppercase">Pausar Imediatamente</h3>
+                        </div>
+                        <p class="text-slate-300 text-base leading-relaxed">
+                            <strong>Desligar a bomba de infusão contínua (BIC)</strong> de insulina imediatamente ou suspender a próxima dose de Lispro SC.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-800/90 p-3.5 rounded-xl border border-slate-700 space-y-1.5">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-rose-600 text-white font-black w-6 h-6 rounded-full flex items-center justify-center text-sm shrink-0">2</span>
+                            <h3 class="font-bold text-rose-300 text-sm uppercase">Glicose 50% EV Direto</h3>
+                        </div>
+                        <p class="text-slate-300 text-base leading-relaxed">
+                            Administrar <strong>40 mL de Glicose 50% EV</strong> (20 g de glicose) em bolus endovenoso rápido e direto.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-800/90 p-3.5 rounded-xl border border-slate-700 space-y-1.5">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-rose-600 text-white font-black w-6 h-6 rounded-full flex items-center justify-center text-sm shrink-0">3</span>
+                            <h3 class="font-bold text-rose-300 text-sm uppercase">Reavaliar em 15 Minutos</h3>
+                        </div>
+                        <p class="text-slate-300 text-base leading-relaxed">
+                            Repetir glicemia capilar a cada <strong>15 minutos</strong> até &gt; 100 mg/dL. <strong>Reiniciar a BIC com 50% da taxa anterior</strong> somente quando a glicemia atingir <strong>&gt; 140 mg/dL</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 1. PREPARO DA SOLUÇÃO (EV) & SATURAÇÃO OBRIGATÓRIA -->
+        <section id="preparo" class="scroll-mt-20">
+            <div class="border-l-4 border-iamspe-cyan pl-3.5 mb-3.5">
+                <div class="flex items-center gap-2">
+                    <span class="bg-iamspe-cyan text-white text-xs font-bold px-2 py-0.5 rounded">SEÇÃO 1</span>
+                    <h2 class="text-lg sm:text-xl font-bold text-iamspe-navy uppercase tracking-wide">
+                        Preparo da Solução EV &amp; Regra de Saturação Obrigatória
+                    </h2>
+                </div>
+                <p class="text-slate-600 text-sm mt-0.5">
+                    Padronização de diluição para infusão contínua em bomba e prevenção de subdosagem aguda por adsorção plástica. A Lispro é a única insulina de ação rápida disponível atualmente no hospital.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+                <!-- Solução padrão da UTI: 0,5 UI/mL -->
+                <div class="bg-white rounded-xl shadow-sm p-4 border border-iamspe-border flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-sm font-bold text-iamspe-blue uppercase">Solução Padrão da UTI</span>
+                            <span class="bg-sky-100 text-iamspe-navy font-bold text-xs px-2 py-0.5 rounded">0,5 UI / mL</span>
+                        </div>
+                        <div class="text-lg font-black text-slate-900 mt-1">50 UI Lispro + 100 mL SF 0,9%</div>
+                        <p class="text-sm text-slate-500 mt-1">
+                            Única diluição do protocolo. Todos os valores de mL/h deste guia e das calculadoras já estão nesta concentração.
+                        </p>
+                    </div>
+                    <div class="mt-3 bg-iamspe-light p-2.5 rounded-lg border border-iamspe-border text-base font-mono font-bold text-iamspe-navy text-center">
+                        Vazão na BIC: 2 mL/h = 1,0 UI/h
+                    </div>
+                </div>
+
+                <!-- Dose inicial da bomba -->
+                <div class="bg-white rounded-xl shadow-sm p-4 border border-iamspe-border flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-sm font-bold text-amber-700 uppercase">Dose Inicial da Bomba</span>
+                            <span class="bg-amber-100 text-amber-900 font-bold text-xs px-2 py-0.5 rounded">Glicemia &divide; 100</span>
+                        </div>
+                        <div class="text-lg font-black text-slate-900 mt-1">UI/h = Glicemia &divide; 100</div>
+                        <p class="text-sm text-slate-500 mt-1">
+                            Na solução padrão: <strong>mL/h = Glicemia &divide; 50</strong>. Exemplo: glicemia de 240 mg/dL &rarr; 2,4 UI/h = 4,8 mL/h. Vale também para reiniciar a bomba após suspensão.
+                        </p>
+                    </div>
+                    <div class="mt-3 bg-amber-50 p-2.5 rounded-lg border border-amber-200 text-base font-mono font-bold text-amber-900 text-center">
+                        Vazão inicial: Glicemia &divide; 50 = mL/h
+                    </div>
+                </div>
+
+                <!-- Saturation Warning & Expiration -->
+                <div class="bg-iamspe-navy text-white rounded-xl shadow-sm p-4 border border-iamspe-blue flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-sm font-bold text-rose-300 uppercase tracking-wider">Procedimento Obrigatório</span>
+                            <span class="bg-rose-500/30 text-rose-200 text-xs font-bold px-2 py-0.5 rounded border border-rose-400/40">Saturação</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mt-1">Desprezar 20 mL no Equipo</h3>
+                        <p class="text-sm text-slate-300 mt-1 leading-relaxed">
+                            A insulina adsorve fortemente aos sítios plásticos de polietileno/PVC do equipo. O preenchimento com descarte de 20 mL antes de conectar ao paciente evita doses subterapêuticas nas primeiras 2 a 3 horas.
+                        </p>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-700 flex justify-between items-center text-sm text-slate-300">
+                        <span>Validade da Solução:</span>
+                        <span class="font-bold text-iamspe-cyan font-mono">24 Horas em temperatura ambiente</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 2. FLUXOGRAMA DE DECISÃO CLÍNICA: PASSO 1, 2A, 2B E 3 -->
+        <section id="fluxo" class="scroll-mt-20">
+            <div class="border-l-4 border-iamspe-cyan pl-3.5 mb-3.5">
+                <div class="flex items-center gap-2">
+                    <span class="bg-iamspe-cyan text-white text-xs font-bold px-2 py-0.5 rounded">SEÇÃO 2</span>
+                    <h2 class="text-lg sm:text-xl font-bold text-iamspe-navy uppercase tracking-wide">
+                        Fluxograma de Decisão Clínica: EV (BIC) vs. Subcutâneo (SC)
+                    </h2>
+                </div>
+                <p class="text-slate-600 text-sm mt-0.5">
+                    Estratificação sistemática na admissão e na evolução para determinar a via de administração segura.
+                </p>
+            </div>
+
+            <!-- Visual Flowchart Grid -->
+            <div class="space-y-3">
+                <!-- Step 1: Entry Trigger Card -->
+                <div class="bg-iamspe-navy text-white rounded-xl shadow-sm p-4 border border-iamspe-blue flex flex-col md:flex-row md:items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-iamspe-cyan flex items-center justify-center font-black text-white text-base shrink-0">
+                            A
+                        </div>
+                        <div>
+                            <span class="text-sm uppercase tracking-wider text-sky-300 font-bold">ETAPA A — Avaliação de Entrada</span>
+                            <h3 class="text-base font-bold text-white">Glicemia Capilar &gt; 180 mg/dL em 2 Medidas Consecutivas</h3>
+                            <p class="text-sm text-slate-300">
+                                Intervalo de 1 a 2 horas entre aferições. Avaliar imediatamente o grau de instabilidade hemodinâmica e metabólica.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-iamspe-dark/80 px-4 py-2 rounded-lg border border-slate-700 text-center shrink-0">
+                        <span class="text-sm uppercase text-slate-400 font-bold block">Gatilho Institucional</span>
+                        <span class="text-lg font-black text-amber-400">&gt; 180 mg/dL</span>
+                    </div>
+                </div>
+
+                <!-- Steps 2A and 2B: Parallel Branches -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                    <!-- Step 2A: Instability / Acute Critical Phase -->
+                    <div class="bg-white rounded-xl shadow-sm p-4 border-t-4 border-t-rose-600 border border-iamspe-border flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="bg-rose-100 text-rose-800 text-xs font-bold px-2 py-0.5 rounded">ETAPA B1 — Paciente Crítico / Instável</span>
+                                <span class="text-sm font-mono text-slate-400">Via EV Obrigatória</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-slate-900 mb-1.5 uppercase tracking-wide">Critérios de Instabilidade / Absorção Prejudicada:</h4>
+                            <ul class="space-y-1.5 text-sm text-slate-700">
+                                <li class="flex items-start gap-1.5"><span class="text-rose-600 font-bold">&#9679;</span> Uso de Drogas Vasoativas (Noradrenalina, Vasopressina, Dobutamina, etc.)</li>
+                                <li class="flex items-start gap-1.5"><span class="text-rose-600 font-bold">&#9679;</span> Ventilação Mecânica Invasiva (VMI) ou Síndrome de Angústia Respiratória (SARA)</li>
+                                <li class="flex items-start gap-1.5"><span class="text-rose-600 font-bold">&#9679;</span> NPO estrito, Íleo paralítico ou Nutrição Parenteral Total (NPT)</li>
+                                <li class="flex items-start gap-1.5"><span class="text-rose-600 font-bold">&#9679;</span> Choque circulatório, acidose metabólica importante ou diálise aguda na UTI</li>
+                            </ul>
+                        </div>
+                        <div class="mt-4 p-2.5 bg-rose-50 text-rose-900 rounded-lg text-base font-bold text-center border border-rose-200">
+                            Conduta: Iniciar Infusão Contínua (EV) em Bomba (BIC) — vazão inicial: Glicemia &divide; 50 = mL/h
+                        </div>
+                    </div>
+
+                    <!-- Step 2B: Stability / Oral or Enteral Nutrition -->
+                    <div class="bg-white rounded-xl shadow-sm p-4 border-t-4 border-t-emerald-600 border border-iamspe-border flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2 py-0.5 rounded">ETAPA B2 — Paciente Estável / Alimentando</span>
+                                <span class="text-sm font-mono text-slate-400">Via SC Padronizada</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-slate-900 mb-1.5 uppercase tracking-wide">Critérios de Estabilidade &amp; Perfusão Preservada:</h4>
+                            <ul class="space-y-1.5 text-sm text-slate-700">
+                                <li class="flex items-start gap-1.5"><span class="text-emerald-600 font-bold">&#9679;</span> Dieta oral ou nutrição enteral plena bem aceita e tolerada</li>
+                                <li class="flex items-start gap-1.5"><span class="text-emerald-600 font-bold">&#9679;</span> Sem drogas vasoativas há mais de 12 horas</li>
+                                <li class="flex items-start gap-1.5"><span class="text-emerald-600 font-bold">&#9679;</span> Glicemia controlável sem oscilações maiores que 50 mg/dL/h</li>
+                                <li class="flex items-start gap-1.5"><span class="text-emerald-600 font-bold">&#9679;</span> Perfusão periférica adequada (TEC &lt; 3s, sem livedo ou anasarca intensa)</li>
+                            </ul>
+                        </div>
+                        <div class="mt-4 p-2.5 bg-emerald-50 text-emerald-900 rounded-lg text-base font-bold text-center border border-emerald-200">
+                            Conduta: Esquema Subcutâneo — dose total inicial de 0,5 UI/kg/dia: 50% NPH SC (3x/dia) + 50% Lispro SC nas refeições + correção pela escala
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lembretes (não impedem o início da insulina) -->
+                <div class="bg-white rounded-xl p-3.5 border border-iamspe-border text-sm text-slate-700">
+                    <span class="font-bold text-iamspe-navy">Lembretes (não impedem o início da insulina):</span>
+                    <ul class="mt-1 space-y-1">
+                        <li>&bull; <strong>Potássio:</strong> checar o potássio sérico antes de iniciar e durante a infusão EV de insulina.</li>
+                        <li>&bull; <strong>Amostra:</strong> em uso de vasopressor ou com má perfusão periférica, a glicemia capilar é menos confiável; quando disponível, preferir amostra arterial ou venosa.</li>
+                    </ul>
+                </div>
+
+                <!-- Step 3: Monitoring Cadence Card -->
+                <div class="bg-iamspe-light rounded-xl p-3.5 border border-iamspe-border text-sm flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="bg-iamspe-blue text-white text-xs font-bold px-2 py-0.5 rounded uppercase shrink-0">ETAPA C</span>
+                        <span class="font-bold text-iamspe-navy">Monitorização &amp; Ajuste:</span>
+                        <span class="text-slate-700">Glicemia 1/1h até estabilização no alvo (após 3 medidas consecutivas entre 140–180 mg/dL, espaçar para 2/2h e manter assim durante toda a infusão).</span>
+                    </div>
+                    <span class="text-sm font-semibold text-iamspe-blue">Ajustar conforme tabelas de titulação oficiais &darr;</span>
+                </div>
+            </div>
+        </section>
+        <!-- 3. TITULAÇÃO DA INFUSÃO CONTÍNUA ENDOVENOSA (BIC) -->
+        <section id="titulacao" class="scroll-mt-20">
+            <div class="border-l-4 border-iamspe-cyan pl-3.5 mb-3.5">
+                <div class="flex items-center gap-2">
+                    <span class="bg-iamspe-cyan text-white text-xs font-bold px-2 py-0.5 rounded">SEÇÃO 3</span>
+                    <h2 class="text-lg sm:text-xl font-bold text-iamspe-navy uppercase tracking-wide">
+                        Titulação da Infusão Contínua (BIC) — Insulina Lispro EV
+                    </h2>
+                </div>
+                <p class="text-slate-600 text-sm mt-0.5">
+                    Ajuste dinâmico da velocidade, em mL/h, para a solução padrão da UTI (0,5 UI/mL): 2 mL/h = 1 UI/h.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                <!-- Visual Rate Adjustment Chart -->
+                <div class="lg:col-span-6 bg-white rounded-xl shadow-sm p-4 border border-iamspe-border flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-1">
+                            <h3 class="text-sm font-bold text-iamspe-navy uppercase tracking-wider">Ajuste de Vazão na BIC por Faixa Glicêmica</h3>
+                            <span class="text-sm text-slate-500 font-mono">Valores em mL/h (0,5 UI/mL)</span>
+                        </div>
+                        <p class="text-sm text-slate-500 mb-3">Variação a ser somada ou subtraída da vazão atual, conforme a tabela oficial abaixo.</p>
+
+                        <!-- Gráfico de titulação: escala de -4 a +4 mL/h (1 mL/h = 12,5% da largura) -->
+                        <div class="space-y-1.5" role="img" aria-label="Ajuste de vazão da bomba por faixa glicêmica, em mL por hora na solução de 0,5 UI por mL: abaixo de 70 pausar; 70 a 109 reduzir 50%; 110 a 139 reduzir 1,0; 140 a 180 manter; 181 a 220 aumentar 1,0; 221 a 260 aumentar 2,0; acima de 260 aumentar 4,0 mais bolus de 2 UI.">
+                            <div class="flex items-center gap-2">
+                                <div class="w-16 sm:w-24 shrink-0 text-sm font-bold text-right text-rose-700">&lt; 70</div>
+                                <div class="relative flex-1 h-7 bg-rose-50 rounded border border-rose-200 flex items-center justify-center">
+                                    <span class="hidden sm:inline text-xs font-black text-rose-700 uppercase tracking-wide">Pausar BIC + 40 mL Glicose 50% EV</span>
+                                </div>
+                                <div class="w-24 sm:w-44 shrink-0 text-sm font-mono font-bold text-rose-700">PAUSAR</div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-16 sm:w-24 shrink-0 text-sm font-bold text-right text-amber-800">70 – 109</div>
+                                <div class="relative flex-1 h-7 bg-amber-50 rounded border border-amber-200 flex items-center justify-center">
+                                    <span class="hidden sm:inline text-xs font-black text-amber-800 uppercase tracking-wide">Reduzir 50% da vazão atual</span>
+                                </div>
+                                <div class="w-24 sm:w-44 shrink-0 text-sm font-mono font-bold text-amber-800">&minus;50%</div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-16 sm:w-24 shrink-0 text-sm font-bold text-right text-slate-800">110 – 139</div>
+                                <div class="relative flex-1 h-7 bg-slate-50 rounded border border-slate-200">
+                                    <div class="absolute inset-y-1 rounded-sm" style="left:37.5%;width:12.5%;background:#ca8a04"></div>
+                                    <div class="absolute inset-y-0 left-1/2 w-px bg-slate-500"></div>
+                                </div>
+                                <div class="w-24 sm:w-44 shrink-0 text-sm font-mono font-bold text-slate-800">&minus;1,0 mL/h</div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-16 sm:w-24 shrink-0 text-sm font-bold text-right text-emerald-700">140 – 180</div>
+                                <div class="relative flex-1 h-7 bg-emerald-50 rounded border border-emerald-300 flex items-center justify-center">
+                                    <div class="absolute inset-y-0 left-1/2 w-px bg-slate-500"></div>
+                                    <span class="hidden sm:inline relative bg-emerald-50 px-1.5 text-xs font-black text-emerald-700 uppercase tracking-wide">Alvo: manter</span>
+                                </div>
+                                <div class="w-24 sm:w-44 shrink-0 text-sm font-mono font-bold text-emerald-700">0 (MANTER)</div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-16 sm:w-24 shrink-0 text-sm font-bold text-right text-slate-800">181 – 220</div>
+                                <div class="relative flex-1 h-7 bg-slate-50 rounded border border-slate-200">
+                                    <div class="absolute inset-y-1 rounded-sm" style="left:50%;width:12.5%;background:#0083bb"></div>
+                                    <div class="absolute inset-y-0 left-1/2 w-px bg-slate-500"></div>
+                                </div>
+                                <div class="w-24 sm:w-44 shrink-0 text-sm font-mono font-bold text-slate-800">+1,0 mL/h</div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-16 sm:w-24 shrink-0 text-sm font-bold text-right text-slate-800">221 – 260</div>
+                                <div class="relative flex-1 h-7 bg-slate-50 rounded border border-slate-200">
+                                    <div class="absolute inset-y-1 rounded-sm" style="left:50%;width:25%;background:#005b8e"></div>
+                                    <div class="absolute inset-y-0 left-1/2 w-px bg-slate-500"></div>
+                                </div>
+                                <div class="w-24 sm:w-44 shrink-0 text-sm font-mono font-bold text-slate-800">+2,0 mL/h</div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-16 sm:w-24 shrink-0 text-sm font-bold text-right text-indigo-700">&gt; 260</div>
+                                <div class="relative flex-1 h-7 bg-slate-50 rounded border border-slate-200">
+                                    <div class="absolute inset-y-1 rounded-sm" style="left:50%;width:50%;background:#4f46e5"></div>
+                                    <div class="absolute inset-y-0 left-1/2 w-px bg-slate-500"></div>
+                                </div>
+                                <div class="w-24 sm:w-44 shrink-0 text-sm font-mono font-bold text-indigo-700">+4,0 + bolus 2 UI</div>
+                            </div>
+                            <!-- Eixo -->
+                            <div class="flex items-center gap-2">
+                                <div class="w-16 sm:w-24 shrink-0"></div>
+                                <div class="flex-1 flex justify-between text-sm font-mono text-slate-500">
+                                    <span>&minus;4</span><span>&minus;2</span><span>0</span><span>+2</span><span>+4</span>
+                                </div>
+                                <div class="w-24 sm:w-44 shrink-0 text-sm font-mono text-slate-500">mL/h</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-2 p-2 bg-slate-50 rounded border border-slate-200 text-sm text-slate-600 space-y-1">
+                        <p><strong>Conversão:</strong> 2 mL/h = 1 UI/h (solução de 0,5 UI/mL).</p>
+                        <p><strong>Queda &gt; 50 mg/dL por hora:</strong> reduzir a vazão em 50%, no lugar do ajuste da faixa.</p>
+                        <p><strong>* Regra de Vigilância:</strong> Mudar para checagem a cada 2 horas após 3 medidas consecutivas na faixa alvo (140–180 mg/dL).</p>
+                    </div>
+                </div>
+
+                <!-- Bedside Titration Calculator -->
+                <div class="no-print lg:col-span-6 bg-white rounded-xl shadow-sm p-4 border border-iamspe-border flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between border-b pb-2 mb-3">
+                            <h3 class="text-sm font-bold text-iamspe-navy uppercase tracking-wider">Calculadora Beira-Leito de Ajuste da BIC</h3>
+                            <span class="bg-iamspe-light text-iamspe-blue text-xs font-bold px-2 py-0.5 rounded border border-iamspe-border">Solução 0,5 UI/mL</span>
+                        </div>
+
+                        <div class="text-sm mb-3">
+                            <label for="inputPumpMode" class="block font-bold text-slate-700 mb-1">Situação da Bomba:</label>
+                            <select id="inputPumpMode" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-slate-800 font-semibold focus:ring-2 focus:ring-iamspe-cyan focus:outline-none text-base">
+                                <option value="run" selected>Bomba em curso — ajustar a vazão</option>
+                                <option value="start">Início ou reinício da infusão — calcular dose inicial</option>
+                            </select>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                            <div>
+                                <label for="inputGlycemia" class="block font-bold text-slate-700 mb-1">Glicemia Atual (mg/dL, número inteiro):</label>
+                                <input type="number" step="1" min="10" max="1000" inputmode="numeric" id="inputGlycemia" placeholder="Ex: 215" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 font-bold text-slate-900 focus:ring-2 focus:ring-iamspe-cyan focus:outline-none text-base">
+                            </div>
+                            <div>
+                                <label for="inputCurrentRate" class="block font-bold text-slate-700 mb-1">Vazão Atual BIC (mL/h):</label>
+                                <input type="number" step="0.1" min="0" id="inputCurrentRate" placeholder="Ex: 7" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 font-bold text-slate-900 focus:ring-2 focus:ring-iamspe-cyan focus:outline-none text-base">
+                            </div>
+                            <div>
+                                <label for="inputPrevGlycemia" class="block font-bold text-slate-700 mb-1">Glicemia Anterior (mg/dL, opcional):</label>
+                                <input type="number" step="1" min="10" max="1000" inputmode="numeric" id="inputPrevGlycemia" placeholder="Ex: 290" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 font-bold text-slate-900 focus:ring-2 focus:ring-iamspe-cyan focus:outline-none text-base">
+                            </div>
+                            <div>
+                                <label for="inputPrevInterval" class="block font-bold text-slate-700 mb-1">Medida anterior feita há:</label>
+                                <select id="inputPrevInterval" class="w-full bg-slate-50 border border-slate-300 rounded px-2.5 py-1.5 text-slate-800 font-semibold focus:ring-2 focus:ring-iamspe-cyan focus:outline-none text-base">
+                                    <option value="1" selected>1 hora</option>
+                                    <option value="2">2 horas</option>
+                                </select>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-sm text-slate-500">A glicemia anterior serve para detectar queda maior que 50 mg/dL por hora.</p>
+
+                        <button onclick="calculateTitrationAction()" class="mt-3 w-full bg-iamspe-blue hover:bg-iamspe-navy text-white font-bold py-2 rounded text-sm tracking-wider transition uppercase shadow">
+                            Calcular Ajuste de Velocidade &amp; Conduta
+                        </button>
+                    </div>
+
+                    <!-- Calculator Output Card -->
+                    <div id="titrationResultBox" class="mt-3 p-3 bg-slate-50 rounded-lg border border-slate-300 text-sm text-slate-700">
+                        <div class="font-bold text-iamspe-navy mb-0.5">Orientação Imediata:</div>
+                        <p class="text-slate-500">Informe a glicemia e a vazão atual acima para emitir a conduta conforme a tabela oficial.</p>
+                    </div>
+                    <p class="mt-1.5 text-sm text-slate-500">Ferramenta de apoio à decisão. Não substitui a avaliação clínica nem a prescrição médica.</p>
+                </div>
+            </div>
+
+            <!-- Complete Official Titration Table from Document -->
+            <div class="mt-4 bg-white rounded-xl shadow-sm border border-iamspe-border overflow-hidden">
+                <div class="px-4 py-2.5 bg-iamspe-navy text-white flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-sm">
+                    <span class="font-bold">Tabela de Titulação da Infusão Contínua (BIC) — Insulina Lispro EV</span>
+                    <span class="text-sky-300 text-sm font-mono">Solução 0,5 UI/mL (50 UI em 100 mL SF 0,9%): 2 mL/h = 1 UI/h</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-base text-left text-slate-700">
+                        <thead class="bg-slate-100 text-slate-800 uppercase text-sm font-extrabold border-b border-slate-200">
+                            <tr>
+                                <th class="px-4 py-2.5">Glicemia (mg/dL)</th>
+                                <th class="px-4 py-2.5">Ação / Ajuste de Vazão na BIC</th>
+                                <th class="px-4 py-2.5">Frequência</th>
+                                <th class="px-4 py-2.5">Conduta Clínica de Apoio</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr class="bg-sky-50 text-iamspe-navy font-bold">
+                                <td class="px-4 py-2">INÍCIO (&gt; 180 em 2 medidas)</td>
+                                <td class="px-4 py-2">Vazão inicial: Glicemia &divide; 50 = mL/h (Glicemia &divide; 100 = UI/h)</td>
+                                <td class="px-4 py-2">1 em 1h</td>
+                                <td class="px-4 py-2 text-sm">Desprezar 20 mL no equipo antes de conectar. Mesma regra para reiniciar após suspensão.</td>
+                            </tr>
+                            <tr class="bg-rose-50 text-rose-950 font-bold">
+                                <td class="px-4 py-2">&lt; 70 mg/dL</td>
+                                <td class="px-4 py-2 text-rose-700">PAUSAR BIC + Protocolo de Hipoglicemia (G50% EV)</td>
+                                <td class="px-4 py-2">15/15 min</td>
+                                <td class="px-4 py-2 text-sm">Administrar 40 mL de Glicose 50% EV. Repetir glicemia a cada 15 min até &gt; 100 mg/dL.</td>
+                            </tr>
+                            <tr class="bg-amber-50 text-amber-950">
+                                <td class="px-4 py-2 font-bold">70 – 109 mg/dL</td>
+                                <td class="px-4 py-2 font-semibold">Reduzir velocidade em 50%</td>
+                                <td class="px-4 py-2">1 em 1h</td>
+                                <td class="px-4 py-2 text-sm">Frear o ritmo de queda e prevenir entrada na faixa crítica de hipoglicemia.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2 font-bold text-slate-800">110 – 139 mg/dL</td>
+                                <td class="px-4 py-2 font-semibold">Reduzir velocidade em 1,0 mL/h (0,5 UI/h)</td>
+                                <td class="px-4 py-2">1 em 1h</td>
+                                <td class="px-4 py-2 text-sm">Aproximação suave para a faixa de segurança sem oscilações abruptas. Se a vazão atual for de 1,0 mL/h ou menos: suspender a infusão.</td>
+                            </tr>
+                            <tr class="bg-emerald-50 text-emerald-950 font-bold">
+                                <td class="px-4 py-2">140 – 180 mg/dL (ALVO)</td>
+                                <td class="px-4 py-2 text-emerald-700">MANTER VELOCIDADE ATUAL DE INFUSÃO</td>
+                                <td class="px-4 py-2">2 em 2h *</td>
+                                <td class="px-4 py-2 text-sm">* Mudar para 2/2h após 3 medidas consecutivas na faixa alvo estável.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2 font-bold text-slate-800">181 – 220 mg/dL</td>
+                                <td class="px-4 py-2 font-semibold">Aumentar velocidade em 1,0 mL/h (0,5 UI/h)</td>
+                                <td class="px-4 py-2">1 em 1h</td>
+                                <td class="px-4 py-2 text-sm">Incremento gradual para retornar a glicemia para a janela de 140–180 mg/dL.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2 font-bold text-slate-800">221 – 260 mg/dL</td>
+                                <td class="px-4 py-2 font-semibold">Aumentar velocidade em 2,0 mL/h (1,0 UI/h)</td>
+                                <td class="px-4 py-2">1 em 1h</td>
+                                <td class="px-4 py-2 text-sm">Reavaliar aporte calórico/glicosado e medicações hiperglicemiantes (corticoides).</td>
+                            </tr>
+                            <tr class="bg-indigo-50 text-indigo-950 font-bold">
+                                <td class="px-4 py-2">&gt; 260 mg/dL</td>
+                                <td class="px-4 py-2 text-indigo-700">Bolus 2 UI EV + Aumentar BIC em 4,0 mL/h (2,0 UI/h)</td>
+                                <td class="px-4 py-2">1 em 1h</td>
+                                <td class="px-4 py-2 text-sm">Bolus de Lispro EV direto para efeito imediato. Avisar médico assistente da UTI.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Regras complementares da infusão -->
+            <div class="mt-3.5 grid grid-cols-1 md:grid-cols-2 gap-3.5 text-sm">
+                <div class="bg-amber-50 border-l-4 border-amber-500 p-3.5 rounded-xl shadow-sm text-amber-950">
+                    <div class="font-bold uppercase text-amber-900 mb-1">Queda maior que 50 mg/dL por hora</div>
+                    <p class="text-base leading-relaxed">
+                        Com glicemia de 110 mg/dL ou mais: <strong>reduzir a vazão em 50%</strong>, no lugar do ajuste da faixa (não aumentar, não fazer bolus). Na faixa 110–139, aplicar a maior das duas reduções. Reavaliar em 1 hora.
+                    </p>
+                </div>
+                <div class="bg-amber-50 border-l-4 border-amber-500 p-3.5 rounded-xl shadow-sm text-amber-950">
+                    <div class="font-bold uppercase text-amber-900 mb-1">Dieta suspensa ou jejum para procedimento</div>
+                    <p class="text-base leading-relaxed">
+                        <strong>Na bomba:</strong> reduzir a vazão em 50% e medir glicemia de 1 em 1h. <strong>No esquema SC:</strong> suspender a dose fixa de Lispro das refeições e manter a NPH; correção pela escala.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- 4. ESCALA MÓVEL DE CORREÇÃO SUBCUTÂNEA (LISPRO SC) -->
+        <section id="subcutaneo" class="scroll-mt-20">
+            <div class="border-l-4 border-iamspe-cyan pl-3.5 mb-3.5">
+                <div class="flex items-center gap-2">
+                    <span class="bg-iamspe-cyan text-white text-xs font-bold px-2 py-0.5 rounded">SEÇÃO 4</span>
+                    <h2 class="text-lg sm:text-xl font-bold text-iamspe-navy uppercase tracking-wide">
+                        Escala Móvel de Correção Subcutânea (Lispro SC Pré-Refeição)
+                    </h2>
+                </div>
+                <p class="text-slate-600 text-sm mt-0.5">
+                    Doses pré-refeição ou a cada 4–6 horas na nutrição contínua, estratificadas por sensibilidade individual.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                <!-- Stratification Profiles & Mandatory Safety Warning -->
+                <div class="lg:col-span-12 space-y-3">
+                    <!-- Stratification Guide -->
+                    <div class="bg-white rounded-xl shadow-sm p-4 border border-iamspe-border">
+                        <h3 class="text-sm font-bold text-iamspe-navy mb-2 uppercase tracking-wide">Estratificação Clínica de Sensibilidade</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 text-sm">
+                            <div class="bg-sky-50 p-2.5 rounded-lg border border-sky-200">
+                                <div class="font-bold text-iamspe-blue mb-0.5">Sensível</div>
+                                <p class="text-sm text-slate-600">&lt; 0,5 UI/kg/d. Idosos (&gt;75 anos), insuficiência renal crônica dialítica ou desnutrição.</p>
+                            </div>
+                            <div class="bg-emerald-50 p-2.5 rounded-lg border border-emerald-200">
+                                <div class="font-bold text-emerald-800 mb-0.5">Habitual</div>
+                                <p class="text-sm text-slate-600">0,5 a 0,8 UI/kg/d. Paciente clínico/cirúrgico com estabilidade e resistência habitual.</p>
+                            </div>
+                            <div class="bg-amber-50 p-2.5 rounded-lg border border-amber-200">
+                                <div class="font-bold text-amber-900 mb-0.5">Resistente</div>
+                                <p class="text-sm text-slate-600">&gt; 0,8 UI/kg/d. Obesidade (IMC &gt; 30), altas doses de corticoide ou infecção grave.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Official Dose Stacking Warning -->
+                    <div class="bg-amber-50 border-l-4 border-amber-500 p-3.5 rounded-xl shadow-sm text-sm text-amber-950">
+                        <div class="flex items-center gap-1.5 font-bold text-sm uppercase text-amber-900 mb-1">
+                            <span>&#9888;</span> Atenção ao Empilhamento de Doses (Dose Stacking)
+                        </div>
+                        <p class="text-base text-amber-900 leading-relaxed">
+                            <strong>Manter intervalo mínimo de 3 a 4 horas entre as doses de correção SC da Insulina Lispro.</strong> A administração precoce acumula os picos de ação e é a causa primária de hipoglicemia severa tardia na enfermaria e UTI.
+                        </p>
+                    </div>
+
+                    <!-- Subcutaneous Correction Table -->
+                    <div class="bg-white rounded-xl shadow-sm p-3 border border-iamspe-border text-sm">
+                        <h4 class="font-bold text-iamspe-navy mb-1.5 text-sm uppercase tracking-wider">Tabela de Correção Subcutânea (Lispro SC)</h4>
+                        <div class="grid grid-cols-4 font-mono font-bold text-center bg-iamspe-light py-1.5 text-base rounded text-iamspe-navy">
+                            <span>Glicemia</span>
+                            <span class="text-iamspe-blue">Sensível</span>
+                            <span class="text-emerald-700">Habitual</span>
+                            <span class="text-amber-800">Resistente</span>
+                        </div>
+                        <div class="divide-y divide-slate-100 text-center font-mono text-base">
+                            <div class="grid grid-cols-4 py-1.5"><span>&lt; 140 mg/dL</span><span>0 UI</span><span>0 UI</span><span>0 UI</span></div>
+                            <div class="grid grid-cols-4 py-1.5 bg-slate-50"><span>140 – 180</span><span>0 UI</span><span>0 UI</span><span>0 UI</span></div>
+                            <div class="grid grid-cols-4 py-1.5"><span>181 – 220</span><span>1 UI</span><span>2 UI</span><span>4 UI</span></div>
+                            <div class="grid grid-cols-4 py-1.5 bg-slate-50"><span>221 – 260</span><span>2 UI</span><span>4 UI</span><span>6 UI</span></div>
+                            <div class="grid grid-cols-4 py-1.5"><span>261 – 300</span><span>3 UI</span><span>6 UI</span><span>8 UI</span></div>
+                            <div class="grid grid-cols-4 py-1.5 bg-rose-50 text-rose-900 font-bold"><span>&gt; 300 mg/dL</span><span>4 UI</span><span>8 UI</span><span>10 UI *</span></div>
+                        </div>
+                        <div class="text-sm text-slate-500 mt-1">* Se &gt; 300 mg/dL, avisar médico assistente e checar gasometria / cetonemia.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 5. REGRA DE TRANSIÇÃO (EV -> SC) -->
+        <section id="transicao" class="scroll-mt-20">
+            <div class="border-l-4 border-iamspe-cyan pl-3.5 mb-3.5">
+                <div class="flex items-center gap-2">
+                    <span class="bg-iamspe-cyan text-white text-xs font-bold px-2 py-0.5 rounded">SEÇÃO 5</span>
+                    <h2 class="text-lg sm:text-xl font-bold text-iamspe-navy uppercase tracking-wide">
+                        Regra de Transição Segura (EV &rarr; SC)
+                    </h2>
+                </div>
+                <p class="text-slate-600 text-sm mt-0.5">
+                    Sobreposição obrigatória da insulina basal para evitar hiperglicemia de rebote e descompensação cetoacidótica.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 mb-4">
+                <div class="bg-white rounded-xl shadow-sm p-4 border border-iamspe-border relative overflow-hidden">
+                    <div class="absolute -right-2 -bottom-2 text-slate-100 font-black text-6xl select-none">1</div>
+                    <span class="bg-iamspe-light text-iamspe-blue text-xs font-bold px-2 py-0.5 rounded uppercase">Critério de Transição</span>
+                    <h3 class="text-sm font-bold text-iamspe-navy mt-1.5 mb-1">Elegibilidade Clínica</h3>
+                    <ul class="text-sm text-slate-600 space-y-1">
+                        <li>&bull; Resolução da fase aguda de choque / sem DVA há &gt; 12h.</li>
+                        <li>&bull; Dieta oral ou nutrição enteral bem tolerada.</li>
+                        <li>&bull; Infusão da BIC estável no alvo (140–180 mg/dL) por 4 a 6 horas seguidas.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-iamspe-navy text-white rounded-xl shadow-sm p-4 border border-iamspe-blue relative overflow-hidden">
+                    <div class="absolute -right-2 -bottom-2 text-slate-800 font-black text-6xl select-none">2</div>
+                    <span class="bg-iamspe-cyan/30 text-sky-200 text-xs font-bold px-2 py-0.5 rounded uppercase border border-iamspe-cyan/40">Regra de Ouro</span>
+                    <h3 class="text-sm font-bold text-iamspe-cyan mt-1.5 mb-1">Sobreposição Obrigatória (1 a 2h)</h3>
+                    <p class="text-base text-slate-200 leading-relaxed">
+                        <strong>Aplicar a NPH SC 1 a 2 horas ANTES de desligar a Bomba de Infusão.</strong>
+                    </p>
+                    <p class="text-sm text-slate-300 mt-1">
+                        A primeira dose de Lispro SC deve coincidir exatamente com o momento da refeição ou desligamento da BIC.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm p-4 border border-iamspe-border relative overflow-hidden">
+                    <div class="absolute -right-2 -bottom-2 text-slate-100 font-black text-6xl select-none">3</div>
+                    <span class="bg-iamspe-light text-iamspe-blue text-xs font-bold px-2 py-0.5 rounded uppercase">DDT (Dose Diária Total)</span>
+                    <h3 class="text-sm font-bold text-iamspe-navy mt-1.5 mb-1">Cálculo de Redução Protetora</h3>
+                    <ul class="text-sm text-slate-600 space-y-1">
+                        <li>&bull; Calcular total de UI de Lispro nas últimas 24h na BIC.</li>
+                        <li>&bull; Prescrever <strong>75%</strong> da dose diária prévia da BIC (redução protetora de 25%).</li>
+                        <li>&bull; Dividir: 50% Basal SC (NPH, 3x/dia) + 50% Lispro SC dividida nas refeições.</li>
+                        <li>&bull; Ingestão menor que 50% ou incerta: só NPH + correção pela escala.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Transition Calculator + Standard Medical Record Template -->
+            <div class="no-print bg-gradient-to-br from-white to-sky-50 rounded-xl shadow-sm p-4 border border-iamspe-border">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-iamspe-border pb-2.5 mb-3">
+                    <div class="flex items-center gap-2">
+                        <span class="bg-iamspe-navy text-white text-xs font-bold px-2 py-0.5 rounded uppercase">Calculadora &amp; Parecer</span>
+                        <h3 class="text-sm font-bold text-iamspe-navy">Transição EV &rarr; SC com Minuta Padronizada de Prontuário</h3>
+                    </div>
+                    <span class="text-sm text-slate-500 font-medium">Algoritmo clínico baseado na regra 75% da DDT</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+                    <div>
+                        <label for="transAvgRate" class="block font-bold text-slate-700 mb-1">Média da BIC nas últimas 24h (mL/h, solução 0,5 UI/mL):</label>
+                        <input type="number" step="0.1" min="0" id="transAvgRate" placeholder="Ex: 5" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 font-bold text-slate-900 focus:ring-2 focus:ring-iamspe-cyan focus:outline-none text-base">
+                    </div>
+                    <div>
+                        <label for="transPatientWeight" class="block font-bold text-slate-700 mb-1">Peso do Paciente (kg):</label>
+                        <input type="number" step="0.1" min="30" max="300" id="transPatientWeight" placeholder="Ex: 70" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 font-bold text-slate-900 focus:ring-2 focus:ring-iamspe-cyan focus:outline-none text-base">
+                    </div>
+                    <div>
+                        <label for="transDiet" class="block font-bold text-slate-700 mb-1">Dieta / Esquema de Lispro SC:</label>
+                        <select id="transDiet" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 font-semibold text-slate-800 focus:ring-2 focus:ring-iamspe-cyan focus:outline-none text-base">
+                            <option value="oral">Oral ou enteral intermitente (3 refeições)</option>
+                            <option value="ent6">Enteral contínua — Lispro 6/6h (4 aplicações)</option>
+                            <option value="ent4">Enteral contínua — Lispro 4/4h (6 aplicações)</option>
+                            <option value="low">Ingestão menor que 50% ou incerta — só NPH + correção</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mt-2 text-sm text-slate-600">
+                    <strong class="text-iamspe-navy">Insulina basal:</strong> NPH SC, 3x/dia, com 1/3 da dose basal em cada aplicação.
+                </div>
+
+                <!-- Critérios de elegibilidade: precisam ser confirmados para a minuta ser gerada -->
+                <fieldset class="mt-3 bg-white p-3 rounded-lg border border-iamspe-border text-sm">
+                    <legend class="px-1 font-bold text-iamspe-navy text-sm">Critérios de elegibilidade (confirmar os três para gerar a minuta)</legend>
+                    <div class="space-y-1.5 text-slate-700">
+                        <label class="flex items-start gap-2 cursor-pointer">
+                            <input type="checkbox" id="elig1" class="mt-0.5 shrink-0">
+                            <span>Resolução da fase aguda de choque / sem DVA há &gt; 12h.</span>
+                        </label>
+                        <label class="flex items-start gap-2 cursor-pointer">
+                            <input type="checkbox" id="elig2" class="mt-0.5 shrink-0">
+                            <span>Dieta oral ou nutrição enteral bem tolerada.</span>
+                        </label>
+                        <label class="flex items-start gap-2 cursor-pointer">
+                            <input type="checkbox" id="elig3" class="mt-0.5 shrink-0">
+                            <span>Infusão da BIC estável no alvo (140–180 mg/dL) por 4 a 6 horas seguidas.</span>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <div class="flex flex-wrap gap-2 mt-3.5">
+                    <button onclick="calculateTransitionDoses()" class="bg-iamspe-blue hover:bg-iamspe-navy text-white text-sm font-bold py-2 px-3.5 rounded shadow transition">
+                        Calcular Doses de Transição
+                    </button>
+                    <button id="btnCopyNote" disabled onclick="copyToClipboard('transitionReportOutput')" class="bg-iamspe-navy hover:bg-slate-800 text-white text-sm font-bold py-2 px-3 rounded shadow transition flex items-center gap-1.5 disabled:opacity-40 disabled:cursor-not-allowed">
+                        <span>&#128203;</span> Copiar Minuta para o Prontuário
+                    </button>
+                </div>
+
+                <div id="transitionErrorBox" role="alert" class="hidden mt-3 p-3 rounded-lg border border-rose-400 bg-rose-50 text-rose-950 text-sm font-semibold"></div>
+
+                <!-- Transition Calculation Result & Generated Note (preenchidos somente após o cálculo) -->
+                <div class="mt-3.5 grid grid-cols-1 lg:grid-cols-12 gap-3.5 text-sm">
+                    <div class="lg:col-span-4 bg-white p-3 rounded-lg border border-iamspe-border space-y-1.5 text-base">
+                        <div class="font-bold text-iamspe-navy text-sm border-b pb-1">Doses Calculadas (75% do consumo na BIC):</div>
+                        <div class="flex justify-between gap-2"><span class="text-slate-500">Consumo 24h na BIC:</span><span id="resTotalBIC" class="font-bold text-slate-800 text-right">—</span></div>
+                        <div class="flex justify-between gap-2"><span class="text-slate-500">DDT alvo (75%):</span><span id="resDDT" class="font-bold text-iamspe-blue text-right">—</span></div>
+                        <div class="flex justify-between gap-2"><span class="text-slate-500">NPH SC (50%):</span><span id="resBasal" class="font-bold text-emerald-700 text-right">—</span></div>
+                        <div class="flex justify-between gap-2"><span class="text-slate-500">Lispro SC (50%):</span><span id="resLispro" class="font-bold text-indigo-700 text-right">—</span></div>
+                        <div class="flex justify-between gap-2"><span class="text-slate-500">Total prescrito:</span><span id="resDoseKg" class="font-bold text-slate-700 text-right">—</span></div>
+                    </div>
+                    <div class="lg:col-span-8 bg-white p-3 rounded-lg border border-iamspe-border">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-bold text-iamspe-navy text-sm">Minuta para Evolução / Prescrição:</span>
+                            <span class="text-sm text-emerald-700 font-mono font-bold">Padronizada HSPE</span>
+                        </div>
+                        <div id="transitionReportOutput" class="font-mono text-sm text-slate-700 bg-slate-50 p-2.5 rounded border border-slate-200 whitespace-pre-wrap max-h-80 overflow-y-auto">Preencha os dados do paciente, confirme os três critérios de elegibilidade e clique em "Calcular Doses de Transição".</div>
+                    </div>
+                </div>
+                <p class="mt-1.5 text-sm text-slate-500">Ferramenta de apoio à decisão. Não substitui a avaliação clínica nem a prescrição médica.</p>
+            </div>
+        </section>
+        <!-- REFERENCES & BIBLIOGRAPHY -->
+        <section class="bg-white rounded-xl shadow-sm p-4 border border-iamspe-border text-sm text-slate-600">
+            <h3 class="font-bold text-iamspe-navy text-sm uppercase tracking-wider mb-2">Referências Bibliográficas &amp; Diretrizes Institucionais</h3>
+            <ol class="space-y-1 list-decimal list-inside text-sm text-slate-600">
+                <li>Comissão de Farmácia e Terapêutica / Núcleo de Segurança do Paciente — UTI IAMSPE. <em>Protocolo de Insulinoterapia: Insulina Lispro na UTI — Manejo EV (Bomba de Infusão Contínua) e Correção Subcutânea (SC)</em>. Atualização 2026.</li>
+                <li>American Diabetes Association (ADA). Standards of Care in Diabetes — 2026: <em>Diabetes Care in the Hospital</em>. Diabetes Care 2026;49(Suppl. 1):S239–S252.</li>
+                <li>Finfer S, Chittock DR, Su SY, et al. NICE-SUGAR Study Investigators. Intensive versus conventional glucose control in critically ill patients. <em>N Engl J Med</em>. 2009;360(13):1283-1297.</li>
+                <li>Umpierrez GE, Smiley D, Hermayer K, et al. Randomized study of basal-bolus insulin therapy in the inpatient management of patients with type 2 diabetes (RABBIT 2 surgery). <em>Diabetes Care</em>. 2011;34(2):256-261.</li>
+                <li>Jacobi J, Bircher N, Krinsley J, et al. Guidelines for the use of an insulin infusion for the management of hyperglycemia in critically ill patients. <em>Crit Care Med</em>. 2012;40(11):3251-3276.</li>
+            </ol>
+        </section>
+    </main>
+
+    <!-- IAMSPE Institutional Footer -->
+    <footer class="bg-iamspe-dark text-slate-400 text-sm border-t-2 border-iamspe-cyan py-5 mt-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-1">
+            <div class="flex items-center justify-center gap-2 text-white font-bold text-sm">
+                <span>IAMSPE</span> &bull; <span>Hospital do Servidor Público Estadual (HSPE)</span>
+            </div>
+            <p class="text-slate-400 text-sm">Comissão de Farmácia e Terapêutica &bull; Núcleo de Segurança do Paciente &bull; Centro de Terapia Intensiva Adulto</p>
+            <p class="text-slate-500 text-sm">Este guia e suas calculadoras são ferramentas de apoio à decisão e não substituem a avaliação clínica nem a prescrição médica.</p>
+            <p class="text-slate-500 text-sm">Guia Prático Assistencial de Decisão Rápida Baseado em Evidências &bull; Revisão e Atualização 2026</p>
+        </div>
+    </footer>
+    <script>
+        // --- Notification Toast Utility (No alert()) ---
+        function showToast(text, isError = false) {
+            const toast = document.getElementById('toastMessage');
+            const toastText = document.getElementById('toastText');
+            const toastIcon = document.getElementById('toastIcon');
+            toastText.textContent = text;
+            toastIcon.textContent = isError ? '⚠️' : '✓';
+            toast.className = `no-print fixed bottom-5 right-5 z-50 max-w-md ${isError ? 'bg-rose-900 border-rose-500' : 'bg-iamspe-navy border-iamspe-cyan'} text-white px-4 py-3 rounded-xl shadow-2xl border-2 flex items-center gap-3 transition transform duration-300`;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3500);
+        }
+
+        // --- Number formatting (pt-BR decimal comma) ---
+        function fmt(n, digits = 1) {
+            return Number(n).toLocaleString('pt-BR', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+        }
+
+        // --- Clipboard Helper: only confirms when the copy really happened ---
+        async function copyToClipboard(elementId) {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+            const textToCopy = (el.innerText || el.textContent).trim();
+            let copied = false;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                try {
+                    await navigator.clipboard.writeText(textToCopy);
+                    copied = true;
+                } catch (err) {
+                    copied = false;
+                }
+            }
+            if (!copied) {
+                // Fallback for contexts where the Clipboard API is blocked (e.g. iframes)
+                const textarea = document.createElement('textarea');
+                textarea.value = textToCopy;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    copied = document.execCommand('copy');
+                } catch (err) {
+                    copied = false;
+                }
+                document.body.removeChild(textarea);
+            }
+            if (copied) {
+                showToast('Minuta copiada com sucesso para o prontuário!');
+            } else {
+                showToast('Não foi possível copiar. Selecione o texto da minuta e copie manualmente.', true);
+            }
+        }
+
+        // --- Calculator limits and shared texts ---
+        const MIN_GLYCEMIA = 10;
+        const MAX_GLYCEMIA = 1000;
+        const MAX_UI_PER_HOUR = 20;
+        const MIN_WEIGHT_KG = 30;
+        const MAX_WEIGHT_KG = 300;
+        const DDT_FACTOR = 0.75;
+        const CONC = 0.5; // UI/mL: the unit's single standard solution (50 UI in 100 mL)
+        const ML_PER_UI = 1 / CONC;
+        const MAX_FALL_PER_HOUR = 50; // mg/dL per hour
+        const RESTART_AFTER_SUSPENSION = 'Manter glicemia de 1 em 1h. Reiniciar a infusão se glicemia > 180 mg/dL, com a dose inicial (glicemia ÷ 50 = mL/h).';
+        const NOTE_PLACEHOLDER = 'Preencha os dados do paciente, confirme os três critérios de elegibilidade e clique em "Calcular Doses de Transição".';
+        const NOTE_STALE = 'Dados alterados. Clique em "Calcular Doses de Transição" novamente.';
+        const TRANSITION_INPUT_IDS = ['transAvgRate', 'transPatientWeight', 'transDiet', 'elig1', 'elig2', 'elig3'];
+
+        // Any change to the transition inputs discards the previous result, so a stale note can never be copied
+        TRANSITION_INPUT_IDS.forEach(id => {
+            const field = document.getElementById(id);
+            field.addEventListener('input', () => resetTransitionOutput(NOTE_STALE));
+            field.addEventListener('change', () => resetTransitionOutput(NOTE_STALE));
+        });
+
+        // --- Interactive Bedside Titration Calculator Logic ---
+        function showTitrationError(message) {
+            const resultBox = document.getElementById('titrationResultBox');
+            resultBox.className = 'mt-3 p-3 rounded-lg border text-base bg-rose-50 border-rose-400 text-rose-950 font-semibold';
+            resultBox.textContent = '⚠ ' + message;
+            showToast('Confira os dados informados.', true);
+        }
+
+        // Reads an integer glycemia field. Returns null (after showing the error) when invalid.
+        function readGlycemia(input, label) {
+            const raw = input.value.trim();
+            const value = Number(raw);
+            if (raw === '' || input.validity.badInput || !Number.isInteger(value)) {
+                showTitrationError(`Informe a ${label} em número inteiro (mg/dL), sem casas decimais.`);
+                return null;
+            }
+            if (value < MIN_GLYCEMIA || value > MAX_GLYCEMIA) {
+                showTitrationError(`A ${label} de ${value} mg/dL está fora do intervalo aceito (${MIN_GLYCEMIA} a ${MAX_GLYCEMIA} mg/dL). Confira o valor digitado.`);
+                return null;
+            }
+            return value;
+        }
+
+        function calculateTitrationAction() {
+            const rateInput = document.getElementById('inputCurrentRate');
+            const prevInput = document.getElementById('inputPrevGlycemia');
+            const mode = document.getElementById('inputPumpMode').value;
+            const resultBox = document.getElementById('titrationResultBox');
+            const baseClass = "mt-3 p-3 rounded-lg border text-base ";
+
+            const gly = readGlycemia(document.getElementById('inputGlycemia'), 'glicemia atual');
+            if (gly === null) return;
+
+            const render = (boxClass, actionText, monitorText) => {
+                resultBox.className = baseClass + boxClass;
+                resultBox.innerHTML = `
+                <div class="font-bold text-sm mb-1">✓ Conduta Recomendada pelo Protocolo IAMSPE (glicemia ${gly} mg/dL):</div>
+                <p class="mb-1"><strong>Ação na BIC:</strong> ${actionText}</p>
+                <p><strong>Monitorização:</strong> ${monitorText}</p>
+                <p class="mt-1 text-sm font-semibold">* Valores em mL/h para a solução padrão de 0,5 UI/mL (2 mL/h = 1 UI/h).</p>
+            `;
+            };
+
+            // Start or restart of the infusion: initial dose = glycemia / 100 UI/h
+            if (mode === 'start') {
+                if (gly <= 180) {
+                    render("bg-amber-100 border-amber-400 text-amber-950 font-semibold",
+                        "NÃO INICIAR A BOMBA. O critério de início é glicemia > 180 mg/dL em 2 medidas consecutivas.",
+                        "Repetir a glicemia conforme a rotina.");
+                    return;
+                }
+                const startRate = Math.round((gly / 100) * ML_PER_UI * 10) / 10;
+                render("bg-sky-50 border-sky-400 text-sky-950 font-semibold",
+                    `INICIAR A BIC em ${fmt(startRate)} mL/h (${fmt(gly / 100, 2)} UI/h = glicemia ÷ 100).`,
+                    "Glicemia de 1 em 1h. Desprezar 20 mL no equipo antes de conectar ao paciente.");
+                return;
+            }
+
+            // Current rate is optional: without it the guidance is given in relative terms
+            const rateRaw = rateInput.value.trim();
+            const hasRate = rateRaw !== '';
+            const currentRate = Number(rateRaw);
+            if (rateInput.validity.badInput || (hasRate && (isNaN(currentRate) || currentRate < 0))) {
+                showTitrationError('Vazão atual inválida. Informe um valor em mL/h igual ou maior que zero, ou deixe o campo em branco.');
+                return;
+            }
+            if (hasRate && currentRate * CONC > MAX_UI_PER_HOUR) {
+                showTitrationError(`Vazão de ${fmt(currentRate)} mL/h equivale a ${fmt(currentRate * CONC)} UI/h, acima do teto de ${MAX_UI_PER_HOUR} UI/h (${fmt(MAX_UI_PER_HOUR * ML_PER_UI)} mL/h). Confira o valor digitado.`);
+                return;
+            }
+
+            // Previous glycemia is optional: used only to detect a fall faster than 50 mg/dL/h
+            let fallPerHour = 0;
+            if (prevInput.value.trim() !== '' || prevInput.validity.badInput) {
+                const prev = readGlycemia(prevInput, 'glicemia anterior');
+                if (prev === null) return;
+                fallPerHour = (prev - gly) / Number(document.getElementById('inputPrevInterval').value);
+            }
+            const fastFall = fallPerHour > MAX_FALL_PER_HOUR;
+            const fallNote = `QUEDA RÁPIDA (${fmt(fallPerHour, 0)} mg/dL por hora, limite ${MAX_FALL_PER_HOUR}). `;
+
+            const suspendClass = "bg-amber-100 border-amber-500 text-amber-950 font-semibold";
+            const hourly = "Reavaliar glicemia em 1 hora.";
+
+            if (gly < 70) {
+                render("bg-rose-100 border-rose-500 text-rose-950 font-bold",
+                    "PAUSAR BIC IMEDIATAMENTE + Protocolo de Resgate de Hipoglicemia (40 mL de Glicose 50% EV em bolus IV direto).",
+                    "Checar glicemia de 15/15 minutos até > 100 mg/dL. Reiniciar BIC com 50% da taxa anterior apenas quando > 140 mg/dL.");
+            } else if (gly < 110) {
+                const newRate = hasRate ? ` (nova velocidade: ${fmt(currentRate * 0.5)} mL/h)` : '';
+                render("bg-amber-100 border-amber-400 text-amber-950", `Reduzir velocidade da BIC em 50%${newRate}.`, hourly);
+            } else if (gly < 140) {
+                const delta = 0.5 * ML_PER_UI;
+                if (!hasRate) {
+                    render("bg-yellow-50 border-yellow-300 text-yellow-950",
+                        fastFall ? `${fallNote}Reduzir velocidade da BIC em 50% ou em ${fmt(delta)} mL/h, o que for a maior redução.` : `Reduzir velocidade da BIC em ${fmt(delta)} mL/h.`,
+                        hourly);
+                    return;
+                }
+                // With a fast fall, apply the larger of the two reductions (50% or the band value)
+                const byBand = currentRate - delta;
+                const newRate = fastFall ? Math.min(byBand, currentRate * 0.5) : byBand;
+                if (newRate <= 0) {
+                    render(suspendClass,
+                        `SUSPENDER A INFUSÃO. A redução prevista (${fmt(delta)} mL/h) é igual ou maior que a vazão atual (${fmt(currentRate)} mL/h).`,
+                        RESTART_AFTER_SUSPENSION);
+                } else if (fastFall && newRate < byBand) {
+                    render("bg-amber-100 border-amber-400 text-amber-950 font-semibold", `${fallNote}Reduzir velocidade da BIC em 50% (nova taxa: ${fmt(newRate)} mL/h).`, hourly);
+                } else {
+                    render("bg-yellow-50 border-yellow-300 text-yellow-950", `${fastFall ? fallNote : ''}Reduzir velocidade da BIC em ${fmt(delta)} mL/h (nova taxa: ${fmt(newRate)} mL/h).`, hourly);
+                }
+            } else if (fastFall) {
+                const newRate = hasRate ? ` (nova taxa: ${fmt(currentRate * 0.5)} mL/h)` : '';
+                render("bg-amber-100 border-amber-400 text-amber-950 font-semibold",
+                    `${fallNote}Reduzir velocidade da BIC em 50%${newRate}, no lugar do ajuste da faixa. Não aumentar a vazão e não fazer bolus.`,
+                    hourly);
+            } else if (gly <= 180) {
+                render("bg-emerald-100 border-emerald-500 text-emerald-950 font-semibold",
+                    `MANTER VELOCIDADE ATUAL DE INFUSÃO${hasRate ? ` (${fmt(currentRate)} mL/h)` : ''}. Paciente na FAIXA ALVO (140-180 mg/dL)!`,
+                    "Reavaliar a cada 2 horas após 3 medidas consecutivas na faixa alvo (ou 1/1h se instável).");
+            } else {
+                // Increments in UI/h from the official table
+                const withBolus = gly > 260;
+                const delta = (withBolus ? 2.0 : gly > 220 ? 1.0 : 0.5) * ML_PER_UI;
+                const overCeiling = hasRate && (currentRate + delta) * CONC > MAX_UI_PER_HOUR;
+                const newRate = hasRate ? ` (nova taxa: ${fmt(currentRate + delta)} mL/h)` : '';
+                const ceilingNote = overCeiling ? ` ATENÇÃO: a nova taxa passa de ${MAX_UI_PER_HOUR} UI/h (${fmt(MAX_UI_PER_HOUR * ML_PER_UI)} mL/h). Avisar o médico antes de aumentar.` : '';
+                if (withBolus) {
+                    render("bg-rose-50 border-rose-300 text-rose-950 font-bold",
+                        `Administrar Bolus de 2 UI de Lispro EV direto + Aumentar BIC em ${fmt(delta)} mL/h${newRate}.${ceilingNote}`,
+                        hourly + " Avisar médico assistente da UTI.");
+                } else {
+                    render(gly > 220 ? "bg-indigo-50 border-indigo-300 text-indigo-950" : "bg-sky-50 border-sky-300 text-sky-950",
+                        `Aumentar velocidade da BIC em ${fmt(delta)} mL/h${newRate}.${ceilingNote}`, hourly);
+                }
+            }
+        }
+
+        // --- Transition Calculator Logic ---
+        function resetTransitionOutput(message) {
+            ['resTotalBIC', 'resDDT', 'resBasal', 'resLispro', 'resDoseKg'].forEach(id => {
+                document.getElementById(id).textContent = '—';
+            });
+            document.getElementById('transitionReportOutput').textContent = message || NOTE_PLACEHOLDER;
+            document.getElementById('btnCopyNote').disabled = true;
+            document.getElementById('transitionErrorBox').classList.add('hidden');
+        }
+
+        function showTransitionError(message) {
+            resetTransitionOutput();
+            const errorBox = document.getElementById('transitionErrorBox');
+            errorBox.textContent = '⚠ ' + message;
+            errorBox.classList.remove('hidden');
+            showToast('Confira os dados da transição.', true);
+        }
+
+        function calculateTransitionDoses() {
+            const rateInput = document.getElementById('transAvgRate');
+            const weightInput = document.getElementById('transPatientWeight');
+            const diet = document.getElementById('transDiet').value;
+
+            const rateRaw = rateInput.value.trim();
+            const avgRate = Number(rateRaw);
+            if (rateRaw === '' || rateInput.validity.badInput || isNaN(avgRate) || avgRate <= 0) {
+                showTransitionError('Informe a média da BIC nas últimas 24h, em mL/h (valor maior que zero).');
+                return;
+            }
+            const uiPerHour = avgRate * CONC;
+            if (uiPerHour > MAX_UI_PER_HOUR) {
+                showTransitionError(`Média de ${fmt(avgRate)} mL/h equivale a ${fmt(uiPerHour)} UI/h, acima do teto de ${MAX_UI_PER_HOUR} UI/h (${fmt(MAX_UI_PER_HOUR * ML_PER_UI)} mL/h). Confira o valor digitado.`);
+                return;
+            }
+
+            const weightRaw = weightInput.value.trim();
+            const weight = Number(weightRaw);
+            if (weightRaw === '' || weightInput.validity.badInput || isNaN(weight)) {
+                showTransitionError('Informe o peso do paciente em kg.');
+                return;
+            }
+            if (weight < MIN_WEIGHT_KG || weight > MAX_WEIGHT_KG) {
+                showTransitionError(`Peso de ${fmt(weight)} kg está fora do intervalo aceito (${MIN_WEIGHT_KG} a ${MAX_WEIGHT_KG} kg). Confira o valor digitado.`);
+                return;
+            }
+
+            // Fixed Lispro SC applications per day depend on the diet (none when intake is below 50%)
+            const lisproSchemes = {
+                oral: { doses: 3, when: 'pré-café, pré-almoço e pré-jantar', monitor: 'pré-prandiais e às 23h' },
+                ent6: { doses: 4, when: 'a cada 6 horas (dieta enteral contínua)', monitor: 'antes de cada dose de Lispro SC' },
+                ent4: { doses: 6, when: 'a cada 4 horas (dieta enteral contínua)', monitor: 'antes de cada dose de Lispro SC' },
+                low: { doses: 0, when: '', monitor: 'pré-prandiais e às 23h' }
+            };
+            const scheme = lisproSchemes[diet];
+
+            // Each dose is rounded down first, so the prescribed total never exceeds the 75% target;
+            // totals are the sum of what will actually be given
+            const totalBIC = uiPerHour * 24;
+            const ddtTarget = totalBIC * DDT_FACTOR;
+            const basalPerDose = Math.floor((ddtTarget * 0.5) / 3);
+            const lisproPerDose = scheme.doses > 0 ? Math.floor((ddtTarget * 0.5) / scheme.doses) : 0;
+            if (basalPerDose < 1 || (scheme.doses > 0 && lisproPerDose < 1)) {
+                showTransitionError(`Com consumo de ${fmt(totalBIC)} UI/dia, a dose por aplicação fica abaixo de 1 UI. Confira a vazão informada; esta calculadora não se aplica a doses tão baixas.`);
+                return;
+            }
+            const basalTotal = basalPerDose * 3;
+            const lisproTotal = lisproPerDose * scheme.doses;
+            const ddtPrescribed = basalTotal + lisproTotal;
+            const dosePerKg = ddtPrescribed / weight;
+            const lisproLine = scheme.doses > 0
+                ? `Lispro SC: ${lisproPerDose} UI ${scheme.when} (${scheme.doses} aplicações, total ${lisproTotal} UI/dia).`
+                : 'Lispro SC em dose fixa: NÃO prescrita (ingestão menor que 50% ou incerta). Usar apenas a escala de correção.';
+
+            document.getElementById('transitionErrorBox').classList.add('hidden');
+            document.getElementById('resTotalBIC').textContent = `${fmt(totalBIC)} UI (${fmt(uiPerHour)} UI/h x 24h)`;
+            document.getElementById('resDDT').textContent = `${fmt(ddtTarget)} UI/dia`;
+            document.getElementById('resBasal').textContent = `${basalPerDose} UI 3x/dia = ${basalTotal} UI/dia`;
+            document.getElementById('resLispro').textContent = scheme.doses > 0 ? `${lisproPerDose} UI x ${scheme.doses} = ${lisproTotal} UI/dia` : 'Sem dose fixa (só correção)';
+            document.getElementById('resDoseKg').textContent = `${ddtPrescribed} UI/dia (${fmt(dosePerKg, 2)} UI/kg/dia)`;
+
+            const eligible = ['elig1', 'elig2', 'elig3'].every(id => document.getElementById(id).checked);
+            if (!eligible) {
+                document.getElementById('transitionReportOutput').textContent = 'Minuta não gerada: confirme os três critérios de elegibilidade acima e calcule novamente.';
+                document.getElementById('btnCopyNote').disabled = true;
+                showToast('Doses calculadas. Confirme os critérios de elegibilidade para gerar a minuta.', true);
+                return;
+            }
+
+            const noteTemplate = `[PARECER DE TRANSIÇÃO GLICÊMICA — UTI IAMSPE]
+Transição da BIC de Lispro EV para via Subcutânea.
+Critérios de elegibilidade confirmados: sem DVA há > 12h; dieta oral ou enteral bem tolerada; BIC estável no alvo (140–180 mg/dL) por 4 a 6 horas.
+- Média de infusão na BIC (últimas 24h): ${fmt(avgRate)} mL/h da solução de 0,5 UI/mL = ${fmt(uiPerHour)} UI/h (consumo: ${fmt(totalBIC)} UI/dia).
+- Dose Diária Total alvo (75% do consumo, redução de 25%): ${fmt(ddtTarget)} UI/dia.
+- Insulina Basal: NPH SC ${basalPerDose} UI, 3x/dia (total ${basalTotal} UI/dia).
+  * REGRA DE OURO: aplicar a 1ª dose de NPH SC 1 a 2 horas ANTES de desligar a Bomba de Infusão.
+- ${lisproLine}
+- Total prescrito: ${ddtPrescribed} UI/dia (${fmt(dosePerKg, 2)} UI/kg/dia para ${fmt(weight)} kg).
+- Correção Adicional: Seguir escala móvel de Lispro SC apenas se glicemia > 180 mg/dL.
+  * ATENÇÃO AO EMPILHAMENTO (DOSE STACKING): Manter intervalo mínimo de 3 a 4 horas entre as doses de correção SC.
+- Dieta suspensa ou jejum: suspender a dose fixa de Lispro SC e manter a NPH.
+- Monitorização: Glicemia capilar ${scheme.monitor}. Meta: 140–180 mg/dL. Se < 70 mg/dL, ativar protocolo de hipoglicemia imediatamente.`;
+
+            document.getElementById('transitionReportOutput').textContent = noteTemplate;
+            document.getElementById('btnCopyNote').disabled = false;
+            showToast('Doses de transição calculadas e minuta gerada.');
+        }
+    </script>
+</body>
+</html>
