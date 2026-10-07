@@ -1,0 +1,569 @@
+<!doctype html><html lang="pt-BR"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Evolução UTI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Public+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  --bg:#EDF1F0; --paper:#FAFCFB; --ink:#16302C; --muted:#5A6F6A; --line:#D2DCD9; --dotgrid:#C9D5D2;
+  --accent:#1F6F63; --accent-ink:#FFFFFF; --accent-soft:#DCEDE9;
+  --abn:#B0501A; --abn-soft:#F6E4D6; --miss:#9B3434;
+  --sans:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0E1615; --paper:#152120; --ink:#DCE7E3; --muted:#8EA39D; --line:#293835; --dotgrid:#24322F;
+    --accent:#5CC2AE; --accent-ink:#0B1A17; --accent-soft:#1B3531;
+    --abn:#F0A267; --abn-soft:#3A2717; --miss:#F08A8A;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0E1615; --paper:#152120; --ink:#DCE7E3; --muted:#8EA39D; --line:#293835; --dotgrid:#24322F;
+  --accent:#5CC2AE; --accent-ink:#0B1A17; --accent-soft:#1B3531;
+  --abn:#F0A267; --abn-soft:#3A2717; --miss:#F08A8A;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.45;padding-inline:16px;padding-block:20px 40px}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 20px}
+h1{font-size:22px;font-weight:700;margin:0;letter-spacing:-.01em;text-wrap:balance}
+h1 span{font-family:var(--mono);font-weight:400;font-size:13px;color:var(--muted);letter-spacing:.02em;margin-left:8px}
+.legend{display:flex;gap:14px;font-family:var(--mono);font-size:11.5px;color:var(--muted);flex-wrap:wrap}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:0}
+
+/* leitos */
+.beds{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.bed{font:600 13px var(--mono);border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:6px;padding:6px 10px;cursor:pointer;display:flex;gap:7px;align-items:center}
+.bed[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.bed .n{font-weight:400;font-size:11px;padding:1px 5px;border-radius:9px;background:var(--abn-soft);color:var(--abn)}
+.bed[aria-pressed="true"] .n{background:var(--abn);color:var(--paper)}
+.bed.add{border-style:dashed;color:var(--muted);font-weight:400}
+
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:18px;align-items:start}
+@media (max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}}
+
+.sheet{background:var(--paper);border:1px solid var(--line);border-radius:10px;overflow:hidden;
+  background-image:radial-gradient(var(--dotgrid) 1px,transparent 1.2px);background-size:18px 18px;background-position:9px 9px}
+.pt{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line);background:var(--paper)}
+.pt label{font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.pt input[type=text]{font:600 14px var(--mono);width:7.5em;max-width:100%}
+.pt .grp{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pt .sp{flex:1}
+.linkbtn{font:500 12.5px var(--sans);background:none;border:1px solid var(--line);color:var(--muted);border-radius:6px;padding:5px 10px;cursor:pointer}
+.linkbtn:hover{color:var(--ink);border-color:var(--muted)}
+.linkbtn.danger.armed{color:var(--miss);border-color:var(--miss)}
+
+.sec{font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--accent);padding:14px 16px 4px 16px;display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;cursor:pointer;text-align:left}
+.sec::before{content:"▾";font-size:12px;width:10px}
+.sec[aria-expanded="false"]::before{content:"▸"}
+.sec[aria-expanded="false"]{padding-bottom:10px}
+.sec::after{content:"";flex:1;height:1px;background:var(--line);order:2}
+.sec .bdg{order:3;font-weight:400;letter-spacing:.02em;text-transform:none;color:var(--muted)}
+.sec .bdg.abn{color:var(--abn)}
+.row{display:grid;grid-template-columns:14px 138px minmax(0,1fr);gap:4px 10px;align-items:center;padding:5px 16px}
+.row.sub .lbl{color:var(--muted)}
+.row.sub .lbl::before{content:"↳ ";color:var(--muted)}
+@media (max-width:560px){.row{grid-template-columns:14px minmax(0,1fr)}.row .opts{grid-column:2}}
+.mk{width:9px;height:9px;border-radius:50%;justify-self:center}
+.mk.ok{background:var(--accent)}
+.mk.abn{background:var(--abn);box-shadow:0 0 0 3px var(--abn-soft)}
+.lbl{font-size:13px;font-weight:600}
+.opts{display:flex;flex-wrap:wrap;gap:5px}
+.chip{font:400 13.5px var(--sans);display:inline-flex;align-items:center;gap:7px;padding:5px 11px 5px 9px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;line-height:1.2}
+.chip .dot{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--muted);flex:none}
+.chip:hover{border-color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);font-weight:600}
+.chip[aria-pressed="true"] .dot{background:var(--accent);border-color:var(--accent)}
+.chip.abn[aria-pressed="true"]{background:var(--abn-soft);border-color:var(--abn);color:var(--ink)}
+.chip.abn[aria-pressed="true"] .dot{background:var(--abn);border-color:var(--abn)}
+.chip.multi .dot{border-radius:2px}
+input[type=text]{font:400 14px var(--sans);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:6px 9px;width:100%;max-width:420px}
+input[type=text].wide{max-width:none}
+input[type=text]::placeholder{color:var(--muted);opacity:.8}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.sheet .end{height:12px}
+
+/* saída */
+.out{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);background:var(--paper);border:1px solid var(--line);border-radius:10px;display:flex;flex-direction:column}
+.out-h{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.out-h b{font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.pill{font:600 11.5px var(--mono);padding:2px 8px;border-radius:999px}
+.pill.ok{background:var(--accent-soft);color:var(--accent)}
+.pill.abn{background:var(--abn-soft);color:var(--abn)}
+.out-h .sp{flex:1}
+.copy{font:600 13.5px var(--sans);background:var(--ink);color:var(--paper);border:0;border-radius:7px;padding:8px 14px;cursor:pointer}
+.copy.done{background:var(--accent);color:var(--accent-ink)}
+#txt{font-family:var(--serif);font-size:15.5px;line-height:1.62;padding:16px 18px 18px;margin:0;white-space:pre-wrap;max-height:calc(100vh - 150px);overflow:auto}
+#txt mark{background:var(--abn-soft);color:inherit;border-radius:3px;padding:0 2px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+#txt .miss{color:var(--miss);font-family:var(--mono);font-size:.85em;border-bottom:1px dashed var(--miss)}
+#txt .empty{font-family:var(--sans);font-size:13.5px;color:var(--muted)}
+.site-return{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:13.5px;color:var(--accent);text-decoration:none}
+.site-return:hover{text-decoration:underline}
+.note{font-size:12px;color:var(--muted);padding:0 18px 14px}
+@media (prefers-reduced-motion:no-preference){.chip,.bed,.copy{transition:background .12s,border-color .12s,color .12s}}
+</style>
+
+<div class="wrap">
+  <a class="site-return" href="../ferramentas/index.html">← Voltar para Ferramentas</a>
+
+  <header>
+    <h1>Evolução UTI <span>terapia intensiva · evolução diária</span></h1>
+    <div class="legend"><span><i style="background:var(--accent)"></i>dentro do esperado</span><span><i style="background:var(--abn)"></i>alterado</span></div>
+  </header>
+
+  <div class="beds" id="beds"></div>
+
+  <div class="grid">
+    <section class="sheet" aria-label="Grade de marcação">
+      <div class="pt">
+        <div class="grp"><label for="bedname">Leito</label><input type="text" id="bedname" placeholder="ex.: 04" autocomplete="off"></div>
+        <div class="grp" id="sexgrp"></div>
+        <span class="sp"></span>
+        <button class="linkbtn danger" id="reset" type="button">Limpar leito</button>
+        <button class="linkbtn danger" id="del" type="button">Remover leito</button>
+      </div>
+      <div id="rows"></div>
+      <div class="end"></div>
+    </section>
+
+    <aside class="out" aria-label="Texto da evolução">
+      <div class="out-h"><b>Evolução</b><span class="pill" id="count"></span><span class="sp"></span><button class="copy" id="copy" type="button">Copiar texto</button></div>
+      <p id="txt"></p>
+      <div class="note">Só entra no texto o que for marcado ou preenchido; clique de novo numa opção para desmarcar. Trechos alterados aparecem destacados aqui e saem como texto normal ao copiar. Os leitos ficam salvos apenas neste navegador; use o número do leito em vez do nome do paciente.</div>
+    </aside>
+  </div>
+</div>
+
+<script>
+(function(){
+// opção: [valor, rótulo, 1 se alterado]
+// type 'text' = texto livre; 'multi' = várias opções; 'det' = várias opções, cada uma com um campo de detalhe
+const F = [
+  {sec:'Estado geral',k:'geral'},
+  {id:'diag',label:'Motivo da internação',type:'text',ph:'ex.: choque séptico de foco pulmonar'},
+  {id:'estado',label:'Estado geral',opts:[['bom','bom'],['reg','regular',1],['mau','mau',1]]},
+  {id:'evol',label:'Evolução',opts:[['mel','melhora clínica'],['est','clinicamente estável'],['pio','piora clínica',1]]},
+  {id:'interc',label:'Intercorrências 24h',opts:[['sem','sem'],['com','com',1]]},
+  {id:'intercTxt',sub:1,label:'Quais',type:'text',ph:'ex.: fibrilação atrial revertida com amiodarona',show:v=>v.interc==='com'},
+  {id:'geralTxt',label:'Complemento',type:'text',wide:1,ph:'texto livre'},
+
+  {sec:'Neurológico',k:'neuro'},
+  {id:'sed',label:'Sedoanalgesia contínua',opts:[['sem','sem'],['com','com',1]]},
+  {id:'sedDrg',sub:1,label:'Drogas',type:'det',dph:'dose',show:v=>v.sed==='com',opts:[['midazolam','midazolam'],['propofol','propofol'],['dexmedetomidina','dexmedetomidina'],['cetamina','cetamina'],['fentanil','fentanil'],['morfina','morfina'],['outro','outra']]},
+  {id:'rass',label:'RASS',type:'text',ph:'ex.: -4'},
+  {id:'consc',label:'Nível de consciência',opts:[['vig','vigil'],['son','sonolento',1],['tor','torporoso',1],['com','comatoso',1]]},
+  {id:'gcs',label:'Glasgow',type:'text',ph:'ex.: 15'},
+  {id:'orient',label:'Orientação',opts:[['o','orientado'],['d','desorientado',1]]},
+  {id:'delirium',label:'Delirium',opts:[['sem','sem'],['com','com',1]]},
+  {id:'pup',label:'Pupilas',opts:[['ok','isocóricas e fotorreagentes'],['alt','alteradas',1]]},
+  {id:'pupTxt',sub:1,label:'Descrição',type:'text',ph:'ex.: anisocoria, D > E',show:v=>v.pup==='alt'},
+  {id:'deficit',label:'Déficit focal',opts:[['sem','sem'],['com','com',1]]},
+  {id:'deficitTxt',sub:1,label:'Qual',type:'text',ph:'ex.: hemiparesia esquerda',show:v=>v.deficit==='com'},
+  {id:'dor',label:'Dor',opts:[['sem','sem'],['com','com',1]]},
+  {id:'dorTxt',sub:1,label:'Detalhe',type:'text',ph:'ex.: em ferida operatória, leve',show:v=>v.dor==='com'},
+  {id:'neuroTxt',label:'Complemento',type:'text',wide:1,ph:'texto livre'},
+
+  {sec:'Cardiovascular',k:'cv'},
+  {id:'hemo',label:'Hemodinâmica',opts:[['est','estável'],['ins','instável',1]]},
+  {id:'dva',label:'Droga vasoativa',opts:[['sem','sem'],['com','em uso',1]]},
+  {id:'dvaDrg',sub:1,label:'Drogas',type:'det',dph:'dose',show:v=>v.dva==='com',opts:[['noradrenalina','noradrenalina'],['vasopressina','vasopressina'],['adrenalina','adrenalina'],['dobutamina','dobutamina'],['nitroprussiato','nitroprussiato'],['nitroglicerina','nitroglicerina'],['outro','outra']]},
+  {id:'dvaT',sub:1,label:'Tendência',show:v=>v.dva==='com',opts:[['des','em desmame'],['est','dose estável'],['asc','dose ascendente',1]]},
+  {id:'pam',label:'PAM',type:'text',ph:'ex.: 75'},
+  {id:'fc',label:'FC',type:'text',ph:'ex.: 88'},
+  {id:'ritmo',label:'Ritmo',opts:[['sin','sinusal'],['fa','fibrilação atrial',1],['out','outro',1]]},
+  {id:'ritmoTxt',sub:1,label:'Qual',type:'text',ph:'ex.: flutter atrial',show:v=>v.ritmo==='out'},
+  {id:'perf',label:'Perfusão periférica',opts:[['ok','adequada'],['len','lentificada',1]]},
+  {id:'lact',label:'Lactato',type:'text',ph:'ex.: 1,8 mmol/L'},
+  {id:'edema',label:'Edema',opts:[['sem','sem'],['com','com',1]]},
+  {id:'edemaTxt',sub:1,label:'Detalhe',type:'text',ph:'ex.: membros inferiores, 2+/4+',show:v=>v.edema==='com'},
+  {id:'cvTxt',label:'Complemento',type:'text',wide:1,ph:'texto livre'},
+
+  {sec:'Respiratório',k:'resp'},
+  {id:'sup',label:'Suporte',opts:[['aa','ar ambiente'],['cn','cateter nasal',1],['masc','máscara',1],['cnaf','CNAF',1],['vni','VNI',1],['tot','VM por TOT',1],['tqt','VM por TQT',1],['out','outro',1]]},
+  {id:'fluxo',sub:1,label:'Fluxo',type:'text',ph:'ex.: 2 L/min',show:v=>['cn','masc','cnaf'].includes(v.sup)},
+  {id:'supOut',sub:1,label:'Qual',type:'text',ph:'ex.: traqueostomia em macronebulização',show:v=>v.sup==='out'},
+  {id:'modo',sub:1,label:'Modo',type:'text',ph:'ex.: PCV',show:v=>['vni','tot','tqt'].includes(v.sup)},
+  {id:'fio2',sub:1,label:'FiO₂',type:'text',ph:'ex.: 40',show:v=>['cnaf','vni','tot','tqt'].includes(v.sup)},
+  {id:'peep',sub:1,label:'PEEP',type:'text',ph:'ex.: 8',show:v=>['vni','tot','tqt'].includes(v.sup)},
+  {id:'vmPar',sub:1,label:'Outros parâmetros',type:'text',ph:'ex.: VC 420 mL, FR 18',show:v=>['vni','tot','tqt'].includes(v.sup)},
+  {id:'sinc',sub:1,label:'Sincronia',show:v=>['tot','tqt'].includes(v.sup),opts:[['ok','bem acoplado'],['ass','assincronias',1]]},
+  {id:'desm',sub:1,label:'Desmame',show:v=>['tot','tqt'].includes(v.sup),opts:[['sim','em desmame'],['nao','sem condições no momento',1]]},
+  {id:'spo2',label:'SpO₂',type:'text',ph:'ex.: 96'},
+  {id:'padrao',label:'Padrão respiratório',opts:[['conf','sem desconforto'],['desc','com desconforto',1]]},
+  {id:'secr',label:'Secreção',opts:[['sem','sem'],['com','com',1]]},
+  {id:'secrTxt',sub:1,label:'Detalhe',type:'text',ph:'ex.: moderada quantidade, purulenta',show:v=>v.secr==='com'},
+  {id:'gaso',label:'Gasometria',type:'text',ph:'ex.: pH 7,38, pCO₂ 40, pO₂ 85, HCO₃ 24'},
+  {id:'respTxt',label:'Complemento',type:'text',wide:1,ph:'texto livre'},
+
+  {sec:'Renal / metabólico',k:'renal'},
+  {id:'diuVia',label:'Diurese — via',opts:[['esp','espontânea'],['svd','por SVD']]},
+  {id:'diu',label:'Diurese',opts:[['pre','presente'],['red','reduzida',1],['aus','ausente',1]]},
+  {id:'diuVol',label:'Volume',type:'text',ph:'ex.: 1800 mL/24h ou 0,8 mL/kg/h'},
+  {id:'bh',label:'Balanço hídrico',type:'text',ph:'ex.: +500'},
+  {id:'fr',label:'Função renal',opts:[['pres','preservada'],['mel','alterada, em melhora',1],['est','alterada, estável',1],['pio','alterada, em piora',1]]},
+  {id:'frTxt',label:'Creatinina / ureia',type:'text',ph:'ex.: Cr 2,1; Ur 98'},
+  {id:'trs',label:'Terapia renal substitutiva',opts:[['sem','sem'],['com','em TRS',1]]},
+  {id:'trsTxt',sub:1,label:'Modalidade',type:'text',ph:'ex.: hemodiálise intermitente',show:v=>v.trs==='com'},
+  {id:'eletr',label:'Distúrbio hidroeletrolítico / ácido-base',opts:[['sem','sem'],['com','com',1]]},
+  {id:'eletrTxt',sub:1,label:'Qual',type:'text',ph:'ex.: hipocalemia em reposição',show:v=>v.eletr==='com'},
+  {id:'glic',label:'Glicemia',opts:[['ok','controlada'],['hiper','hiperglicemia',1],['hipo','hipoglicemia',1]]},
+  {id:'glicTxt',label:'Valores',type:'text',ph:'ex.: 140–220 mg/dL'},
+  {id:'ins',label:'Insulina',opts:[['sem','sem'],['sc','subcutânea'],['ev','EV contínua',1]]},
+  {id:'renalTxt',label:'Complemento',type:'text',wide:1,ph:'texto livre'},
+
+  {sec:'Gastrointestinal / nutrição',k:'gi'},
+  {id:'dieta',label:'Dieta',opts:[['oral','oral'],['ent','enteral'],['par','parenteral',1],['jej','jejum',1]]},
+  {id:'dietaTxt',sub:1,label:'Detalhe',type:'text',ph:'ex.: 40 mL/h, meta atingida',show:v=>!!v.dieta},
+  {id:'tol',sub:1,label:'Tolerância',show:v=>!!v.dieta&&v.dieta!=='jej',opts:[['boa','bem tolerada'],['par','parcial',1],['nao','não tolerada',1]]},
+  {id:'nv',label:'Náuseas / vômitos',opts:[['sem','sem'],['com','com',1]]},
+  {id:'abd',label:'Abdome',opts:[['ok','sem alterações'],['alt','alterado',1]]},
+  {id:'abdTxt',sub:1,label:'Descrição',type:'text',ph:'ex.: distendido, doloroso à palpação',show:v=>v.abd==='alt'},
+  {id:'evac',label:'Evacuações',opts:[['pre','presentes'],['aus','ausentes'],['dia','diarreia',1]]},
+  {id:'evacTxt',sub:1,label:'Detalhe',type:'text',ph:'ex.: ausentes há 4 dias',show:v=>!!v.evac},
+  {id:'giTxt',label:'Complemento',type:'text',wide:1,ph:'texto livre'},
+
+  {sec:'Infeccioso',k:'inf'},
+  {id:'febre',label:'Temperatura',opts:[['af','afebril'],['fe','febril',1]]},
+  {id:'tmax',label:'Tmáx',type:'text',ph:'ex.: 38,4'},
+  {id:'atb',label:'Antibiótico',opts:[['sem','sem'],['com','em uso',1]]},
+  {id:'atbTxt',sub:1,label:'Quais / dia',type:'text',ph:'ex.: meropenem D5/10, vancomicina D3',show:v=>v.atb==='com'},
+  {id:'cult',label:'Culturas',type:'text',ph:'ex.: hemoculturas em andamento'},
+  {id:'marc',label:'Marcadores inflamatórios',opts:[['que','em queda'],['est','estáveis'],['asc','em ascensão',1]]},
+  {id:'marcTxt',label:'Valores',type:'text',ph:'ex.: PCR 120; leucócitos 14 mil'},
+  {id:'infTxt',label:'Complemento',type:'text',wide:1,ph:'texto livre'},
+
+  {sec:'Hematológico',k:'hem'},
+  {id:'sang',label:'Sangramento',opts:[['sem','sem'],['com','com',1]]},
+  {id:'sangTxt',sub:1,label:'Onde',type:'text',ph:'ex.: hematúria macroscópica',show:v=>v.sang==='com'},
+  {id:'transf',label:'Transfusão 24h',opts:[['sem','sem'],['com','com',1]]},
+  {id:'transfTxt',sub:1,label:'O quê',type:'text',ph:'ex.: 2 concentrados de hemácias',show:v=>v.transf==='com'},
+  {id:'hemEx',label:'Hb / plaquetas',type:'text',ph:'ex.: Hb 8,9 g/dL; plaquetas 150 mil'},
+  {id:'tev',label:'Profilaxia de TEV',opts:[['far','farmacológica'],['mec','mecânica'],['pl','anticoagulação plena',1],['sem','sem profilaxia',1]]},
+  {id:'tevTxt',sub:1,label:'Detalhe',type:'text',ph:'ex.: enoxaparina 40 mg/dia',show:v=>!!v.tev},
+  {id:'hemTxt',label:'Complemento',type:'text',wide:1,ph:'texto livre'},
+
+  {sec:'Pele e dispositivos',k:'pele'},
+  {id:'pele',label:'Pele',opts:[['ok','íntegra'],['lpp','lesão por pressão',1]]},
+  {id:'peleTxt',sub:1,label:'Local / estágio',type:'text',ph:'ex.: sacral, estágio 2',show:v=>v.pele==='lpp'},
+  {id:'disp',label:'Dispositivos',type:'det',dph:'sítio / data (opcional)',opts:[['acesso venoso periférico','AVP'],['cateter venoso central','CVC'],['cateter de diálise','cateter de diálise'],['pressão arterial invasiva','PAI'],['SVD','SVD'],['SNE','SNE'],['SNG','SNG'],['tubo orotraqueal','TOT'],['traqueostomia','TQT'],['dreno','dreno'],['outro','outro']]},
+  {id:'sitio',label:'Sítios de inserção',opts:[['ok','sem sinais flogísticos'],['alt','com sinais flogísticos',1]]},
+  {id:'sitioTxt',sub:1,label:'Onde',type:'text',ph:'ex.: CVC em jugular direita',show:v=>v.sitio==='alt'},
+  {id:'peleCompl',label:'Complemento',type:'text',wide:1,ph:'texto livre'},
+
+  {sec:'Pendências',k:'pend'},
+  {id:'pend',label:'Pendências',type:'multi',opts:[['resultado de culturas','resultado de culturas'],['exames laboratoriais','exames laboratoriais'],['exame de imagem','exame de imagem'],['parecer de especialidade','parecer de especialidade'],['procedimento','procedimento'],['vaga em enfermaria','vaga em enfermaria'],['conversa com familiares','conversa com familiares']]},
+  {id:'pendTxt',label:'Outras / detalhe',type:'text',wide:1,ph:'texto livre'},
+
+  {sec:'Fechamento / plano',k:'plano'},
+  {id:'cond',label:'Conduta',type:'multi',opts:[['manter suporte intensivo','manter suporte intensivo'],['desmamar droga vasoativa','desmamar DVA'],['desmamar sedação','desmamar sedação'],['progredir desmame ventilatório','progredir desmame ventilatório'],['manter antibioticoterapia','manter antibiótico'],['progredir dieta','progredir dieta'],['manter profilaxias','manter profilaxias'],['manter fisioterapia motora e respiratória','fisioterapia'],['solicitar exames de controle','exames de controle'],['orientar familiares','orientar familiares'],['programar alta da UTI','programar alta da UTI']]},
+  {id:'condTxt',label:'Outras / detalhe',type:'text',wide:1,ph:'texto livre'}
+];
+const FI={}; F.forEach(f=>{if(f.id)FI[f.id]=f});
+const isList=f=>f.type==='multi'||f.type==='det';
+
+// nada pré-preenchido: todo campo começa vazio
+const DEF={};
+F.forEach(f=>{ if(!f.id)return; DEF[f.id]=isList(f)?[]:''; if(f.type==='det')DEF[f.id+'D']={}; });
+const clone=o=>JSON.parse(JSON.stringify(o));
+
+const KEY='evolucao-uti-v1';
+const fresh=(name)=>({id:Math.random().toString(36).slice(2,9),name:name||'',sex:'M',v:clone(DEF)});
+
+let S=null;
+try{S=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){S=null}
+if(!S||!Array.isArray(S.p)||!S.p.length){const a=fresh('');S={p:[a],cur:a.id};}
+S.p.forEach(p=>{p.v=Object.assign(clone(DEF),p.v)});
+if(!S.col){
+  // no celular os sistemas começam recolhidos, menos o primeiro
+  S.col={};
+  let narrow=false; try{narrow=matchMedia('(max-width:900px)').matches}catch(e){}
+  if(narrow)F.forEach(f=>{if(f.sec&&f.k!=='geral')S.col[f.k]=1});
+}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const cur=()=>S.p.find(p=>p.id===S.cur)||S.p[0];
+
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const A=s=>'⟦'+s+'⟧';           // trecho alterado
+const M=s=>'⟪'+s+'⟫';           // falta preencher
+const t=s=>(s||'').trim();
+const joinPt=a=>a.length<2?(a[0]||''):a.slice(0,-1).join(', ')+' e '+a[a.length-1];
+const unit=(x,un)=>/\d$/.test(x)?x+' '+un:x;
+const pct=x=>/^\d{2,3}$/.test(x)?x+'%':x;
+
+const shown=(f,v)=>!f.show||f.show(v);
+const filled=(f,v)=>isList(f)?v[f.id].length>0:!!t(v[f.id]);
+const isAbn=(f,v)=>{ if(!f.opts||isList(f))return false; const o=f.opts.find(o=>o[0]===v[f.id]); return !!(o&&o[2]); };
+
+function abnRows(p){
+  const v=p.v;let n=0;
+  F.forEach(f=>{ if(f.id&&shown(f,v)&&isAbn(f,v))n++; });
+  return n;
+}
+function secStats(v){
+  const st={};let k=null;
+  F.forEach(f=>{
+    if(f.sec){k=f.k;st[k]={n:0,abn:0};return;}
+    if(!shown(f,v))return;
+    if(filled(f,v))st[k].n++;
+    if(isAbn(f,v))st[k].abn++;
+  });
+  return st;
+}
+
+function build(p){
+  const v=p.v, fem=p.sex==='F', g=(m,f)=>fem?f:m, out=[];
+  // valor do campo, vazio se a linha estiver oculta
+  const val=id=>shown(FI[id],v)?v[id]:(isList(FI[id])?[]:'');
+  const tx=id=>t(val(id));
+  const par=(id,req)=>tx(id)?' ('+tx(id)+')':(req?' '+M(req):'');
+  const items=id=>{const f=FI[id],d=v[id+'D']||{};
+    return val(id).map(x=>{const lab=f.opts.find(o=>o[0]===x), det=t(d[x]);
+      if(x==='outro')return det||M('especificar');
+      return (lab?x:'')+(det?' ('+det+')':'');});};
+  const sent=(intro,parts,extra)=>{
+    parts=parts.filter(Boolean);
+    if(parts.length)out.push(intro+parts.join(', ')+'.');
+    const x=t(extra); if(x)out.push(/[.!?]$/.test(x)?x:x+'.');
+  };
+  const pick=(id,map)=>map[val(id)]||'';
+
+  // estado geral
+  sent('Paciente em leito de UTI, ',[
+    tx('diag')&&g('internado','internada')+' por '+tx('diag'),
+    pick('estado',{bom:'em bom estado geral',reg:A('em regular estado geral'),mau:A('em mau estado geral')}),
+    pick('evol',{mel:'evoluindo com melhora clínica',est:'evoluindo clinicamente estável',pio:A('evoluindo com piora clínica')}),
+    pick('interc',{sem:'sem intercorrências nas últimas 24 horas',com:A('com intercorrências nas últimas 24 horas')+par('intercTxt','especificar')})
+  ],v.geralTxt);
+
+  // neurológico
+  const sd=items('sedDrg');
+  sent('Do ponto de vista neurológico, ',[
+    pick('sed',{sem:'sem sedoanalgesia contínua',com:A('sob sedoanalgesia contínua')+(sd.length?' com '+joinPt(sd):'')}),
+    tx('rass')&&'RASS '+tx('rass'),
+    pick('consc',{vig:'vigil',son:A(g('sonolento','sonolenta')),tor:A(g('torporoso','torporosa')),com:A(g('comatoso','comatosa'))}),
+    tx('gcs')&&'Glasgow '+tx('gcs'),
+    pick('orient',{o:g('orientado','orientada'),d:A(g('desorientado','desorientada'))}),
+    pick('delirium',{sem:'sem delirium',com:A('com delirium')}),
+    pick('pup',{ok:'pupilas isocóricas e fotorreagentes',alt:A('pupilas alteradas')+par('pupTxt','descrever')}),
+    pick('deficit',{sem:'sem déficits focais',com:A('com déficit focal')+par('deficitTxt','descrever')}),
+    pick('dor',{sem:'sem dor',com:A('com dor')+par('dorTxt')})
+  ],v.neuroTxt);
+
+  // cardiovascular
+  const dv=items('dvaDrg');
+  sent('Do ponto de vista cardiovascular, ',[
+    pick('hemo',{est:'hemodinamicamente estável',ins:A('hemodinamicamente instável')}),
+    pick('dva',{sem:'sem droga vasoativa',com:dv.length?A('em uso de '+joinPt(dv)):A('em uso de droga vasoativa')+' '+M('especificar')}),
+    pick('dvaT',{des:'em desmame',est:'em dose estável',asc:A('em dose ascendente')}),
+    tx('pam')&&'PAM '+unit(tx('pam'),'mmHg'),
+    tx('fc')&&'FC '+unit(tx('fc'),'bpm'),
+    pick('ritmo',{sin:'em ritmo sinusal',fa:A('em fibrilação atrial'),out:tx('ritmoTxt')?A('em '+tx('ritmoTxt')):M('especificar ritmo')}),
+    pick('perf',{ok:'perfusão periférica adequada',len:A('perfusão periférica lentificada')}),
+    tx('lact')&&'lactato '+tx('lact'),
+    pick('edema',{sem:'sem edemas',com:A('com edema')+par('edemaTxt')})
+  ],v.cvTxt);
+
+  // respiratório
+  const fl=tx('fluxo')?' a '+tx('fluxo'):'';
+  sent('Do ponto de vista respiratório, ',[
+    pick('sup',{aa:'em ar ambiente',cn:A('em O₂ por cateter nasal')+fl,masc:A('em O₂ por máscara')+fl,cnaf:A('em cateter nasal de alto fluxo')+fl,
+      vni:A('em ventilação não invasiva'),tot:A('em ventilação mecânica por tubo orotraqueal'),tqt:A('em ventilação mecânica por traqueostomia'),
+      out:tx('supOut')?A('em '+tx('supOut')):M('especificar suporte')}),
+    tx('modo')&&'modo '+tx('modo'),
+    tx('fio2')&&'FiO₂ '+pct(tx('fio2')),
+    tx('peep')&&'PEEP '+unit(tx('peep'),'cmH₂O'),
+    tx('vmPar'),
+    pick('sinc',{ok:g('bem acoplado','bem acoplada')+' ao ventilador',ass:A('com assincronias')}),
+    pick('desm',{sim:'em desmame ventilatório',nao:A('sem condições de desmame ventilatório no momento')}),
+    tx('spo2')&&'SpO₂ '+pct(tx('spo2')),
+    pick('padrao',{conf:'sem desconforto respiratório',desc:A('com desconforto respiratório')}),
+    pick('secr',{sem:'sem secreção respiratória significativa',com:A('com secreção respiratória')+par('secrTxt')}),
+    tx('gaso')&&'gasometria: '+tx('gaso')
+  ],v.respTxt);
+
+  // renal / metabólico
+  const dVia=pick('diuVia',{esp:'espontânea',svd:'por SVD'}), dPres=pick('diu',{pre:'presente',red:A('reduzida'),aus:A('ausente')});
+  const diu=(dVia||dPres||tx('diuVol'))?'diurese'+(dVia?' '+dVia:'')+(dPres?' '+dPres:'')+par('diuVol'):'';
+  const fr=pick('fr',{pres:'função renal preservada',mel:A('função renal alterada')+', em melhora',est:A('função renal alterada')+', estável',pio:A('função renal alterada, em piora')});
+  sent('Do ponto de vista renal e metabólico, ',[
+    diu,
+    tx('bh')&&'balanço hídrico '+unit(tx('bh'),'mL'),
+    fr?fr+par('frTxt'):tx('frTxt'),
+    pick('trs',{sem:'sem terapia renal substitutiva',com:A('em terapia renal substitutiva')+par('trsTxt')}),
+    pick('eletr',{sem:'sem distúrbios hidroeletrolíticos ou ácido-base',com:A('com distúrbio hidroeletrolítico ou ácido-base')+par('eletrTxt','especificar')}),
+    val('glic')?pick('glic',{ok:'glicemias controladas',hiper:A('com episódios de hiperglicemia'),hipo:A('com episódios de hipoglicemia')})+par('glicTxt')
+      :(tx('glicTxt')&&'glicemias '+tx('glicTxt')),
+    pick('ins',{sem:'sem insulinoterapia',sc:'em insulina subcutânea',ev:A('em insulina endovenosa contínua')})
+  ],v.renalTxt);
+
+  // gastrointestinal / nutrição
+  const dieta=pick('dieta',{oral:'dieta oral',ent:'dieta enteral',par:A('nutrição parenteral'),jej:A('em jejum')});
+  sent('Do ponto de vista gastrointestinal e nutricional, ',[
+    dieta&&dieta+par('dietaTxt'),
+    pick('tol',{boa:'bem tolerada',par:A('parcialmente tolerada'),nao:A('não tolerada')}),
+    pick('nv',{sem:'sem náuseas ou vômitos',com:A('com náuseas ou vômitos')}),
+    pick('abd',{ok:'abdome sem alterações',alt:A('abdome alterado')+par('abdTxt','descrever')}),
+    val('evac')&&pick('evac',{pre:'evacuações presentes',aus:'evacuações ausentes',dia:A('com diarreia')})+par('evacTxt')
+  ],v.giTxt);
+
+  // infeccioso
+  const tm=tx('tmax')?'Tmáx '+unit(tx('tmax'),'°C'):'';
+  const feb=pick('febre',{af:'afebril nas últimas 24 horas',fe:A('febril nas últimas 24 horas')});
+  const marc=pick('marc',{que:'marcadores inflamatórios em queda',est:'marcadores inflamatórios estáveis',asc:A('marcadores inflamatórios em ascensão')});
+  sent('Do ponto de vista infeccioso, ',[
+    feb?feb+(tm?' ('+tm+')':''):tm,
+    pick('atb',{sem:'sem antibioticoterapia',com:A('em antibioticoterapia')+par('atbTxt')}),
+    tx('cult')&&'culturas: '+tx('cult'),
+    marc?marc+par('marcTxt'):tx('marcTxt')
+  ],v.infTxt);
+
+  // hematológico
+  sent('Do ponto de vista hematológico, ',[
+    pick('sang',{sem:'sem sangramentos',com:A('com sangramento')+par('sangTxt','especificar')}),
+    pick('transf',{sem:'sem transfusões nas últimas 24 horas',com:A('com transfusão nas últimas 24 horas')+par('transfTxt')}),
+    tx('hemEx'),
+    val('tev')&&pick('tev',{far:'em profilaxia farmacológica para TEV',mec:'em profilaxia mecânica para TEV',pl:A('em anticoagulação plena'),sem:A('sem profilaxia para TEV')})+par('tevTxt')
+  ],v.hemTxt);
+
+  // pele e dispositivos
+  const ds=items('disp');
+  sent('Quanto à pele e aos dispositivos, ',[
+    pick('pele',{ok:'pele íntegra',lpp:A('com lesão por pressão')+par('peleTxt','local e estágio')}),
+    ds.length&&'em uso de '+joinPt(ds),
+    pick('sitio',{ok:'sítios de inserção sem sinais flogísticos',alt:A('com sinais flogísticos em sítio de inserção')+par('sitioTxt','especificar')})
+  ],v.peleCompl);
+
+  // pendências e conduta
+  const pend=val('pend').concat(tx('pendTxt')?[tx('pendTxt').replace(/[.]$/,'')]:[]);
+  if(pend.length)out.push('Pendências: '+joinPt(pend)+'.');
+  const cond=val('cond').concat(tx('condTxt')?[tx('condTxt').replace(/[.]$/,'')]:[]);
+  if(cond.length)out.push('Conduta: '+joinPt(cond)+'.');
+
+  return out.join(' ');
+}
+const toHTML=s=>esc(s).replace(/⟦/g,'<mark>').replace(/⟧/g,'</mark>').replace(/⟪([^⟫]*)⟫/g,'<span class="miss">[$1]</span>');
+const toPlain=s=>s.replace(/[⟦⟧]/g,'').replace(/⟪([^⟫]*)⟫/g,'[$1]');
+
+const $=id=>document.getElementById(id);
+
+function renderBeds(){
+  $('beds').innerHTML=S.p.map(p=>{const n=abnRows(p);
+    return `<button class="bed" type="button" data-bed="${p.id}" aria-pressed="${p.id===S.cur}">${esc(p.name||'sem nome')}${n?`<span class="n">${n}</span>`:''}</button>`}).join('')
+    +`<button class="bed add" type="button" id="addbed">+ leito</button>`;
+}
+function badge(st){
+  if(!st.n)return '';
+  return st.n+(st.n>1?' preenchidos':' preenchido')+(st.abn?' · '+st.abn+(st.abn>1?' alterados':' alterado'):'');
+}
+function renderBadges(){
+  const st=secStats(cur().v);
+  document.querySelectorAll('[data-bdg]').forEach(el=>{const s=st[el.dataset.bdg];el.textContent=badge(s);el.className='bdg'+(s.abn?' abn':'');});
+}
+function renderRows(){
+  const p=cur(), v=p.v, st=secStats(v); let h='', hide=false;
+  F.forEach(f=>{
+    if(f.sec){
+      hide=!!S.col[f.k];
+      h+=`<button class="sec" type="button" data-sec="${f.k}" aria-expanded="${!hide}"><span>${f.sec}</span><span class="bdg${st[f.k].abn?' abn':''}" data-bdg="${f.k}">${badge(st[f.k])}</span></button>`;
+      return;
+    }
+    if(hide||!shown(f,v))return;
+    const cls='row'+(f.sub?' sub':'');
+    if(f.type==='text'){
+      h+=`<div class="${cls}"><span class="mk"></span><label class="lbl" for="f-${f.id}">${f.label}</label><div class="opts"><input type="text"${f.wide?' class="wide"':''} id="f-${f.id}" data-t="${f.id}" placeholder="${esc(f.ph||'')}" value="${esc(v[f.id]||'')}" autocomplete="off"></div></div>`;
+      return;
+    }
+    let mk='';
+    if(isList(f)){ mk=v[f.id].length?'ok':''; }
+    else{ const o=f.opts.find(o=>o[0]===v[f.id]); mk=o?(o[2]?'abn':'ok'):''; }
+    const chips=f.opts.map(o=>{
+      const on=isList(f)?v[f.id].includes(o[0]):v[f.id]===o[0];
+      return `<button type="button" class="chip${o[2]?' abn':''}${isList(f)?' multi':''}" data-f="${f.id}" data-v="${esc(o[0])}" aria-pressed="${on}"><span class="dot"></span>${fixG(o[1],p)}</button>`;
+    }).join('');
+    h+=`<div class="${cls}"><span class="mk ${mk}"></span><span class="lbl">${f.label}</span><div class="opts" role="group" aria-label="${f.label}">${chips}</div></div>`;
+    if(f.type==='det'){
+      f.opts.forEach((o,i)=>{
+        if(!v[f.id].includes(o[0]))return;
+        const ph=o[0]==='outro'?'qual'+(f.dph?' e '+f.dph:''):f.dph;
+        h+=`<div class="row sub"><span class="mk"></span><label class="lbl" for="d-${f.id}-${i}">${o[1]}</label><div class="opts"><input type="text" id="d-${f.id}-${i}" data-d="${f.id}" data-dv="${esc(o[0])}" placeholder="${esc(ph||'')}" value="${esc((v[f.id+'D']||{})[o[0]]||'')}" autocomplete="off"></div></div>`;
+      });
+    }
+  });
+  $('rows').innerHTML=h;
+  $('bedname').value=p.name||'';
+  $('sexgrp').innerHTML='<label>Sexo</label>'+[['M','masc.'],['F','fem.']].map(s=>`<button type="button" class="chip" data-sex="${s[0]}" aria-pressed="${p.sex===s[0]}"><span class="dot"></span>${s[1]}</button>`).join('');
+}
+function fixG(label,p){
+  if(p.sex!=='F')return label;
+  return label.replace(/^(sonolento|torporoso|comatoso|orientado|desorientado|bem acoplado)/,m=>m.slice(0,-1)+'a');
+}
+function renderOut(){
+  const p=cur(), s=build(p), n=abnRows(p);
+  $('txt').innerHTML=s?toHTML(s):'<span class="empty">Marque ou preencha os campos ao lado para montar a evolução.</span>';
+  const c=$('count'); c.className='pill '+(n?'abn':'ok'); c.textContent=n?(n+(n>1?' alterações':' alteração')):'sem alterações';
+}
+function all(){renderBeds();renderRows();renderOut();}
+
+document.addEventListener('click',e=>{
+  const ch=e.target.closest('[data-f]');
+  if(ch){
+    const p=cur(), f=FI[ch.dataset.f], val=ch.dataset.v;
+    if(isList(f)){const a=p.v[f.id];const i=a.indexOf(val);i<0?a.push(val):a.splice(i,1);}
+    else p.v[f.id]=p.v[f.id]===val?'':val;   // clicar de novo desmarca
+    disarm();save();renderBeds();renderRows();renderOut();
+    const again=document.querySelector(`[data-f="${f.id}"][data-v="${CSS.escape(val)}"]`); if(again)again.focus();
+    return;
+  }
+  const sc=e.target.closest('[data-sec]');
+  if(sc){
+    const k=sc.dataset.sec; if(S.col[k])delete S.col[k]; else S.col[k]=1;
+    disarm();save();renderRows();
+    const again=document.querySelector(`[data-sec="${k}"]`); if(again)again.focus();
+    return;
+  }
+  const sx=e.target.closest('[data-sex]');
+  if(sx){cur().sex=sx.dataset.sex;disarm();save();renderRows();renderOut();return;}
+  const bd=e.target.closest('[data-bed]');
+  if(bd){S.cur=bd.dataset.bed;disarm();save();all();return;}
+  if(e.target.closest('#addbed')){const p=fresh('');S.p.push(p);S.cur=p.id;disarm();save();all();$('bedname').focus();return;}
+  const rs=e.target.closest('#reset');
+  if(rs){
+    if(!rs.classList.contains('armed')){disarm();rs.classList.add('armed');rs.textContent='Confirmar limpeza';return;}
+    cur().v=clone(DEF); disarm(); save(); all(); return;
+  }
+  const del=e.target.closest('#del');
+  if(del){
+    if(!del.classList.contains('armed')){disarm();del.classList.add('armed');del.textContent='Confirmar remoção';return;}
+    S.p=S.p.filter(p=>p.id!==S.cur); if(!S.p.length)S.p.push(fresh(''));
+    S.cur=S.p[0].id; disarm(); save(); all(); return;
+  }
+  disarm();
+});
+function disarm(){
+  const d=$('del');d.classList.remove('armed');d.textContent='Remover leito';
+  const r=$('reset');r.classList.remove('armed');r.textContent='Limpar leito';
+}
+
+document.addEventListener('input',e=>{
+  const el=e.target; if(!el.dataset)return;
+  if(el.dataset.t){cur().v[el.dataset.t]=el.value;save();renderOut();renderBadges();}
+  else if(el.dataset.d){const v=cur().v,k=el.dataset.d+'D';if(!v[k])v[k]={};v[k][el.dataset.dv]=el.value;save();renderOut();}
+  else if(el.id==='bedname'){cur().name=el.value;save();renderBeds();}
+});
+
+$('copy').addEventListener('click',()=>{
+  const plain=toPlain(build(cur())), b=$('copy');
+  const ok=()=>{b.textContent='Copiado';b.classList.add('done');setTimeout(()=>{b.textContent='Copiar texto';b.classList.remove('done')},1600)};
+  const fallback=()=>{const r=document.createRange();r.selectNodeContents($('txt'));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Texto selecionado, use ⌘C';};
+  try{navigator.clipboard.writeText(plain).then(ok,fallback)}catch(err){fallback()}
+});
+
+all();
+})();
+</script>
+
+</body></html>
