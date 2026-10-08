@@ -10,6 +10,11 @@
     "url": "../EVO/index.html"
   },
   {
+    "title": "Evolução B — Enfermaria",
+    "description": "Gerador alternativo (opção B) do texto de evolução diária por leito, com local, estado geral, queixas e cópia rápida.",
+    "url": "../EVO-B/index.html"
+  },
+  {
     "title": "Evolução UTI — Terapia Intensiva",
     "description": "Gerador do texto de evolução diária por leito na UTI, com destaque das alterações e cópia rápida.",
     "url": "../EVO-UTI/index.html"
