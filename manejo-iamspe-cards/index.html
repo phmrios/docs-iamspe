@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Manejo de Drogas e Distúrbios Clínicos — IAMSPE</title>
+    <meta
+      name="description"
+      content="Guia de bolso em cards: drogas vasoativas, bloqueio neuromuscular, IOT, sedação, FA, anticoagulação, insulina, anticonvulsivantes, aporte basal e correção hidroeletrolítica."
+    />
+    <style>
+      :root {
+        --bg: #f3f5f8;
+        --paper: #ffffff;
+        --ink: #1a1a1a;
+        --muted: #6b6b6b;
+        --line: #dfe3ea;
+        --main: #0e2a47;
+        --accent: #0057b8;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        font-size: 15px;
+        line-height: 1.4;
+      }
+      .wrap { max-width: 1500px; margin: 0 auto; padding: 16px 16px 32px; }
+
+      .site-return {
+        display: inline-block;
+        margin-bottom: 12px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--accent);
+        text-decoration: none;
+      }
+      .site-return:hover { text-decoration: underline; }
+
+      h1 { margin: 0; font-size: 1.35rem; color: var(--main); letter-spacing: -0.01em; }
+      h1 span { display: block; font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0; margin-top: 2px; }
+
+      .tabs {
+        display: flex;
+        gap: 6px;
+        margin-top: 14px;
+        padding-bottom: 8px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+      }
+      .tab {
+        flex: none;
+        font: inherit;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--ink);
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 7px 12px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .tab b { color: var(--muted); font-weight: 700; margin-right: 6px; }
+      .tab:hover { border-color: var(--accent); }
+      .tab[aria-selected="true"] { background: var(--main); border-color: var(--main); color: #fff; }
+      .tab[aria-selected="true"] b { color: #8fd3de; }
+      .tab:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        margin: 6px 0 10px;
+      }
+      .toolbar .esp { font-size: 0.8rem; color: var(--muted); margin-right: auto; }
+      .btn {
+        font: inherit;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--ink);
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 5px 10px;
+        cursor: pointer;
+        text-decoration: none;
+        min-width: 34px;
+        text-align: center;
+      }
+      .btn:hover { border-color: var(--accent); color: var(--accent); }
+      .zoom-val { font-size: 0.8rem; color: var(--muted); min-width: 3.2em; text-align: center; font-variant-numeric: tabular-nums; }
+
+      .stage {
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+      .sizer { position: relative; overflow: hidden; }
+      .sizer iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: 0;
+        transform-origin: 0 0;
+        background: #fff;
+      }
+
+      .disclaimer { margin: 12px 0 0; font-size: 0.78rem; color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <a class="site-return" href="../ferramentas/index.html">← Voltar para Ferramentas</a>
+      <h1>
+        Manejo de Drogas e Distúrbios Clínicos
+        <span>IAMSPE · Guia de bolso em cards</span>
+      </h1>
+
+      <div class="tabs" id="tabs" role="tablist" aria-label="Cards do guia"></div>
+
+      <div class="toolbar">
+        <span class="esp" id="esp"></span>
+        <button class="btn" id="zoom-out" type="button" aria-label="Diminuir zoom">−</button>
+        <span class="zoom-val" id="zoom-val" aria-live="polite">100%</span>
+        <button class="btn" id="zoom-in" type="button" aria-label="Aumentar zoom">+</button>
+        <button class="btn" id="zoom-fit" type="button">Ajustar</button>
+        <a class="btn" id="open" href="#" target="_blank" rel="noopener">Abrir / imprimir</a>
+      </div>
+
+      <div class="stage" id="stage" role="tabpanel">
+        <div class="sizer" id="sizer">
+          <iframe id="frame" title="Card"></iframe>
+        </div>
+      </div>
+
+      <p class="disclaimer">
+        Material de apoio à decisão; não substitui a avaliação clínica nem a prescrição médica.
+      </p>
+    </div>
+
+    <script>
+      (function () {
+        "use strict";
+
+        // w/h = tamanho da página de cada card (mm), igual ao @page do arquivo.
+        var CARDS = [
+          { id: "01", file: "01-drogas-vasoativas.html", title: "Drogas vasoativas", esp: "Terapia Intensiva", w: 420, h: 297 },
+          { id: "02", file: "02-bloqueio-neuromuscular.html", title: "Bloqueio neuromuscular", esp: "Terapia Intensiva", w: 297, h: 210 },
+          { id: "03", file: "03-intubacao-sequencia-rapida.html", title: "Intubação de sequência rápida", esp: "Emergência", w: 420, h: 297 },
+          { id: "04", file: "04-sedacao-analgesia-continua.html", title: "Sedação e analgesia contínua", esp: "Terapia Intensiva", w: 297, h: 210 },
+          { id: "05", file: "05-fibrilacao-atrial.html", title: "Fibrilação atrial", esp: "Cardiologia", w: 420, h: 297 },
+          { id: "06", file: "06-anticoagulacao.html", title: "Anticoagulação", esp: "Hematologia", w: 297, h: 210 },
+          { id: "07", file: "07-insulinoterapia-paciente-critico.html", title: "Insulinoterapia no paciente crítico", esp: "Endocrinologia", w: 297, h: 210 },
+          { id: "08", file: "08-anticonvulsivantes.html", title: "Anticonvulsivantes", esp: "Neurologia", w: 420, h: 297 },
+          { id: "09", file: "09-aporte-basal.html", title: "Aporte basal", esp: "Terapia Intensiva", w: 420, h: 297 },
+          { id: "10", file: "10-correcao-hidroeletrolitica.html", title: "Correção hidroeletrolítica", esp: "Nefrologia", w: 594, h: 420 }
+        ];
+        var PX_PER_MM = 96 / 25.4;
+        var ZOOM_MIN = 1, ZOOM_MAX = 4, ZOOM_STEP = 0.25;
+
+        var tabsEl = document.getElementById("tabs");
+        var stageEl = document.getElementById("stage");
+        var sizerEl = document.getElementById("sizer");
+        var frameEl = document.getElementById("frame");
+        var espEl = document.getElementById("esp");
+        var openEl = document.getElementById("open");
+        var zoomValEl = document.getElementById("zoom-val");
+
+        var current = null;
+        var zoom = 1;
+
+        function layout() {
+          if (!current) return;
+          var w = current.w * PX_PER_MM;
+          var h = current.h * PX_PER_MM;
+          var scale = (stageEl.clientWidth / w) * zoom;
+          frameEl.style.width = w + "px";
+          frameEl.style.height = h + "px";
+          frameEl.style.transform = "scale(" + scale + ")";
+          sizerEl.style.width = w * scale + "px";
+          sizerEl.style.height = h * scale + "px";
+          zoomValEl.textContent = Math.round(zoom * 100) + "%";
+        }
+
+        function setZoom(value) {
+          zoom = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, value));
+          layout();
+        }
+
+        function select(card, focus) {
+          current = card;
+          zoom = 1;
+          Array.prototype.forEach.call(tabsEl.children, function (tab) {
+            var on = tab.dataset.id === card.id;
+            tab.setAttribute("aria-selected", on ? "true" : "false");
+            tab.tabIndex = on ? 0 : -1;
+            if (on) {
+              stageEl.setAttribute("aria-labelledby", tab.id);
+              if (focus) tab.focus();
+              tab.scrollIntoView({ block: "nearest", inline: "nearest" });
+            }
+          });
+          espEl.textContent = card.esp;
+          openEl.href = card.file;
+          frameEl.title = card.title;
+          layout();
+          // replace() evita que cada troca de aba vire uma entrada no histórico
+          frameEl.contentWindow.location.replace(card.file);
+          stageEl.scrollTo(0, 0);
+          if (location.hash !== "#" + card.id) {
+            history.replaceState(null, "", "#" + card.id);
+          }
+        }
+
+        function fromHash() {
+          var id = location.hash.replace("#", "");
+          for (var i = 0; i < CARDS.length; i++) {
+            if (CARDS[i].id === id) return CARDS[i];
+          }
+          return CARDS[0];
+        }
+
+        CARDS.forEach(function (card, index) {
+          var tab = document.createElement("button");
+          tab.type = "button";
+          tab.className = "tab";
+          tab.id = "tab-" + card.id;
+          tab.dataset.id = card.id;
+          tab.setAttribute("role", "tab");
+          tab.setAttribute("aria-controls", "stage");
+          var num = document.createElement("b");
+          num.textContent = index + 1;
+          tab.appendChild(num);
+          tab.appendChild(document.createTextNode(card.title));
+          tab.addEventListener("click", function () {
+            select(card, false);
+          });
+          tabsEl.appendChild(tab);
+        });
+
+        tabsEl.addEventListener("keydown", function (event) {
+          var index = CARDS.indexOf(current);
+          var next = index;
+          if (event.key === "ArrowRight") next = (index + 1) % CARDS.length;
+          else if (event.key === "ArrowLeft") next = (index - 1 + CARDS.length) % CARDS.length;
+          else if (event.key === "Home") next = 0;
+          else if (event.key === "End") next = CARDS.length - 1;
+          else return;
+          event.preventDefault();
+          select(CARDS[next], true);
+        });
+
+        document.getElementById("zoom-in").addEventListener("click", function () {
+          setZoom(zoom + ZOOM_STEP);
+        });
+        document.getElementById("zoom-out").addEventListener("click", function () {
+          setZoom(zoom - ZOOM_STEP);
+        });
+        document.getElementById("zoom-fit").addEventListener("click", function () {
+          setZoom(1);
+        });
+
+        window.addEventListener("resize", layout);
+        window.addEventListener("hashchange", function () {
+          var card = fromHash();
+          if (card !== current) select(card, false);
+        });
+
+        select(fromHash(), false);
+      })();
+    </script>
+  </body>
+</html>

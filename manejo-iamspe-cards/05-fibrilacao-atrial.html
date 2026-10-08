@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>5. Fibrilação atrial</title>
+<style>@page{size:420mm 297mm;margin:0}
+:root{--fs:10pt;--g:3.2mm;--h1:24pt;--num:1.5em;--main:#5A0F1E;--pastel:#FBEDEF;--hi:#F2A7B0}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:420mm;background:#fff}
+body{font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:var(--fs);line-height:1.3;
+  color:#1f2a37;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:420mm;height:calc(297mm - .4mm);padding:9mm 9mm 5mm;display:flex;flex-direction:column;gap:var(--g)}
+b{font-weight:700}
+header{display:flex;gap:var(--g);flex:none}
+.hl{background:var(--main);color:#fff;border-radius:4mm;padding:3.6mm 6mm;flex:0 0 auto;
+  display:flex;flex-direction:column;justify-content:center;gap:.6mm}
+.hl .lab{white-space:nowrap;font-size:.72em;letter-spacing:.12em;text-transform:uppercase;color:var(--hi);font-weight:600}
+.hl .esp{font-size:var(--h1);font-weight:800;line-height:1.08;letter-spacing:-.01em}
+.hl .tit{font-style:italic;color:var(--hi);font-size:1.5em;font-weight:500;line-height:1.15}
+.hr{flex:1;background:var(--pastel);border:.3mm solid color-mix(in srgb,var(--main) 22%,#fff);border-radius:4mm;
+  padding:2.6mm 4mm;display:flex;flex-direction:column;justify-content:center;gap:1.4mm;--c:var(--main)}
+.hr .ht{font-size:.74em;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--main)}
+.hgrid{display:grid;gap:1.2mm 1.6mm}
+.hrow{background:#fff;border-left:1mm solid var(--c);border-radius:1.4mm;padding:.9mm 2mm;display:flex;
+  justify-content:space-between;align-items:center;gap:2mm}
+.cols{flex:1;display:flex;gap:var(--g);min-height:0}
+.col{flex:1;display:flex;flex-direction:column;gap:var(--g);min-width:0}
+.col>.card{flex-shrink:0}
+.col>.card:last-child{flex-grow:1}
+.card{border:.3mm solid #c9d3e0;border-radius:3.5mm;background:#fff;overflow:hidden;display:flex;flex-direction:column;
+  --t:color-mix(in srgb,var(--c) 8%,#fff);--t2:color-mix(in srgb,var(--c) 17%,#fff)}
+.bar{background:var(--c);color:#fff;font-weight:800;text-transform:uppercase;letter-spacing:.045em;padding:1.5mm 3mm;
+  display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:0 3mm;font-size:1.06em;flex:none}
+.opt .big .n{font-size:calc(var(--num)*.88)}
+.bar small{margin-left:auto;font-weight:500;text-transform:none;letter-spacing:0;font-size:.8em;opacity:.95;text-align:right}
+.body{padding:2.2mm 2.8mm 2.4mm;display:flex;flex-direction:column;gap:1.6mm;flex:1}
+.body.spread,.col>.card:last-child>.body,.col>.row:last-child .body{justify-content:space-between}
+.kv{display:grid;grid-template-columns:auto 1fr;column-gap:2.4mm;row-gap:.9mm;align-items:baseline}
+.kv .k{font-size:.72em;text-transform:uppercase;letter-spacing:.06em;color:#66758a;font-weight:700;white-space:nowrap}
+.kv .v b,.hi{color:var(--c);font-weight:700}
+.opts{display:flex;gap:1.4mm;align-items:stretch}
+.opt{flex:1;background:var(--t);border-radius:2.2mm;padding:1.5mm 2.2mm 1.8mm;min-width:0;display:flex;flex-direction:column;gap:.9mm}
+.ot{font-weight:800;color:var(--c);font-size:.8em;text-transform:uppercase;letter-spacing:.06em}
+.ou{align-self:center;font-size:.78em;font-weight:700;color:#8793a5}
+.big .r{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:0 2mm;
+  border-bottom:.2mm dashed color-mix(in srgb,var(--c) 32%,#fff);padding:.45mm 0}
+.big .r:last-child{border:0}
+.big .l,.cell .l{font-size:.7em;text-transform:uppercase;letter-spacing:.06em;color:#66758a;font-weight:700}
+.big .l{white-space:nowrap}
+.big .n{font-size:var(--num);font-weight:800;color:var(--c);text-align:right;line-height:1.12;margin-left:auto}
+.big .n small,.cell .n small{font-size:.62em;font-weight:600;color:#3b4757}
+.cells{display:grid;gap:1.4mm}
+.cell{background:var(--t);border-radius:2.2mm;padding:1.3mm 2mm 1.5mm;display:flex;flex-direction:column;gap:.3mm}
+.cell .n{font-size:var(--num);font-weight:800;color:var(--c);line-height:1.12}
+.fx{background:#fff;border:.25mm solid color-mix(in srgb,var(--c) 38%,#fff);border-left:1mm solid var(--c);
+  border-radius:1.6mm;padding:.9mm 2mm;font-weight:700}
+.fx .l{display:block;font-size:.7em;text-transform:uppercase;letter-spacing:.06em;color:#66758a;font-weight:700}
+.fx.c{text-align:center;font-size:1.12em;padding:1.6mm 2mm}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center}
+.frac span:first-child{border-bottom:.3mm solid currentColor;padding:0 1.5mm .3mm}
+.frac span:last-child{padding:.3mm 1.5mm 0}
+.mini{background:var(--t);border-radius:2.2mm;padding:1.5mm 2.2mm 1.8mm;display:flex;flex-direction:column;gap:.7mm}
+.mt{font-weight:800;color:var(--c)}
+.minis{display:grid;gap:1.4mm}
+ul.ul{list-style:none;display:flex;flex-direction:column;gap:.55mm}
+ul.ul li{padding-left:2.7mm;position:relative}
+ul.ul li:before{content:'';position:absolute;left:.3mm;top:.52em;width:1.1mm;height:1.1mm;border-radius:50%;background:var(--c)}
+.box{border-radius:1.6mm;padding:1.2mm 2.2mm 1.3mm;border-left:1mm solid}
+.box .k{font-weight:800}
+.tip{background:#FBF3E2;border-color:#C79A3B}.tip .k{color:#94701c}
+.alert{background:#F9E9EE;border-color:#C8323C}.alert .k{color:#C8323C}
+.note{background:#F1F4F8;border-color:#8793a5}.note .k{color:#4a5568}
+.box ul.ul li:before{background:currentColor;opacity:.55}
+.steps{display:flex;flex-direction:column;gap:1mm}
+.s{display:flex;gap:2mm;align-items:flex-start}
+.s i{flex:none;width:1.55em;height:1.55em;border-radius:50%;background:var(--c);color:#fff;font-style:normal;
+  font-weight:800;font-size:.86em;display:flex;align-items:center;justify-content:center}
+.flow{display:flex;flex-direction:column}
+.f{display:grid;grid-template-columns:var(--fw,38%) auto 1fr;gap:1.6mm;padding:1mm 0;border-bottom:.2mm dashed #b3bfcf;align-items:baseline}
+.f:last-child{border:0}.f:first-child{padding-top:0}
+.f .a{color:#5b6878;font-weight:500}.f .ar{color:var(--c);font-weight:800}
+.pill{display:inline-block;border-radius:99px;background:var(--c);color:#fff;font-weight:700;font-size:.8em;
+  padding:.25mm 2.2mm;white-space:nowrap}
+table.t{width:100%;border-collapse:collapse}
+table.t th{background:var(--t2);font-size:.7em;text-transform:uppercase;letter-spacing:.06em;text-align:left;
+  padding:1mm 1.8mm;color:#3b4757;font-weight:800}
+table.t td{padding:1mm 1.8mm;vertical-align:top;border-bottom:.2mm solid #e6ebf2}
+table.t tr:nth-child(even) td{background:#f8fafc}
+table.t td:first-child{font-weight:700;color:var(--c)}
+table.t td.ci{color:#4a5568}
+.sub{font-size:.72em;text-transform:uppercase;letter-spacing:.08em;color:var(--c);font-weight:800;
+  border-bottom:.3mm solid var(--t2);padding-bottom:.4mm;margin-top:.4mm}
+.ref{font-size:.86em;color:#4a5568}
+.dose{background:var(--c);color:#fff;border-radius:2.2mm;padding:1.3mm 2.4mm 1.5mm;display:flex;flex-wrap:wrap;
+  align-items:baseline;column-gap:2.4mm}
+.dose .l{font-size:.7em;text-transform:uppercase;letter-spacing:.07em;font-weight:700;opacity:.88}
+.dose .n{font-size:var(--num);font-weight:800;line-height:1.14}
+.dose .x{flex-basis:100%;font-size:.94em;opacity:.96}
+.row{display:flex;gap:var(--g);flex-shrink:0}
+.col>.row:last-child{flex-grow:1}
+.rc{display:flex;min-width:0}.rc>.card{flex:1}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.4mm}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.4mm}
+footer{flex:none;text-align:right;font-size:.7em;color:#7c899b;letter-spacing:.03em}
+
+</style></head>
+<body><div class="page">
+<header><div class="hl"><div class="lab">IAMSPE · Manejo de drogas e distúrbios clínicos · Guia de bolso</div><div class="esp">Cardiologia</div><div class="tit">5. Fibrilação atrial</div></div><div class="hr"><div class="ht">Observação geral</div><div class="hgrid" style="grid-template-columns:repeat(1,1fr)"><div class="hrow" style="--c:#B3263A"><span><b>FA com instabilidade hemodinâmica atribuível à arritmia:</b> priorizar avaliação para cardioversão elétrica sincronizada.</span></div><div class="hrow" style="--c:#D9622B"><span><b>FA pré-excitada:</b> evitar bloqueadores do nó atrioventricular.</span></div></div></div></header>
+<main class="cols"><div class="col" style="flex:0.66"><section class="card" style="--c:#B3263A"><div class="bar"><span>5.1.1 Amiodarona</span><small>5.1 Controle agudo da FC · Apresentação: 150 mg/3 mL</small></div><div class="body"><div class="big"><div class="r"><span class="l">Droga</span><span class="n">2 ampolas <small>(300 mg/6 mL)</small></span></div><div class="r"><span class="l">Diluente</span><span class="n">SG 5% 250 mL</span></div><div class="r"><span class="l">Volume final</span><span class="n">256 mL <small><br>se não houver retirada prévia de diluente</small></span></div></div><div class="dose"><span class="l">Infusão descrita no PDF</span><span class="n">300 mg em 1 h</span></div><div class="kv"><div class="k">Indicação</div><div class="v">alternativa em situações selecionadas, especialmente quando o controle convencional da FC não é adequado ou é contraindicado.</div></div><div class="box tip"><span class="k">Observações:</span> <ul class="ul"><li>Pode causar hipotensão e bradicardia.</li><li>Pode converter a FA para ritmo sinusal, com implicações para risco tromboembólico.</li><li>Não é agente universal de primeira escolha para controle de frequência.</li></ul></div></div></section><section class="card" style="--c:#D9622B"><div class="bar"><span>5.1.2 Metoprolol</span><small>5.1 Controle agudo da FC · Apresentação: 5 mg/5 mL · Via: EV</small></div><div class="body spread"><div class="steps"><div class="s"><i>1</i><div><b>Dose:</b> <span class='hi'>2,5 a 5 mg</span> em bolus lento.</div></div><div class="s"><i>2</i><div><b>Repetição:</b> a cada 5 min, conforme resposta.</div></div><div class="s"><i>3</i><div><b>Dose total usual máxima:</b> <span class='hi'>15 mg</span>.</div></div></div><div class="kv"><div class="k">Indicação</div><div class="v">controle da FC em pacientes selecionados, sobretudo hemodinamicamente estáveis.</div></div><div class="box alert"><span class="k">Contraindicações e precauções:</span> <ul class="ul"><li>Insuficiência cardíaca agudamente descompensada.</li><li>Hipotensão importante.</li><li>Bradicardia ou bloqueio atrioventricular significativo.</li><li>Broncoespasmo grave.</li></ul></div></div></section></div><div class="col" style="flex:1.08"><section class="card" style="--c:#B3263A"><div class="bar"><span>5.1.3 Diltiazem</span><small>5.1 Controle agudo da FC · Apresentação do PDF: 5 mg/mL · Via: EV</small></div><div class="body"><div class="steps"><div class="s"><i>1</i><div><b>Dose inicial usual:</b> <span class='hi'>0,25 mg/kg</span> em 2 min.</div></div><div class="s"><i>2</i><div><b>Segunda dose possível:</b> <span class='hi'>0,35 mg/kg</span> após aproximadamente 15 min, conforme resposta e protocolo.</div></div><div class="s"><i>3</i><div><b>Manutenção:</b> infusão contínua conforme protocolo institucional, se indicada.</div></div></div><div class="box alert"><span class="k">Evitar em:</span> <ul class="ul"><li>Disfunção sistólica significativa do VE.</li><li>Insuficiência cardíaca descompensada.</li><li>Hipotensão importante.</li><li>FA pré-excitada.</li></ul></div></div></section><section class="card" style="--c:#D9622B"><div class="bar"><span>5.1.4 Verapamil</span><small>5.1 Controle agudo da FC · Apresentação: 2,5 mg/mL · Via: EV</small></div><div class="body"><div class="dose"><span class="l">Dose</span><span class="n">2,5 a 5 mg</span><span class="x">em aproximadamente 2 min, com possibilidade de repetição conforme resposta.</span></div><div class="box alert"><span class="k">Contraindicações e precauções:</span> <ul class="ul"><li>Fração de ejeção reduzida.</li><li>Insuficiência cardíaca descompensada.</li><li>Hipotensão importante.</li><li>FA pré-excitada.</li></ul></div></div></section><section class="card" style="--c:#B3263A"><div class="bar"><span>5.1.5 Digoxina</span><small>5.1 Controle agudo da FC · Apresentação: 0,5 mg/2 mL</small></div><div class="body"><div class="kv"><div class="k">Via</div><div class="v">EV ou VO, conforme situação.</div><div class="k">Indicação</div><div class="v">controle da FC em pacientes selecionados, particularmente quando há insuficiência cardíaca ou limitação ao uso de outros bloqueadores nodais.</div><div class="k">Digitalização</div><div class="v">individualizada conforme peso, idade, função renal e interações medicamentosas.</div><div class="k">Esquema possível</div><div class="v"><b>0,25 mg EV</b> inicialmente, com doses adicionais fracionadas conforme resposta, sem assumir 1,5 mg/24 h como dose universal.</div><div class="k">Manutenção</div><div class="v">frequentemente <b>0,125 a 0,25 mg VO/dia</b>, com redução em idosos e disfunção renal.</div></div><div class="box alert"><span class="k">Contraindicações e precauções:</span> <ul class="ul"><li>FA com pré-excitação.</li><li>Intoxicação digitálica.</li><li>Bloqueios de condução significativos sem dispositivo de estimulação.</li><li>Disfunção renal exige ajuste, não constitui contraindicação absoluta.</li></ul></div></div></section></div><div class="col" style="flex:1.08"><section class="card" style="--c:#2F5D8A"><div class="bar"><span>5.2.1 Amiodarona</span><small>5.2 Cardioversão farmacológica · Apresentação: 150 mg/3 mL</small></div><div class="body"><div class="cells" style="grid-template-columns:repeat(2,1fr)"><div class="cell"><span class="l">Droga</span><span class="n">1 ampola</span></div><div class="cell"><span class="l">Diluente</span><span class="n">SG 5% 100 mL</span></div></div><div class="dose"><span class="l">Dose descrita</span><span class="n">150 mg EV em 10 min</span></div><div class="box tip"><span class="k">Observação:</span> esse esquema isolado não representa protocolo completo de cardioversão farmacológica da FA. A escolha da dose e da infusão subsequente depende da indicação e do protocolo adotado.</div></div></section><section class="card" style="--c:#2F5D8A"><div class="bar"><span>5.2.2 Propafenona</span><small>5.2 Cardioversão farmacológica · Apresentação: comprimidos de 150 e 300 mg · Via: VO</small></div><div class="body"><div class="sub">Dose única em pacientes selecionados</div><div class="opts"><div class="opt"><div class="ot">Peso inferior a 70 kg</div><div class="big"><div class="r"><span class="l">Dose</span><span class="n">450 mg</span></div></div></div><div class="ou"></div><div class="opt"><div class="ot">Peso igual ou superior a 70 kg</div><div class="big"><div class="r"><span class="l">Dose</span><span class="n">600 mg</span></div></div></div></div><div class="box alert"><span class="k">Contraindicações importantes:</span> <ul class="ul"><li>Cardiopatia estrutural significativa.</li><li>Doença arterial coronariana relevante.</li><li>Disfunção sistólica ventricular.</li></ul></div><div class="box tip"><span class="k">Observação:</span> a estratégia de dose única exige avaliação prévia e teste supervisionado, conforme protocolo, pelo risco de pró-arritmia.</div></div></section><section class="card" style="--c:#6B7A8F"><div class="bar"><span>5.3 Manutenção com amiodarona EV</span><small>Apresentação: 150 mg/3 mL</small></div><div class="body"><div class="sub">Preparo</div><div class="cells" style="grid-template-columns:repeat(2,1fr)"><div class="cell"><span class="l">Droga</span><span class="n">900 mg <small>de amiodarona = 18 mL</small></span></div><div class="cell"><span class="l">Acrescentar</span><span class="n">SG 5% 282 mL</span></div><div class="cell"><span class="l">Volume final</span><span class="n">300 mL</span></div><div class="cell"><span class="l">Concentração</span><span class="n">3 mg/mL</span></div></div><div class="sub">Esquema</div><div class="steps"><div class="s"><i>1</i><div><b>Primeiras 6 h:</b> <span class='hi'>1 mg/min = 20 mL/h</span>.</div></div><div class="s"><i>2</i><div><b>Próximas 18 h:</b> <span class='hi'>0,5 mg/min = 10 mL/h</span>.</div></div></div><div class="dose"><span class="l">Dose total nessa infusão</span><span class="n">900 mg em 24 h</span></div><div class="box tip"><span class="k">Observação:</span> doses de ataque administradas separadamente devem entrar no cálculo da exposição total.</div></div></section></div></main>
+<footer>Manejo de Drogas e Distúrbios Clínicos | IAMSPE</footer>
+</div>
+<script>
+/* Ajuste fino: cada coluna recebe um fator de fonte (0,95–1,12) para terminar rente ao rodapé. */
+window.addEventListener('load',()=>{document.fonts.ready.then(()=>{
+ const mm=3.7795275591, out=[];
+ const slack=c=>{const last=c.lastElementChild; last.style.flexGrow='0';
+   let used=0; [...c.children].forEach(ch=>used+=ch.getBoundingClientRect().height);
+   used+=parseFloat(getComputedStyle(c).rowGap||0)*(c.children.length-1);
+   last.style.flexGrow=''; return (c.clientHeight-used)/mm;};
+ document.querySelectorAll('.col').forEach((c,i)=>{
+   const s0=slack(c); let lo=0.95, hi=1.12;
+   for(let k=0;k<12;k++){const m=(lo+hi)/2; c.style.fontSize=m+'em'; if(slack(c)>=0.6) lo=m; else hi=m;}
+   c.style.fontSize=lo+'em';
+   out.push('col'+(i+1)+' base '+s0.toFixed(0)+' → x'+lo.toFixed(3)+' folga '+slack(c).toFixed(1)+'/'+(c.clientHeight/mm).toFixed(0)+'mm');
+ });
+ let wide=[]; document.querySelectorAll('.page *').forEach(e=>{ if(e.scrollWidth>e.clientWidth+2 && getComputedStyle(e).display!=='inline') wide.push(e.className+':'+e.textContent.slice(0,25)); });
+ out.push('overflow-x '+wide.length+' '+wide.slice(0,3).join(' ; '));
+ document.body.setAttribute('data-dbg',out.join(' | '));
+});});
+</script>
+</body></html>

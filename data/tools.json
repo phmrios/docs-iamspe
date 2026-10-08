@@ -28,5 +28,10 @@
     "title": "Insulinoterapia e Controle Glicêmico — UTI IAMSPE",
     "description": "Protocolo de insulina Lispro em BIC, titulação por glicemia, escala de correção SC, transição EV→SC e hipoglicemia.",
     "url": "../INSULINA/index.html"
+  },
+  {
+    "title": "Manejo de Drogas e Distúrbios Clínicos — Cards IAMSPE",
+    "description": "Guia de bolso em 10 cards: drogas vasoativas, bloqueio neuromuscular, IOT, sedação, FA, anticoagulação, insulina, anticonvulsivantes, aporte basal e correção hidroeletrolítica.",
+    "url": "../manejo-iamspe-cards/index.html"
   }
 ]
