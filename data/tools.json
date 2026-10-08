@@ -33,5 +33,10 @@
     "title": "Manejo de Drogas e Distúrbios Clínicos — Cards IAMSPE",
     "description": "Guia de bolso em 10 cards: drogas vasoativas, bloqueio neuromuscular, IOT, sedação, FA, anticoagulação, insulina, anticonvulsivantes, aporte basal e correção hidroeletrolítica.",
     "url": "../manejo-iamspe-cards/index.html"
+  },
+  {
+    "title": "Calculadora de Manejo de Drogas e Distúrbios Clínicos — IAMSPE",
+    "description": "Versão interativa do guia de bolso: cálculo bidirecional de dose, diluição e vazão por peso para drogas vasoativas, sedação, IOT, anticoagulação, insulina e correção hidroeletrolítica, com busca por droga.",
+    "url": "../calculadora-manejo-iamspe/index.html"
   }
 ]

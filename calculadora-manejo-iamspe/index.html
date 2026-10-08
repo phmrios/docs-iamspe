@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Manejo de Drogas e Distúrbios Clínicos | IAMSPE</title>
+<style>
+:root{--bg:#f3f5f9;--card:#fff;--ink:#1f2a37;--mut:#66758a;--line:#d5dce6;--field:#fff;--head:#0E2A47;--c:#0F7C8C;
+  --tip:#FBF3E2;--tipb:#C79A3B;--al:#F9E9EE;--alb:#C8323C;--nt:#eef1f6;--ntb:#8793a5;--ad:#e8f1ff;--adb:#3b7bd6}
+@media (prefers-color-scheme:dark){:root{--bg:#10151c;--card:#19212c;--ink:#e6ebf2;--mut:#93a1b5;--line:#2c3848;--field:#111821;
+  --head:#0a1a2c;--tip:#3a3016;--al:#3d1c25;--nt:#222c3a;--ad:#172a45}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.4}
+header{background:var(--head);color:#fff;padding:10px 14px 8px}
+.site-return{display:inline-block;margin-bottom:6px;font-size:13px;font-weight:600;color:#fff;opacity:.85;text-decoration:none}
+.site-return:hover{text-decoration:underline;opacity:1}
+header h1{font-size:17px;font-weight:800;letter-spacing:-.01em}
+header h1 small{display:block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;opacity:.7}
+.top{position:sticky;top:0;z-index:5;background:var(--head);color:#fff;padding:8px 14px 0;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.pt{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end}
+.pt label{display:flex;flex-direction:column;font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:700;opacity:.95;gap:2px}
+.pt input,.pt select{width:86px;font:inherit;font-size:16px;font-weight:700;padding:6px 8px;border-radius:8px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:#fff}
+.pt select option{color:#000}
+.pt .kg input{width:96px;background:#fff;color:#0E2A47}
+.pt .sr{flex:1;min-width:150px}.pt .sr input{width:100%;font-weight:500}
+.pt input::placeholder{color:rgba(255,255,255,.5);font-weight:400}.pt .kg input::placeholder{color:#8a96a8}
+.pt button{font:inherit;font-weight:700;font-size:13px;padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;cursor:pointer}
+.der{font-size:12px;opacity:.85;padding:5px 0 2px;min-height:22px}
+nav{display:flex;gap:4px;overflow-x:auto;padding:6px 0 0;scrollbar-width:thin}
+nav button{flex:none;font:inherit;font-size:13px;font-weight:700;padding:8px 12px;border:0;border-radius:9px 9px 0 0;background:rgba(255,255,255,.1);color:#fff;cursor:pointer;white-space:nowrap;border-top:3px solid var(--c)}
+nav button.on{background:var(--bg);color:var(--ink)}
+main{padding:14px;max-width:1500px;margin:0 auto}
+.tab{display:none}.tab.on,.searching .tab{display:block}
+.tab>h2{font-size:20px;font-weight:800;margin:4px 0 10px;color:var(--c)}
+.searching .tab.empty{display:none}
+.bar2{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px;font-size:13px}
+.bar2 button{font:inherit;font-weight:700;font-size:13px;padding:6px 10px;border-radius:8px;border:1px solid var(--c);background:transparent;color:var(--c);cursor:pointer}
+.bar2 button.on{background:var(--c);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:12px;align-items:start}
+.blk{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.blk.wide{grid-column:1/-1}
+.blk.hide{display:none}
+.bh{background:var(--c);color:#fff;padding:7px 12px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:0 10px}
+.bh b{font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:14px}
+.bh small{font-size:12px;opacity:.95;margin-left:auto}
+.bh label{font-size:12px;font-weight:700;display:flex;gap:5px;align-items:center;cursor:pointer}
+.bb{padding:10px 12px 12px;display:flex;flex-direction:column;gap:10px}
+.w{display:flex;flex-direction:column;gap:7px}
+.w+.w{border-top:1px dashed var(--line);padding-top:10px}
+.wt{font-weight:800;color:var(--c);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.wg{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:7px}
+.fd{display:flex;flex-direction:column;gap:2px;min-width:0}
+.fl{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;font-weight:700;color:var(--mut);display:flex;justify-content:space-between;gap:4px;align-items:baseline}
+.fl i{font-style:normal;text-transform:none;letter-spacing:0;font-weight:600;white-space:nowrap}
+.fi{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:8px;background:var(--field);overflow:hidden}
+.fi:focus-within{border-color:var(--c);box-shadow:0 0 0 2px color-mix(in srgb,var(--c) 25%,transparent)}
+.fi input,.fi select{flex:1;min-width:0;width:100%;border:0;background:transparent;color:var(--ink);font:inherit;font-size:16px;font-weight:700;padding:7px 8px;outline:0}
+.fi select{font-size:14px;font-weight:600}
+.fi span{font-size:11.5px;color:var(--mut);padding-right:8px;white-space:nowrap;font-weight:600}
+.fd.big .fi{border-color:color-mix(in srgb,var(--c) 55%,var(--line));background:color-mix(in srgb,var(--c) 7%,var(--field))}
+.fd.big input{font-size:19px;color:var(--c)}
+.fd.out .fi{border-style:dashed;background:transparent}
+.fd.lo .fi{border-color:#d69e2e;background:color-mix(in srgb,#d69e2e 14%,var(--field))}
+.fd.hi .fi{border-color:#C8323C;background:color-mix(in srgb,#C8323C 13%,var(--field))}
+.fd.lo .fl i{color:#b7791f}.fd.hi .fl i{color:#C8323C}
+.fd.add .fl:after{content:'acrescentado';font-size:9px;background:var(--ad);color:var(--adb);border-radius:99px;padding:0 6px;letter-spacing:0;text-transform:none}
+.wm{display:flex;flex-direction:column;gap:4px;font-size:13px}
+.wm div{padding:5px 9px;border-radius:7px;background:color-mix(in srgb,var(--c) 7%,transparent);border-left:3px solid var(--c)}
+.wm .warn{background:var(--tip);border-color:var(--tipb)}
+.wm .bad{background:var(--al);border-color:var(--alb);font-weight:600}
+.wm .add{background:var(--ad);border-color:var(--adb)}
+.wm .res{font-size:15px;font-weight:700}
+.wm table{border-collapse:collapse;width:100%}.wm td,.wm th{padding:3px 6px;text-align:left;border-bottom:1px solid var(--line);font-size:13px}
+.wm th{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+details{border-top:1px solid var(--line);padding-top:8px;font-size:13.5px}
+summary{cursor:pointer;font-weight:700;color:var(--c);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+details ul{list-style:none;display:flex;flex-direction:column;gap:5px;margin-top:8px}
+details li{padding:5px 9px;border-radius:7px;background:var(--nt);border-left:3px solid var(--ntb)}
+details li.tip{background:var(--tip);border-color:var(--tipb)}
+details li.al{background:var(--al);border-color:var(--alb)}
+details li.add{background:var(--ad);border-color:var(--adb)}
+details li.pl{background:transparent;border-color:var(--line)}
+.tag{font-size:9.5px;background:var(--ad);color:var(--adb);border-radius:99px;padding:1px 6px;font-weight:700;white-space:nowrap}
+footer{padding:18px 14px 28px;text-align:center;font-size:12px;color:var(--mut)}
+#none{display:none;padding:30px;text-align:center;color:var(--mut)}
+@media (max-width:560px){body{font-size:14px}.pt input,.pt select{width:68px;padding:5px 6px}.pt .kg input{width:76px}main{padding:10px}header{padding:8px 10px 4px}.top{padding:6px 10px 0}}
+</style>
+</head>
+<body>
+<header><a class="site-return" href="../ferramentas/index.html">← Voltar para Ferramentas</a><h1><small>IAMSPE · Guia de bolso</small>Manejo de drogas e distúrbios clínicos</h1></header>
+<div class="top">
+  <div class="pt">
+    <label class="kg">Peso (kg)<input id="g_kg" inputmode="decimal" autocomplete="off" placeholder="kg"></label>
+    <label>Sexo<select id="g_sex"><option value="">—</option><option value="M">Masc.</option><option value="F">Fem.</option></select></label>
+    <label>Idade<input id="g_age" inputmode="numeric" autocomplete="off" placeholder="anos"></label>
+    <label>Altura (cm)<input id="g_h" inputmode="decimal" autocomplete="off" placeholder="cm"></label>
+    <label class="sr">Buscar droga<input id="q" type="search" autocomplete="off" placeholder="ex.: noradrenalina"></label>
+    <button id="clr" type="button">Limpar tudo</button>
+  </div>
+  <div class="der" id="der"></div>
+  <nav id="nav"></nav>
+</div>
+<main id="main"></main>
+<div id="none">Nada encontrado.</div>
+<footer>Manejo de Drogas e Distúrbios Clínicos | IAMSPE · Campos e notas com a etiqueta <span class="tag">acrescentado</span> não constam no conteúdo original.</footer>
+
+<script>
+'use strict';
+/* ============ utilidades ============ */
+const $=(s,e=document)=>e.querySelector(s);
+const h=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.innerHTML=x;return e;};
+const num=s=>{s=String(s==null?'':s).trim().replace(/\s/g,'').replace(',','.');return s===''?NaN:Number(s);};
+function fmt(x,d){if(!isFinite(x))return '';if(d==null){const a=Math.abs(x);d=a>=100?1:a>=1?2:a>=.1?3:4;}
+  let s=(+x.toFixed(d)).toString();if(s.includes('e'))s=x.toFixed(d);return s.replace('.',',');}
+const ok=(...a)=>a.every(isFinite);
+const same=(a,b)=>(a===b)||(typeof a==='number'&&typeof b==='number'&&((isNaN(a)&&isNaN(b))||Math.abs(a-b)<=1e-9*Math.max(1,Math.abs(a),Math.abs(b))));
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+const ADD='<span class="tag">acrescentado</span> ';
+
+/* ============ estado global (paciente) ============ */
+const G={kg:NaN,sex:'',age:NaN,h:NaN};
+let ALL=[];
+function actFactor(){if(!G.sex)return NaN;const old=isFinite(G.age)&&G.age>=60;return G.sex==='M'?(old?.5:.6):(old?.45:.5);}
+const ACT=()=>G.kg*actFactor();
+function ideal(){if(!G.sex||!isFinite(G.h))return NaN;return (G.sex==='M'?50:45.5)+0.91*(G.h-152.4);}
+
+/* ============ motor de widgets (cálculo bidirecional) ============ */
+function W(spec){
+  const el=h('div','w');if(spec.t)el.append(h('div','wt',spec.t));
+  const grid=h('div','wg');el.append(grid);const msg=h('div','wm');el.append(msg);
+  const v={},inp={},lab={},order=[];
+  const S={newer:(...ks)=>{for(const k of order)if(ks.includes(k))return k;return ks[0];},
+           touch:k=>{const i=order.indexOf(k);if(i>=0)order.splice(i,1);order.unshift(k);},has:k=>order.includes(k)};
+  spec.f.forEach(f=>{
+    const l=h('label','fd'+(f.out?' out':'')+(f.big?' big':'')+(f.add?' add':''));
+    const fl=h('span','fl',`<span>${f.l}</span>`);const rg=h('i');fl.append(rg);l.append(fl);
+    const box=h('div','fi');let i;
+    if(f.opts){i=h('select');f.opts.forEach(([a,b])=>i.append(new Option(b,a)));i.value=f.v!=null?f.v:f.opts[0][0];}
+    else{i=h('input');i.type='text';i.inputMode='decimal';i.autocomplete='off';if(f.out){i.readOnly=true;i.tabIndex=-1;}
+      if(f.v!=null)i.value=fmt(f.v,f.d);if(f.ph)i.placeholder=f.ph;}
+    box.append(i);if(f.u)box.append(h('span','',f.u));l.append(box);grid.append(l);inp[f.k]=i;lab[f.k]={l,rg};
+    if(!f.out)i.addEventListener(f.opts?'change':'input',()=>{S.touch(f.k);run(f.k);});
+  });
+  function run(ch){
+    spec.f.forEach(f=>v[f.k]=f.opts?inp[f.k].value:num(inp[f.k].value));
+    const before=Object.assign({},v),m=[];
+    spec.calc(v,ch,S,m);
+    spec.f.forEach(f=>{const i=inp[f.k];
+      if(f.opts){if(i.value!==String(v[f.k]))i.value=v[f.k];return;}
+      if(f.k!==ch&&(f.out||!same(v[f.k],before[f.k])))i.value=fmt(v[f.k],f.d);
+      const r=typeof f.r==='function'?f.r(v):f.r,{l,rg}=lab[f.k];l.classList.remove('lo','hi');
+      if(r){rg.textContent='faixa '+(r[0]!=null?fmt(r[0]):'')+(r[1]!=null?(r[0]!=null?'–':'até ')+fmt(r[1]):'+');
+        if(isFinite(v[f.k])){if(r[0]!=null&&v[f.k]<r[0]-1e-9)l.classList.add('lo');if(r[1]!=null&&v[f.k]>r[1]+1e-9)l.classList.add('hi');}}
+    });
+    msg.innerHTML=m.map(x=>Array.isArray(x)?`<div class="${x[0]}">${x[1]}</div>`:`<div>${x}</div>`).join('');
+    if(spec.on)spec.on(v);
+  }
+  ALL.push(()=>run(null));el._v=v;run('init');return el;
+}
+/* campos proporcionais a uma grandeza-base: editar qualquer um recalcula os demais */
+function lin(v,S,fac){const ks=Object.keys(fac),src=S.newer(...ks),base=v[src]/fac[src];ks.forEach(k=>{if(k!==src)v[k]=base*fac[k];});return base;}
+function LIN(o){return W({t:o.t,f:o.f,calc(v,ch,S,m){const fac={};o.f.forEach(f=>{if(f.fac)fac[f.k]=f.fac(v);});lin(v,S,fac);if(o.msg)o.msg(v,m);}});}
+const needKg=m=>{if(!isFinite(G.kg))m.push(['warn','Informe o peso no topo para calcular por kg.']);};
+
+/* infusão contínua: diluição (pronta ou personalizada) → concentração; dose ⇄ mL/h */
+function INF(o){
+  const P=o.p,cf=o.cf||1,df=o.df||1,t=o.per==='min'?60:1;
+  const f=[{k:'preset',l:'Diluição',opts:P.map((p,i)=>[String(i),p.n]).concat([['c','Personalizada']]),v:String(o.def||0)},
+    {k:'amt',l:'Droga na solução',u:o.aU,add:o.addPrep},{k:'vol',l:'Volume final',u:'mL',d:1,add:o.addPrep},{k:'conc',l:'Concentração',u:o.cU},
+    {k:'dose',l:o.dl||'Dose',u:o.dU,r:o.r,v:o.dv,big:1},{k:'rate',l:'Velocidade',u:'mL/h',d:1,big:1}];
+  return W({t:o.t,f,calc(v,ch,S,m){
+    if(['amt','vol','conc'].includes(ch))v.preset='c';
+    const p=P[v.preset];
+    if(p&&(ch==='init'||ch==='preset'||p.fn)){v.amt=p.fn?p.fn():p.amt;v.vol=p.vol;}
+    if(ch==='conc')v.amt=v.conc*v.vol/cf;else v.conc=v.amt*cf/v.vol;
+    const q=(o.kg?G.kg:1)*t*df/v.conc;
+    if(S.newer('dose','rate')==='rate')v.dose=v.rate/q;else v.rate=v.dose*q;
+    if(p&&p.txt)m.push('<b>Preparo:</b> '+(typeof p.txt==='function'?p.txt():p.txt));
+    else if(o.amp&&ok(v.amt,v.vol)){const ml=v.amt/o.amp.a*o.amp.ml;
+      m.push(`<b>Preparo:</b> ${fmt(v.amt)} ${o.aU} = ${fmt(ml,1)} mL de droga (${fmt(v.amt/o.amp.a,1)} ampola(s) de ${o.amp.lab}) + ${fmt(v.vol-ml,1)} mL de diluente → volume final ${fmt(v.vol,1)} mL`);
+      if(ml>v.vol)m.push(['bad','O volume de droga é maior que o volume final informado.']);}
+    if(ok(v.conc))m.push(`<b>Conversão:</b> ${o.dU} = ${o.kg?'(mL/h ÷ peso)':'mL/h'} × ${fmt(v.conc/(t*df),4)}`);
+    if(o.kg)needKg(m);
+    if(o.msg)o.msg(v,m);
+  }});
+}
+/* bolus: dose/kg ⇄ dose total ⇄ volume */
+function BOL(o){
+  const multi=Array.isArray(o.c),f=[];
+  if(multi)f.push({k:'prep',l:'Preparo',opts:o.c.map((x,i)=>[String(i),x[0]]),v:String(o.def||0)});
+  f.push({k:'conc',l:'Concentração',u:o.cU,add:o.addC});
+  if(o.kg)f.push({k:'dkg',l:'Dose por kg',u:o.mU+'/kg',r:o.r,v:o.dv,big:1});
+  f.push({k:'dose',l:o.kg?'Dose total':'Dose',u:o.mU,r:o.kg?null:o.r,v:o.kg?null:o.dv,big:1},{k:'vol',l:'Volume',u:'mL',big:1});
+  return W({t:o.t,f,on:o.on,calc(v,ch,S,m){
+    if(ch==='init'||ch==='prep')v.conc=multi?o.c[v.prep][1]:o.c;
+    const fac={};if(o.kg)fac.dkg=1/G.kg;fac.dose=1;fac.vol=v.conc;
+    const ks=o.kg?['dkg','dose','vol']:['dose','vol'],src=S.newer(...ks);
+    let base=src==='vol'?v.vol*v.conc:v[src]/fac[src];
+    if(o.cap&&base>o.cap+1e-9){if(src==='dkg'){base=o.cap;m.push(['warn',`Teto de ${fmt(o.cap)} ${o.mU} aplicado.`]);}else m.push(['bad',`Acima do máximo de ${fmt(o.cap)} ${o.mU}.`]);}
+    if(src!=='dose')v.dose=base;if(src!=='vol')v.vol=base/v.conc;if(o.kg&&src!=='dkg')v.dkg=base/G.kg;
+    if(o.kg&&o.r&&ok(G.kg,v.conc)){const a=o.r[0]*G.kg,b=o.cap?Math.min(o.r[1]*G.kg,o.cap):o.r[1]*G.kg;
+      m.push(`<b>Faixa para ${fmt(G.kg,1)} kg:</b> ${fmt(Math.min(a,b))} a ${fmt(b)} ${o.mU} = ${fmt(Math.min(a,b)/v.conc,1)} a ${fmt(b/v.conc,1)} mL`);}
+    if(o.kg)needKg(m);
+    if(o.msg)o.msg(v,m);
+  }});
+}
+/* dose fixa em volume conhecido correndo em um tempo */
+function RUN(o){return W({t:o.t,f:[{k:'mg',l:'Dose',u:'mg',v:o.mg},{k:'vol',l:'Volume da solução',u:'mL',v:o.vol,d:1,add:o.addV},
+  {k:'min',l:'Tempo',u:'min',v:o.min,d:1},{k:'rate',l:'Velocidade',u:'mL/h',d:1,big:1},{k:'mgmin',l:'Taxa',u:'mg/min',out:1}],
+  calc(v,ch,S){if(S.newer('min','rate')==='rate')v.min=v.vol/v.rate*60;else v.rate=v.vol/v.min*60;v.mgmin=v.mg/v.min;}});}
+
+/* ============ conteúdo ============ */
+const TABS=[];
+function TAB(n,t,c){const o={n,t,c,b:[]};TABS.push(o);return o;}
+/* notas: prefixo ! = alerta, * = observação/dica, ~ = correção, + = acrescentado */
+function B(tab,title,subt,widgets,notes,opt){tab.b.push(Object.assign({title,subt,widgets,notes:notes||[]},opt||{}));}
+
+function buildData(){
+TABS.length=0;
+const amp=(a,ml,u)=>({a,ml,lab:`${fmt(a)} ${u}/${fmt(ml)} mL`});
+
+/* ---------- 1. Drogas vasoativas ---------- */
+let T=TAB(1,'Drogas vasoativas','#0F7C8C');
+B(T,'1.1 Noradrenalina','4 mg/4 mL',()=>[INF({p:[{n:'Padrão (64 mcg/mL)',amt:16,vol:250,txt:'4 ampolas (16 mg/16 mL) + SG 5% 234 mL → volume final 250 mL'},
+  {n:'Concentrada (128 mcg/mL)',amt:32,vol:250,txt:'8 ampolas (32 mg/32 mL) + SG 5% 218 mL → volume final 250 mL'}],
+  aU:'mg',cf:1000,cU:'mcg/mL',dU:'mcg/kg/min',kg:1,per:'min',r:[.01,3],amp:amp(4,4,'mg')})],
+ ['Dose: titular conforme PAM, perfusão e resposta clínica. A faixa original é de 0,01 a 3 mcg/kg/min, mas doses elevadas exigem reavaliação frequente.',
+  '*Preferir acesso venoso central para infusão prolongada ou concentrada.']);
+B(T,'1.2 Vasopressina','20 U/mL',()=>[INF({p:[{n:'Padrão (0,2 U/mL)',amt:20,vol:100,txt:'20 U (1 mL) + SF 0,9% 99 mL → volume final 100 mL'},
+  {n:'Concentrada (0,4 U/mL)',amt:40,vol:100,txt:'40 U (2 mL) + SF 0,9% 98 mL → volume final 100 mL'}],
+  aU:'U',cU:'U/mL',dU:'U/min',per:'min',r:[.01,.04],dv:.03,amp:amp(20,1,'U'),
+  msg(v,m){if(ok(v.conc))m.push(`0,01 a 0,04 U/min = ${fmt(.6/v.conc,1)} a ${fmt(2.4/v.conc,1)} mL/h`);}})],
+ ['Dose usual no choque séptico: 0,03 U/min, como adjuvante à noradrenalina.',
+  '!Não titular rotineiramente como uma catecolamina. Doses superiores aumentam o risco de isquemia.']);
+B(T,'1.3 Adrenalina','1 mg/mL',()=>[INF({p:[{n:'Padrão (64 mcg/mL)',amt:16,vol:250,txt:'16 ampolas (16 mg/16 mL) + SG 5% até volume final de 250 mL (234 mL de diluente)'}],
+  aU:'mg',cf:1000,cU:'mcg/mL',dU:'mcg/kg/min',kg:1,per:'min',r:[.01,1],amp:amp(1,1,'mg')})],
+ ['Dose: geralmente 0,01 a 1 mcg/kg/min, com titulação individualizada.','*Monitorar frequência cardíaca, arritmias, lactato e perfusão.']);
+B(T,'1.4 Dobutamina','250 mg/20 mL',()=>[INF({p:[{n:'Alternativa (2.000 mcg/mL)',amt:500,vol:250,txt:'2 ampolas (500 mg/40 mL) + 210 mL de SF ou SG → volume final 250 mL'},
+  {n:'Por peso (Dose Dante)',fn:()=>6*G.kg,vol:100,txt:()=>{if(!isFinite(G.kg))return 'volume da droga (mL) = 0,48 × peso; completar com SF 0,9% até 100 mL. Informe o peso.';
+     const ml=.48*G.kg;return `${fmt(ml,1)} mL de dobutamina (0,48 × ${fmt(G.kg,1)} kg = ${fmt(6*G.kg)} mg; abrir ${Math.ceil(ml/20)} ampola(s)) + ${fmt(100-ml,1)} mL de SF 0,9% → volume final 100 mL. 1 mL/h = 1 mcg/kg/min.`;}}],
+  aU:'mg',cf:1000,cU:'mcg/mL',dU:'mcg/kg/min',kg:1,per:'min',r:[2.5,20],amp:amp(250,20,'mg'),
+  msg(v,m){if(v.preset==='1'&&.48*G.kg>40)m.push(['bad','Dose Dante: volume de droga acima de 40 mL (mais de 2 ampolas).']);}})],
+ ['Dose: 2,5 a 20 mcg/kg/min.','*Monitorar taquicardia, arritmias, pressão arterial e resposta hemodinâmica.']);
+B(T,'1.5 Dopamina','50 mg/10 mL',()=>[INF({p:[{n:'Padrão (1.000 mcg/mL)',amt:250,vol:250,txt:'5 ampolas (250 mg/50 mL) + SF 200 mL → volume final 250 mL'}],
+  aU:'mg',cf:1000,cU:'mcg/mL',dU:'mcg/kg/min',kg:1,per:'min',r:[.5,null],amp:amp(50,10,'mg'),
+  msg(v,m){if(ok(v.dose)&&v.dose>=.5)m.push(['res',v.dose<=3?'0,5 a 3: predomínio de efeitos dopaminérgicos':v.dose<=10?'3 a 10: maior efeito beta-adrenérgico':'Acima de 10: maior efeito alfa-adrenérgico']);}})],
+ ['Faixas farmacológicas aproximadas: 0,5 a 3 mcg/kg/min, predomínio de efeitos dopaminérgicos; 3 a 10, maior efeito beta-adrenérgico; acima de 10, maior efeito alfa-adrenérgico.',
+  '!Não utilizar dopamina em baixa dose para proteção renal. No choque séptico, a noradrenalina é geralmente preferida pelo menor risco de arritmias.']);
+B(T,'1.6 Nitroprussiato de sódio (Nipride)','50 mg/2 mL',()=>[INF({p:[{n:'Padrão (200 mcg/mL)',amt:50,vol:250,txt:'1 ampola + SG 5% 248 mL → volume final 250 mL'}],
+  aU:'mg',cf:1000,cU:'mcg/mL',dU:'mcg/kg/min',kg:1,per:'min',r:[.3,10],amp:amp(50,2,'mg')})],
+ ['Dose: 0,3 a 10 mcg/kg/min, com a menor dose eficaz e pelo menor tempo possível.',
+  '*Monitorar pressão arterial continuamente; considerar toxicidade por cianeto e tiocianato, especialmente em doses elevadas, infusões prolongadas ou disfunção renal/hepática. Proteger a solução da luz conforme a apresentação.']);
+B(T,'1.7 Nitroglicerina (Tridil)','50 mg/10 mL',()=>[INF({p:[{n:'Padrão (200 mcg/mL)',amt:50,vol:250,txt:'1 ampola + SG 5% 240 mL → volume final 250 mL'}],
+  aU:'mg',cf:1000,cU:'mcg/mL',dU:'mcg/min',per:'min',r:[10,200],amp:amp(50,10,'mg')})],
+ ['Dose: 10 a 200 mcg/min, conforme indicação e resposta.','*Monitorar hipotensão e cefaleia; evitar associação com inibidores da fosfodiesterase tipo 5 em intervalos contraindicados.']);
+
+/* ---------- 2. Bloqueio neuromuscular ---------- */
+T=TAB(2,'Bloqueio neuromuscular','#2E7D5B');
+B(T,'2.1 Rocurônio','50 mg/5 mL',()=>[BOL({t:'Ataque',c:10,cU:'mg/mL',mU:'mg',kg:1,r:[.6,1]}),
+  INF({t:'Manutenção',p:[{n:'Padrão (1 mg/mL)',amt:250,vol:250,txt:'5 ampolas (250 mg/25 mL) + SF 225 mL → volume final 250 mL'}],
+  aU:'mg',cU:'mg/mL',dU:'mg/kg/h',kg:1,r:[.48,.72],amp:amp(50,5,'mg')})],
+ ['Ataque: 0,6 a 1 mg/kg. Manutenção: 0,48 a 0,72 mg/kg/h, com titulação conforme bloqueio neuromuscular.','*Assegurar sedação e analgesia adequadas antes e durante o bloqueio.']);
+B(T,'2.2 Cisatracúrio','2 mg/mL',()=>[INF({p:[{n:'Sem diluição (2 mg/mL)',amt:200,vol:100,txt:'solução sem diluição, conforme compatibilidade e apresentação (2 mg/mL)'}],
+  aU:'mg',cf:1000,cU:'mcg/mL',dU:'mcg/kg/min',kg:1,per:'min',dv:3})],
+ ['Indicação: bloqueio neuromuscular contínuo, inclusive em casos selecionados de SDRA.',
+  'Infusão: iniciar conforme protocolo institucional e titular por avaliação clínica e monitorização neuromuscular. Uma referência de dose inicial é 3 mcg/kg/min, com ajustes individualizados.',
+  '~Substituído o esquema ambíguo de 40 mg a cada 8 h em BIC por infusão contínua expressa em mcg/kg/min.','+Conversão mcg/kg/min ⇄ mL/h derivada da concentração de 2 mg/mL.']);
+B(T,'2.3 Pancurônio','4 mg/2 mL',()=>[BOL({t:'Dose intermitente',c:2,cU:'mg/mL',mU:'mg',kg:1,r:[.04,.1]})],
+ ['Dose intermitente: 0,04 a 0,1 mg/kg EV, com redoses individualizadas conforme resposta e duração do bloqueio.',
+  '!Pode causar taquicardia; apresenta maior risco de acúmulo na disfunção renal. Evitar redoses em intervalos fixos sem avaliação do bloqueio.']);
+
+/* ---------- 3. Intubação de sequência rápida ---------- */
+T=TAB(3,'Intubação de sequência rápida','#D7263D');T.kit=1;
+const isr=(title,subt,o,notes)=>B(T,title,subt,(blk)=>[BOL(Object.assign({kg:1,on:v=>{blk._kit=v;kitSummary();}},o))],notes,{kit:1,mU:o.mU});
+B(T,'Resumo do kit','drogas marcadas com "no kit"',()=>[h('div','wm','<div id="kit">Marque "no kit" nas drogas desejadas.</div>')],[],{wide:1,summary:1});
+isr('3.1 Lidocaína','400 mg/20 mL',{c:20,cU:'mg/mL',mU:'mg',r:[1,1.5]},
+ ['Dose, quando indicada: 1 a 1,5 mg/kg EV. Preparo: sem diluição.','Efeitos: anestésico local, antiarrítmico e possível atenuação da resposta à laringoscopia.',
+  '*Não é componente obrigatório da sequência rápida. Não há evidência suficiente para seu uso rotineiro com objetivo de controlar a PIC.']);
+isr('3.2 Fentanil','500 mcg/10 mL',{c:50,cU:'mcg/mL',mU:'mcg',r:[1,3]},
+ ['Dose: 1 a 3 mcg/kg EV, conforme condição hemodinâmica. Preparo: sem diluição.','Efeitos: analgesia, atenuação da resposta simpática e possível hipotensão.',
+  '!Administração rápida ou doses elevadas podem causar rigidez torácica.']);
+isr('3.3 Quetamina','500 mg/10 mL',{c:50,cU:'mg/mL',mU:'mg',r:[1,2]},
+ ['Dose: 1 a 2 mg/kg EV, com redução individualizada em pacientes hemodinamicamente instáveis. Preparo: sem diluição.','Efeitos: hipnose dissociativa, amnésia, analgesia e broncodilatação.',
+  '*Pode elevar FC e PA por estimulação simpática, mas também causar hipotensão em pacientes com depleção de catecolaminas.']);
+isr('3.4 Midazolam','15 mg/3 mL',{c:[['Sem diluição (5 mg/mL)',5],['Diluído: 1 ampola + SF 12 mL (1 mg/mL)',1]],cU:'mg/mL',mU:'mg',r:[.1,.3]},
+ ['Dose: 0,1 a 0,3 mg/kg EV, individualizada conforme estado hemodinâmico.','Diluído: 1 ampola + SF 12 mL → volume final 15 mL, 1 mg/mL.','Efeitos: hipnose, amnésia, anticonvulsivante e hipotensão.',
+  '*Início de ação menos previsível que outros agentes de indução; pode causar hipotensão importante.']);
+isr('3.5 Etomidato','20 mg/10 mL',{c:2,cU:'mg/mL',mU:'mg',r:[.2,.3]},
+ ['Dose: 0,2 a 0,3 mg/kg EV. Preparo: sem diluição.','Efeitos: hipnose, relativa estabilidade hemodinâmica e ausência de analgesia.',
+  '*Pode causar supressão adrenal transitória. Não há recomendação de corticosteroide exclusivamente para neutralizar esse efeito após dose única.']);
+isr('3.6 Propofol','200 mg/20 mL',{c:10,cU:'mg/mL',mU:'mg',r:[1,2]},
+ ['Dose: 1 a 2 mg/kg EV, com redução substancial conforme idade, volemia e instabilidade hemodinâmica. Preparo: sem diluição.','Efeitos: hipnose, broncodilatação, vasodilatação e depressão cardiovascular.',
+  '!A queda da PAM não é fixa e pode ser expressiva em pacientes críticos.']);
+isr('3.7 Succinilcolina','100 mg/10 mL (PDF)',{c:10,cU:'mg/mL',mU:'mg',r:[1,1.5]},
+ ['Dose: 1 a 1,5 mg/kg EV. Concentração após reconstituição indicada: 10 mg/mL.','Efeito: bloqueio neuromuscular despolarizante, com duração aproximada de 5 a 10 min.',
+  '!Contraindicações importantes: hipercalemia significativa; suscetibilidade à hipertermia maligna; doenças neuromusculares com risco de hipercalemia; queimaduras extensas e lesões por desnervação após o período inicial de risco.']);
+isr('3.8 Rocurônio','50 mg/5 mL',{c:10,cU:'mg/mL',mU:'mg',r:[1,1.2]},
+ ['Dose para sequência rápida: 1 a 1,2 mg/kg EV. Preparo: sem diluição.','Duração: aproximadamente 45 a 80 min, variável conforme dose e condição clínica.',
+  '*Assegurar sedação e analgesia após a intubação, devido à duração prolongada do bloqueio.',
+  'Referência clínica: diretriz SCCM de intubação de sequência rápida, que recomenda hipnótico associado a bloqueador neuromuscular e admite rocurônio ou succinilcolina conforme contraindicações.']);
+
+/* ---------- 4. Sedação e analgesia contínua ---------- */
+T=TAB(4,'Sedação e analgesia contínua','#1F6FB2');
+B(T,'4.1 Propofol','10 mg/mL',()=>[INF({p:[{n:'Sem diluição (10 mg/mL)',amt:1000,vol:100,txt:'5 ampolas sem diluição, conforme volume da apresentação (com ampolas de 200 mg/20 mL: 1.000 mg/100 mL)'}],
+  aU:'mg',cU:'mg/mL',dU:'mg/kg/h',kg:1,r:[.3,3],amp:amp(200,20,'mg')})],
+ ['Dose usual: 0,3 a 3 mg/kg/h, com titulação conforme alvo de sedação.','*Monitorar PAM, triglicerídeos e necessidade de vasopressores.',
+  '!Doses elevadas e infusões prolongadas aumentam o risco de síndrome da infusão do propofol.','Evitar tratar 4,8 mg/kg/h como limite rotineiro universal.',
+  '+Volume da ampola (200 mg/20 mL) tomado da seção 3.6; a seção 4.1 não especifica.']);
+B(T,'4.2 Midazolam','50 mg/10 mL',()=>[INF({p:[{n:'Padrão (1 mg/mL)',amt:150,vol:150,txt:'3 ampolas (150 mg/30 mL) + SF 120 mL → volume final 150 mL'}],
+  aU:'mg',cU:'mg/mL',dU:'mg/kg/h',kg:1,r:[.02,.1],amp:amp(50,10,'mg')})],
+ ['Dose usual: 0,02 a 0,1 mg/kg/h.','*Doses superiores podem ser necessárias em situações específicas, como estado de mal epiléptico.','!Risco de acúmulo, sedação prolongada e delirium.']);
+B(T,'4.3 Dexmedetomidina (Precedex)','200 mcg/2 mL',()=>[INF({p:[{n:'Padrão (4 mcg/mL)',amt:200,vol:50,txt:'1 ampola + SF 48 mL → volume final 50 mL'}],
+  aU:'mcg',cU:'mcg/mL',dU:'mcg/kg/h',kg:1,r:[.2,1.5],amp:amp(200,2,'mcg')})],
+ ['Dose: 0,2 a 1,5 mcg/kg/h.','*Monitorar bradicardia e hipotensão.','Geralmente permite sedação mais facilmente despertável.','Não substitui analgesia adequada.']);
+B(T,'4.4 Fentanil','500 mcg/10 mL',()=>[INF({p:[{n:'Sem diluição (50 mcg/mL)',amt:2500,vol:50,txt:'5 ampolas sem diluição (2.500 mcg/50 mL)'}],
+  aU:'mcg',cU:'mcg/mL',dU:'mcg/kg/h',kg:1,r:[.5,2],amp:amp(500,10,'mcg')})],
+ ['Dose: 0,5 a 2 mcg/kg/h, com titulação conforme analgesia e resposta clínica.','*Monitorar depressão respiratória, íleo e acúmulo com infusão prolongada.']);
+B(T,'4.5 Morfina','10 mg/mL',()=>[INF({p:[{n:'Padrão (1 mg/mL)',amt:100,vol:100,txt:'10 ampolas (100 mg/10 mL) + SF 90 mL → volume final 100 mL'}],
+  aU:'mg',cU:'mg/mL',dU:'mg/kg/h',kg:1,r:[.01,.05],amp:amp(10,1,'mg')})],
+ ['Dose: individualizada; uma faixa inicial possível é 0,01 a 0,05 mg/kg/h, com titulação conforme resposta.',
+  '!Considerar hipotensão, liberação de histamina e acúmulo de metabólitos na disfunção renal. A faixa original de até 0,5 mg/kg/h não deve ser adotada como rotina de sedoanalgesia.',
+  'Referência clínica: diretrizes PADIS da SCCM, inclusive atualização de 2025, para analgesia e sedação em pacientes críticos.']);
+
+/* ---------- 5. Fibrilação atrial ---------- */
+T=TAB(5,'Fibrilação atrial','#B3263A');
+B(T,'Observação geral','',()=>[],['!Em FA com instabilidade hemodinâmica atribuível à arritmia, priorizar avaliação para cardioversão elétrica sincronizada.','!Na FA pré-excitada, evitar bloqueadores do nó atrioventricular.'],{open:1});
+B(T,'5.1.1 Amiodarona','controle da FC · 150 mg/3 mL',()=>[RUN({mg:300,vol:256,min:60})],
+ ['Diluição: 2 ampolas (300 mg/6 mL) + SG 5% 250 mL. Volume final: 256 mL, se não houver retirada prévia de diluente. Infusão descrita no PDF: 300 mg em 1 h.',
+  'Indicação: alternativa em situações selecionadas, especialmente quando o controle convencional da FC não é adequado ou é contraindicado.',
+  '*Pode causar hipotensão e bradicardia.','*Pode converter a FA para ritmo sinusal, com implicações para risco tromboembólico.','Não é agente universal de primeira escolha para controle de frequência.']);
+B(T,'5.1.2 Metoprolol','controle da FC · 5 mg/5 mL · EV',()=>[],
+ ['Dose: 2,5 a 5 mg (= 2,5 a 5 mL) em bolus lento.','Repetição: a cada 5 min, conforme resposta.','Dose total usual máxima: 15 mg.',
+  'Indicação: controle da FC em pacientes selecionados, sobretudo hemodinamicamente estáveis.',
+  '!Contraindicações e precauções: insuficiência cardíaca agudamente descompensada; hipotensão importante; bradicardia ou bloqueio atrioventricular significativo; broncoespasmo grave.'],{open:1});
+B(T,'5.1.3 Diltiazem','controle da FC · 5 mg/mL (PDF) · EV',()=>[BOL({t:'Dose inicial (em 2 min)',c:5,cU:'mg/mL',mU:'mg',kg:1,dv:.25}),BOL({t:'Segunda dose (após ~15 min)',c:5,cU:'mg/mL',mU:'mg',kg:1,dv:.35})],
+ ['Dose inicial usual: 0,25 mg/kg em 2 min.','Segunda dose possível: 0,35 mg/kg após aproximadamente 15 min, conforme resposta e protocolo.','Manutenção: infusão contínua conforme protocolo institucional, se indicada.',
+  '!Evitar em: disfunção sistólica significativa do VE; insuficiência cardíaca descompensada; hipotensão importante; FA pré-excitada.']);
+B(T,'5.1.4 Verapamil','controle da FC · 2,5 mg/mL · EV',()=>[BOL({c:2.5,cU:'mg/mL',mU:'mg',r:[2.5,5],dv:2.5})],
+ ['Dose: 2,5 a 5 mg em aproximadamente 2 min, com possibilidade de repetição conforme resposta.',
+  '!Contraindicações e precauções: fração de ejeção reduzida; insuficiência cardíaca descompensada; hipotensão importante; FA pré-excitada.']);
+B(T,'5.1.5 Digoxina','controle da FC · 0,5 mg/2 mL',()=>[BOL({c:.25,cU:'mg/mL',mU:'mg',dv:.25})],
+ ['Via: EV ou VO, conforme situação.','Indicação: controle da FC em pacientes selecionados, particularmente quando há insuficiência cardíaca ou limitação ao uso de outros bloqueadores nodais.',
+  'Digitalização: individualizada conforme peso, idade, função renal e interações medicamentosas.',
+  'Esquema possível: 0,25 mg EV inicialmente, com doses adicionais fracionadas conforme resposta, sem assumir 1,5 mg/24 h como dose universal.',
+  'Manutenção: frequentemente 0,125 a 0,25 mg VO/dia, com redução em idosos e disfunção renal.',
+  '!Contraindicações e precauções: FA com pré-excitação; intoxicação digitálica; bloqueios de condução significativos sem dispositivo de estimulação. Disfunção renal exige ajuste, não constitui contraindicação absoluta.']);
+B(T,'5.2.1 Amiodarona','cardioversão · 150 mg/3 mL',()=>[RUN({mg:150,vol:103,min:10,addV:1})],
+ ['Diluição: 1 ampola + SG 5% 100 mL. Dose descrita: 150 mg EV em 10 min.',
+  '*Esse esquema isolado não representa protocolo completo de cardioversão farmacológica da FA. A escolha da dose e da infusão subsequente depende da indicação e do protocolo adotado.',
+  '+Volume final de 103 mL (3 mL de droga + 100 mL) assumido; o conteúdo não especifica.']);
+B(T,'5.2.2 Propafenona','cardioversão · comprimidos de 150 e 300 mg · VO',()=>[W({f:[],calc(v,ch,S,m){
+   if(!isFinite(G.kg)){m.push('Peso inferior a 70 kg: 450 mg · Peso igual ou superior a 70 kg: 600 mg');needKg(m);}
+   else m.push(['res',`Dose única para ${fmt(G.kg,1)} kg: ${G.kg<70?'450 mg':'600 mg'} VO`]);}})],
+ ['Dose única em pacientes selecionados: peso inferior a 70 kg, 450 mg; peso igual ou superior a 70 kg, 600 mg.',
+  '!Contraindicações importantes: cardiopatia estrutural significativa; doença arterial coronariana relevante; disfunção sistólica ventricular.',
+  '*A estratégia de dose única exige avaliação prévia e teste supervisionado, conforme protocolo, pelo risco de pró-arritmia.']);
+B(T,'5.3 Manutenção com amiodarona EV','150 mg/3 mL',()=>[W({f:[{k:'amt',l:'Amiodarona',u:'mg',v:900},{k:'vol',l:'Volume final',u:'mL',v:300,d:1},{k:'conc',l:'Concentração',u:'mg/mL',out:1},
+   {k:'d1',l:'Fase 1: dose',u:'mg/min',v:1,big:1},{k:'r1',l:'Fase 1: velocidade',u:'mL/h',d:1,big:1},{k:'h1',l:'Fase 1: duração',u:'h',v:6},
+   {k:'d2',l:'Fase 2: dose',u:'mg/min',v:.5,big:1},{k:'r2',l:'Fase 2: velocidade',u:'mL/h',d:1,big:1},{k:'h2',l:'Fase 2: duração',u:'h',v:18},
+   {k:'atq',l:'Ataque já feito',u:'mg',ph:'0'},{k:'tot',l:'Total em 24 h',u:'mg',out:1},{k:'vt',l:'Volume infundido',u:'mL',out:1,d:1}],
+  calc(v,ch,S,m){v.conc=v.amt/v.vol;const q=60/v.conc;
+   if(S.newer('d1','r1')==='r1')v.d1=v.r1/q;else v.r1=v.d1*q;if(S.newer('d2','r2')==='r2')v.d2=v.r2/q;else v.r2=v.d2*q;
+   const inf=v.d1*60*v.h1+v.d2*60*v.h2;v.tot=inf+(isFinite(v.atq)?v.atq:0);v.vt=v.r1*v.h1+v.r2*v.h2;
+   if(ok(v.amt,v.vol))m.push(`<b>Preparo:</b> ${fmt(v.amt)} mg = ${fmt(v.amt/50,1)} mL (${fmt(v.amt/150,1)} ampolas) + SG 5% ${fmt(v.vol-v.amt/50,1)} mL → volume final ${fmt(v.vol,1)} mL`);
+   if(ok(inf))m.push(`Dose nessa infusão: ${fmt(inf)} mg${isFinite(v.atq)&&v.atq>0?` + ataque ${fmt(v.atq)} mg = ${fmt(v.tot)} mg de exposição total`:''}`);
+   if(ok(v.vt,v.vol)&&v.vt>v.vol+.01)m.push(['warn','O volume a infundir é maior que o volume da solução preparada.']);}})],
+ ['Preparo: 900 mg de amiodarona = 18 mL + SG 5% 282 mL → volume final 300 mL, 3 mg/mL.','Esquema: primeiras 6 h, 1 mg/min = 20 mL/h; próximas 18 h, 0,5 mg/min = 10 mL/h. Dose total nessa infusão: 900 mg em 24 h.',
+  '*Doses de ataque administradas separadamente devem entrar no cálculo da exposição total.']);
+
+/* ---------- 6. Anticoagulação ---------- */
+T=TAB(6,'Anticoagulação','#9B2C5C');
+B(T,'6.1 Enoxaparina profilática','',()=>[],['Dose usual: 40 mg SC uma vez ao dia.','Ajustes: conforme função renal, peso, risco hemorrágico e protocolo institucional.','*A administração noturna não é obrigatória.'],{open:1});
+B(T,'6.2 Enoxaparina terapêutica','',()=>[W({f:[{k:'reg',l:'Esquema',opts:[['a','TEV: 1 mg/kg 12/12 h'],['b','Alternativa: 1,5 mg/kg 1x/dia'],['c','ClCr < 30: 1 mg/kg 1x/dia']]},
+   {k:'dkg',l:'Dose por kg',u:'mg/kg'},{k:'dose',l:'Dose por aplicação',u:'mg SC',big:1,d:0},{k:'dia',l:'Total por dia',u:'mg',out:1,d:0}],
+  calc(v,ch,S,m){const R={a:[1,2],b:[1.5,1],c:[1,1]}[v.reg];if(ch==='init'||ch==='reg'){v.dkg=R[0];S.touch('dkg');}
+   if(S.newer('dkg','dose')==='dose')v.dkg=v.dose/G.kg;else v.dose=v.dkg*G.kg;v.dia=v.dose*R[1];needKg(m);}})],
+ ['Dose usual para TEV: 1 mg/kg SC a cada 12 h.','Alternativa em indicações selecionadas: 1,5 mg/kg SC uma vez ao dia.',
+  'Disfunção renal importante: para ClCr inferior a 30 mL/min, considerar 1 mg/kg SC uma vez ao dia conforme indicação e bula aplicável, ou alternativa com heparina não fracionada.',
+  '!Idade superior a 75 anos: a dose de 0,75 mg/kg a cada 12 h pertence a esquemas específicos de síndrome coronariana aguda e não deve ser aplicada universalmente.',
+  'Monitorização de anti-Xa: reservada para situações selecionadas, conforme protocolo.']);
+B(T,'6.3 Heparina sódica profilática','',()=>[],['Dose: 5.000 U SC. Posologia: a cada 8 ou 12 h.','Ajustes: conforme risco hemorrágico e protocolo institucional.'],{open:1});
+B(T,'6.4 Heparina sódica terapêutica','25.000 U/5 mL',()=>[W({f:[{k:'ind',l:'Indicação',opts:[['tev','6.4.1 TEV e indicações selecionadas'],['iam','6.4.3 IAM com supra de ST']]},
+   {k:'amt',l:'Heparina na solução',u:'U',v:25000,d:0},{k:'vol',l:'Volume final',u:'mL',v:250,d:1},{k:'conc',l:'Concentração',u:'U/mL',out:1},
+   {k:'bkg',l:'Ataque por kg',u:'U/kg'},{k:'bol',l:'Ataque',u:'U',big:1,d:0},{k:'bp',l:'Ataque: frasco puro',u:'mL',out:1},{k:'bd',l:'Ataque: solução diluída',u:'mL',out:1,d:1},
+   {k:'ikg',l:'Infusão',u:'U/kg/h',big:1},{k:'uh',l:'Infusão',u:'U/h',d:0},{k:'rate',l:'Velocidade',u:'mL/h',d:1,big:1}],
+  calc(v,ch,S,m){const iam=v.ind==='iam',cap=iam?4000:5000;
+   if(ch==='init'||ch==='ind'){v.bkg=iam?60:80;v.ikg=iam?12:18;S.touch('bkg');S.touch('ikg');}
+   v.conc=v.amt/v.vol;
+   if(S.newer('bkg','bol')==='bol'){v.bkg=v.bol/G.kg;if(v.bol>cap)m.push(['bad',`Ataque acima do teto de ${fmt(cap,0)} U.`]);}
+   else{v.bol=v.bkg*G.kg;if(v.bol>cap){v.bol=cap;m.push(['warn',`Teto de ${fmt(cap,0)} U aplicado ao ataque${iam?'':' (teto do documento)'}.`]);}}
+   v.bp=v.bol/5000;v.bd=v.bol/v.conc;
+   const src=S.newer('ikg','uh','rate');let uh=src==='ikg'?v.ikg*G.kg:src==='uh'?v.uh:v.rate*v.conc;
+   if(iam&&uh>1000){uh=1000;m.push(['warn','IAM: máximo inicial de 1.000 U/h aplicado.']);v.uh=uh;v.rate=uh/v.conc;if(src!=='ikg')v.ikg=uh/G.kg;}
+   else{if(src!=='uh')v.uh=uh;if(src!=='rate')v.rate=uh/v.conc;if(src!=='ikg')v.ikg=uh/G.kg;}
+   if(ok(v.amt,v.vol))m.push(`<b>Preparo:</b> ${fmt(v.amt,0)} U (${fmt(v.amt/5000,1)} mL) + SF ${fmt(v.vol-v.amt/5000,1)} mL → volume final ${fmt(v.vol,1)} mL`);
+   if(ok(v.conc))m.push(`<b>Conversão:</b> U/kg/h = (mL/h × ${fmt(v.conc)}) ÷ peso`);needKg(m);}})],
+ ['Diluição: 25.000 U (5 mL) + SF 245 mL → volume final 250 mL, 100 U/mL.',
+  '6.4.1 TEV: ataque do nomograma original 80 U/kg EV, com teto de 5.000 U no documento; infusão inicial 18 U/kg/h; mL/h = (18 × peso) ÷ 100.',
+  'Monitorização: TTPA ou anti-Xa conforme protocolo, geralmente com primeira avaliação após 6 h.',
+  '~Não impor teto universal de 10 mL/h, pois ele equivale a 1.000 U/h e pode resultar em subdosagem.',
+  '*Bolus e limites máximos dependem da indicação; o nomograma de TEV não deve ser aplicado automaticamente a todas as SCA ou FA.',
+  '6.4.3 IAM com supradesnivelamento do ST: ataque 60 U/kg EV, máximo de 4.000 U; infusão inicial 12 U/kg/h, máximo inicial de 1.000 U/h em esquemas específicos (10 mL/h a 100 U/mL). Monitorização: TTPA ou anti-Xa conforme protocolo.',
+  '*A estratégia antitrombótica depende de angioplastia, fibrinólise e demais tratamentos associados.'],{wide:1});
+B(T,'6.4.2 Escala de Raschke','ajuste pela relação TTPA',()=>[W({f:[{k:'r',l:'Relação TTPA',big:1},{k:'cur',l:'Velocidade atual',u:'mL/h',d:1},{k:'conc',l:'Concentração',u:'U/mL',v:100},
+   {k:'nova',l:'Nova velocidade',u:'mL/h',out:1,big:1,d:1},{k:'ukh',l:'Nova dose',u:'U/kg/h',out:1},{k:'bol',l:'Bolus',u:'U',out:1,d:0},{k:'bml',l:'Bolus (diluída)',u:'mL',out:1,d:1}],
+  calc(v,ch,S,m){let d=NaN,b=0,tx='';
+   if(isFinite(v.r)){if(v.r<1.2){d=4;b=80;tx='Aumentar 4 U/kg/h + bolus de 80 U/kg';}else if(v.r<1.5){d=2;b=40;tx='Aumentar 2 U/kg/h + bolus de 40 U/kg';}
+     else if(v.r<=2.5){d=0;tx='Manter';}else if(v.r<=3){d=-2;tx='Reduzir 2 U/kg/h';}else{d=-4;tx='Suspender por 1 h e reduzir 4 U/kg/h';}
+     m.push([d===0?'res':'res warn',tx]);}
+   v.nova=d===0?v.cur:v.cur+d*G.kg/v.conc;v.ukh=v.nova*v.conc/G.kg;v.bol=b?b*G.kg:NaN;v.bml=v.bol/v.conc;
+   if(ok(v.nova)&&v.nova<0)m.push(['bad','A redução leva a velocidade abaixo de zero.']);if(isFinite(v.r)&&d!==0)needKg(m);}})],
+ ['Nomograma original, preservado como referência histórica. Requer validação local da relação de TTPA.',
+  'Inferior a 1,2: aumentar 4 U/kg/h + bolus de 80 U/kg · 1,2 a 1,5: aumentar 2 U/kg/h + bolus de 40 U/kg · 1,5 a 2,5: manter · acima de 2,5 até 3,0: reduzir 2 U/kg/h · superior a 3,0: suspender por 1 h e reduzir 4 U/kg/h.',
+  '~Faixa "manter" ajustada para 1,5 a 2,5 a seu pedido (o conteúdo traz 1,5 a 2,3). Nos limites: 1,2 entra em "1,2 a 1,5"; 1,5 e 2,5 entram em "manter"; 3,0 entra em "reduzir 2".',
+  '!Os alvos terapêuticos variam conforme reagente laboratorial e calibração institucional. Não utilizar a tabela sem confirmar a faixa de TTPA correspondente à anticoagulação terapêutica.']);
+
+/* ---------- 7. Insulinoterapia ---------- */
+T=TAB(7,'Insulinoterapia no paciente crítico','#C77D1A');
+B(T,'7.1 Preparo e velocidade','insulina regular · EV em BIC',()=>[W({f:[{k:'amt',l:'Insulina regular',u:'U',v:100},{k:'vol',l:'Volume final',u:'mL',v:100,d:1},{k:'conc',l:'Concentração',u:'U/mL',out:1},
+   {k:'uh',l:'Dose',u:'U/h',big:1},{k:'rate',l:'Velocidade',u:'mL/h',d:1,big:1}],
+  calc(v,ch,S,m){v.conc=v.amt/v.vol;if(S.newer('uh','rate')==='rate')v.uh=v.rate*v.conc;else v.rate=v.uh/v.conc;
+   if(ok(v.amt,v.vol))m.push(`<b>Preparo:</b> ${fmt(v.amt)} U (${fmt(v.amt/100,2)} mL de insulina 100 U/mL) + SF 0,9% ${fmt(v.vol-v.amt/100,1)} mL → volume final ${fmt(v.vol,1)} mL`);
+   if(ok(v.conc))m.push(`<b>Conversão:</b> 1 mL/h = ${fmt(v.conc)} U/h`);}})],
+ ['Diluição: 100 U + SF 0,9% 99 mL → volume final 100 mL, 1 U/mL. Conversão: 1 mL/h = 1 U/h.','+Frasco de insulina regular considerado 100 U/mL.']);
+B(T,'7.2 a 7.4 Conduta pela glicemia','',()=>[W({f:[{k:'g',l:'Glicemia',u:'mg/dL',big:1,d:0}],calc(v,ch,S,m){const g=v.g;if(!isFinite(g))return;
+   if(g<54)m.push(['bad res','Inferior a 54 mg/dL: hipoglicemia clinicamente significativa, com necessidade de intervenção imediata. Interromper temporariamente a infusão e tratar conforme protocolo.']);
+   else if(g<70)m.push(['bad res','Inferior a 70 mg/dL: interromper temporariamente a infusão e tratar a hipoglicemia conforme protocolo.']);
+   else if(g<140)m.push(['add res',ADD+'70 a 139 mg/dL: sem hipoglicemia, abaixo da meta habitual (140 a 180). Conduta não especificada no conteúdo.']);
+   else if(g<=180)m.push(['res','140 a 180 mg/dL (meta habitual): ajustar ou manter conforme velocidade de queda e protocolo.']);
+   else m.push(['warn res','Superior a 180 mg/dL: ajustar conforme valor atual, valor anterior e tendência.']);}})],
+ ['Indicação usual: hiperglicemia persistente igual ou superior a 180 mg/dL em paciente crítico. Meta habitual: 140 a 180 mg/dL, individualizada conforme situação.',
+  '~O esquema de 2 mL/h acima de 180 mg/dL e 4 mL/h acima de 220 mg/dL não deve ser utilizado isoladamente como algoritmo universal. A velocidade inicial depende de glicemia, sensibilidade à insulina, uso prévio e evolução clínica.',
+  'Monitorização: glicemia geralmente a cada 1 h durante início e ajustes; após estabilidade, considerar ampliação do intervalo conforme protocolo. Eletrólitos: monitorar potássio, sobretudo em pacientes com risco de hipocalemia.',
+  'Reinício: após correção da hipoglicemia, reavaliar necessidade e reiniciar em velocidade ajustada conforme protocolo.',
+  '~Correção principal: substituição do algoritmo fixo por titulação orientada por tendência glicêmica, com critérios de segurança para suspensão e reinício.'],{open:1});
+
+/* ---------- 8. Anticonvulsivantes ---------- */
+T=TAB(8,'Anticonvulsivantes','#5A4FCF');
+B(T,'8.1 Diazepam','EV',()=>[BOL({c:5,cU:'mg/mL',mU:'mg',kg:1,r:[.15,.2],cap:10,addC:1})],
+ ['Dose usual no estado de mal epiléptico: 0,15 a 0,2 mg/kg EV. Dose máxima por administração: 10 mg.','Repetição: uma vez após aproximadamente 5 min, se persistir a crise.',
+  '*Monitorar depressão respiratória e hipotensão.','A dose acumulada de 40 mg não deve ser utilizada como objetivo automático.','A via IM não é preferida devido à absorção imprevisível.',
+  '+Apresentação 10 mg/2 mL (5 mg/mL), informada por você.']);
+B(T,'8.2 Fenitoína (Hidantal)','250 mg/5 mL',()=>[BOL({t:'Ataque',c:50,cU:'mg/mL',mU:'mg',kg:1,r:[15,20],
+   msg(v,m){if(ok(v.dose))m.push(`<b>Tempo mínimo de infusão</b> (máx. 50 mg/min em adultos): ${fmt(v.dose/50,0)} min · ${fmt(v.dose/250,1)} ampolas`);}})],
+ ['Ataque: 15 a 20 mg/kg EV. Velocidade máxima em adultos: 50 mg/min. Utilizar diluição compatível com SF 0,9%, conforme apresentação e protocolo.',
+  'Manutenção: dose inicial de referência 100 mg EV ou VO a cada 8 h. Ajustar conforme níveis séricos, albumina, função renal e resposta clínica.',
+  '*Monitorização cardíaca e pressórica durante a infusão.','!Evitar diluição em soluções glicosadas devido ao risco de precipitação.','A concentração final e a estabilidade dependem do preparo.']);
+B(T,'8.3 Midazolam (Dormonid)','50 mg/10 mL · BIC',()=>[INF({p:[{n:'Padrão (1 mg/mL)',amt:150,vol:150,txt:'3 ampolas (150 mg/30 mL) + SF 120 mL → volume final 150 mL'}],
+  aU:'mg',cU:'mg/mL',dU:'mg/kg/h',kg:1,r:[.05,.2],amp:amp(50,10,'mg')})],
+ ['Dose para estado de mal epiléptico refratário: infusão inicial de aproximadamente 0,05 a 0,2 mg/kg/h, com titulação conforme resposta clínica e eletroencefalográfica.',
+  '*Doses superiores podem ser necessárias sob monitorização intensiva.','*Monitorar hipotensão, depressão respiratória e acúmulo.']);
+B(T,'8.4 Propofol','10 mg/mL · BIC',()=>[INF({p:[{n:'Sem diluição (10 mg/mL)',amt:1000,vol:100,txt:'sem diluição (10 mg/mL)'}],aU:'mg',cU:'mg/mL',dU:'mg/kg/h',kg:1,r:[1,5]})],
+ ['Dose: geralmente 1 a 5 mg/kg/h em protocolos de estado de mal epiléptico refratário, com titulação individualizada.',
+  '*Monitorar EEG, pressão arterial, lactato, triglicerídeos e função cardiovascular.','!Risco de síndrome da infusão do propofol, particularmente com doses elevadas e uso prolongado.',
+  'A faixa utilizada no estado de mal epiléptico não deve ser confundida com a sedação habitual.','+Conversão mg/kg/h ⇄ mL/h derivada da concentração.']);
+B(T,'8.5 Sulfato de magnésio em gestantes','MgSO4 50%, 5 g/10 mL (500 mg/mL)',()=>[
+  LIN({t:'8.5.1 Ataque',f:[{k:'g',l:'Dose',u:'g',r:[4,6],v:4,big:1,fac:()=>1},{k:'ml',l:'MgSO4 50%',u:'mL',big:1,fac:()=>2},{k:'amp',l:'Ampolas',u:'amp',fac:()=>.2}]}),
+  INF({t:'8.5.2 Manutenção',p:[{n:'Exemplo (12 mg/mL)',amt:6,vol:500,txt:'6 g (12 mL) + diluente até volume final de 500 mL'}],aU:'g',cf:1000,df:1000,cU:'mg/mL',dU:'g/h',r:[1,2],dv:1,amp:amp(5,10,'g'),
+   msg(v,m){if(ok(v.rate,v.vol)&&v.rate>0)m.push(`A bolsa dura ${fmt(v.vol/v.rate,1)} h nessa velocidade.`);}})],
+ ['Ataque: dose usual 4 a 6 g EV (4 g = 8 mL; 6 g = 12 mL). Diluição: em solução compatível, conforme protocolo. Administração: geralmente em 15 a 20 min.',
+  'Manutenção: 1 a 2 g/h EV em BIC. Exemplo: 6 g (12 mL) + diluente até 500 mL = 12 mg/mL; 1 g/h = 83,3 mL/h; 2 g/h = 166,7 mL/h.',
+  'Duração: na eclâmpsia ou pré-eclâmpsia com indicação, frequentemente até 24 h após o parto ou a última convulsão, conforme protocolo obstétrico.',
+  '*Monitorização: reflexos tendinosos; frequência respiratória; diurese; função renal; sinais de toxicidade por magnésio; disponibilidade de gluconato de cálcio para tratamento de toxicidade.'],{wide:1});
+B(T,'8.6 Pentobarbital','50 mg/mL',()=>[BOL({t:'Ataque',c:50,cU:'mg/mL',mU:'mg',kg:1,r:[5,15]}),
+  INF({t:'Manutenção (BIC)',p:[{n:'Sem diluição (50 mg/mL)',amt:2500,vol:50,txt:'sem diluição (50 mg/mL); o conteúdo não descreve diluição'}],aU:'mg',cU:'mg/mL',dU:'mg/kg/h',kg:1,r:[.5,5]})],
+ ['Ataque: 5 a 15 mg/kg EV, conforme protocolo para estado de mal epiléptico refratário. Velocidade: conforme protocolo e monitorização hemodinâmica.',
+  'Manutenção: aproximadamente 0,5 a 5 mg/kg/h EV em BIC.','*Requer suporte intensivo, geralmente ventilação mecânica.','Titular conforme EEG.','*Monitorar hipotensão e depressão cardiovascular.',
+  '+Conversões derivadas da concentração de 50 mg/mL.']);
+B(T,'8.7 Tiopental','1 g · BIC',()=>[INF({p:[{n:'Descrito (16 mg/mL)',amt:4000,vol:250,txt:'4 g em volume final de 250 mL'}],aU:'mg',cU:'mg/mL',dU:'mg/kg/h',kg:1,r:[3,5]})],
+ ['Dose de manutenção: aproximadamente 3 a 5 mg/kg/h, com titulação conforme EEG e resposta.','Pode exigir dose de ataque antes da manutenção.','*Monitorar depressão cardiovascular e hipotensão.',
+  'Confirmar compatibilidade e estabilidade da preparação.','+Conversão mg/kg/h ⇄ mL/h derivada da concentração de 16 mg/mL.']);
+
+/* ---------- 9. Aporte basal ---------- */
+T=TAB(9,'Aporte basal','#7A4BA8');
+B(T,'9.1 Água livre','',()=>[LIN({f:[{k:'mlkg',l:'Estimativa',u:'mL/kg/dia',r:[30,35],v:30,big:1,fac:()=>1},{k:'dia',l:'Volume por dia',u:'mL/dia',d:0,big:1,fac:()=>G.kg},{k:'h',l:'Velocidade',u:'mL/h',d:1,fac:()=>G.kg/24}],
+   msg(v,m){if(isFinite(G.kg))m.push(`Faixa para ${fmt(G.kg,1)} kg: ${fmt(30*G.kg,0)} a ${fmt(35*G.kg,0)} mL/dia`);needKg(m);}})],
+ ['Estimativa de referência: 30 a 35 mL/kg/dia. Exemplo para 70 kg: 2.100 a 2.450 mL/dia.','Ajustes necessários: idade; função renal; função cardíaca; balanço hídrico; perdas insensíveis e mensuráveis; estado volêmico.',
+  '!Não utilizar 2.000 mL/dia como necessidade fixa para todos os pacientes críticos.']);
+B(T,'9.2 Sódio','NaCl 20% 10 mL ≈ 34 mEq · NaCl 0,9% 1.000 mL ≈ 154 mEq',()=>[LIN({f:[{k:'kg',l:'Necessidade',u:'mEq/kg/dia',r:[1,2],v:1,big:1,fac:()=>1/G.kg},{k:'meq',l:'Sódio por dia',u:'mEq/dia',big:1,d:1,fac:()=>1},
+   {k:'ml',l:'NaCl 20%',u:'mL',d:1,fac:()=>1/3.4},{k:'amp',l:'Ampolas NaCl 20%',u:'amp',d:1,fac:()=>1/34},{k:'sf',l:'ou SF 0,9%',u:'mL',d:0,fac:()=>1000/154}],
+   msg(v,m){if(isFinite(G.kg))m.push(`Faixa para ${fmt(G.kg,1)} kg: ${fmt(G.kg,0)} a ${fmt(2*G.kg,0)} mEq/dia`);needKg(m);}})],
+ ['Necessidade basal de referência: 1 a 2 mEq/kg/dia, com ampla variação conforme condição clínica. Exemplo para 70 kg: 70 a 140 mEq/dia. Duas ampolas de NaCl 20%: aproximadamente 68 mEq.',
+  '!Contabilizar o sódio de todas as soluções, dietas e medicamentos. Não utilizar duas ampolas como prescrição universal.']);
+B(T,'9.3 Potássio','KCl 19,1%, 10 mL ≈ 25,6 mEq/ampola',()=>[LIN({f:[{k:'meq',l:'Potássio por dia',u:'mEq/dia',r:[40,80],v:40,big:1,d:1,fac:()=>1},{k:'ml',l:'KCl 19,1%',u:'mL',d:1,big:1,fac:()=>1/2.56},{k:'amp',l:'Ampolas',u:'amp',d:1,fac:()=>1/25.6}]})],
+ ['Necessidade basal de referência: 40 a 80 mEq/dia. Duas ampolas: aproximadamente 51 mEq.','Ajustes: conforme potássio sérico, função renal, diurese e perdas.',
+  '!Não administrar potássio EV em bolus. Confirmar concentração e velocidade permitidas para o acesso venoso.']);
+B(T,'9.4 Magnésio','MgSO4 10%, 10 mL ≈ 8,1 mEq',()=>[LIN({f:[{k:'meq',l:'Magnésio por dia',u:'mEq/dia',r:[10,20],v:10,big:1,d:1,fac:()=>1},{k:'ml',l:'MgSO4 10%',u:'mL',d:1,big:1,fac:()=>1/.81},{k:'amp',l:'Ampolas',u:'amp',d:1,fac:()=>1/8.1}]})],
+ ['Necessidade basal de referência do PDF: 10 a 20 mEq/dia. Duas ampolas: aproximadamente 16,2 mEq.','Ajustes: conforme magnésio sérico, função renal e perdas.','!Evitar reposição fixa em pacientes com disfunção renal significativa.']);
+B(T,'9.5 Calorias','SG 5% 500 mL = 25 g = 100 kcal · Glicose 50% 10 mL = 5 g = 20 kcal',()=>[LIN({f:[{k:'g',l:'Glicose',u:'g',v:100,big:1,d:1,fac:()=>1},{k:'kcal',l:'Energia',u:'kcal',big:1,d:0,fac:()=>4},
+   {k:'sg',l:'SG 5%',u:'mL',d:0,fac:()=>20},{k:'g50',l:'Glicose 50%',u:'mL',d:0,fac:()=>2},{k:'a50',l:'Ampolas G50% 10 mL',u:'amp',d:1,fac:()=>.2}]})],
+ ['Equivalências: SG 5% 2.000 mL = 100 g de glicose = 400 kcal; glicose 50%, 20 ampolas de 10 mL = 100 g = 400 kcal.','~Esses volumes fornecem 400 kcal, não toda a faixa de 400 a 600 kcal apresentada no documento.',
+  '*Aporte de glicose para manutenção não substitui terapia nutricional. As necessidades energéticas e proteicas do paciente crítico devem ser avaliadas separadamente.']);
+B(T,'9.6 Montador de soro de manutenção','',()=>[W({f:[{k:'base',l:'Solução-base',opts:[['sg','SG 5%'],['sf','SF 0,9%']]},{k:'vb',l:'Volume da base',u:'mL',v:1000,d:0},
+   {k:'na',l:'NaCl 20% 10 mL',u:'amp',v:1},{k:'k',l:'KCl 19,1% 10 mL',u:'amp',v:1},{k:'mg',l:'MgSO4 10% 10 mL',u:'amp',v:1},{k:'n',l:'Bolsas por dia',u:'/dia',v:2},
+   {k:'rate',l:'Velocidade',u:'mL/h',out:1,big:1,d:1},{k:'gts',l:'Macrogotas',u:'gts/min',out:1,d:1},{k:'mgts',l:'Microgotas',u:'mcgts/min',out:1,d:1}],
+  calc(v,ch,S,m){const z=x=>isFinite(x)?x:0,na=z(v.na),k=z(v.k),mg=z(v.mg),vf=v.vb+10*(na+k+mg),n=v.n;
+   const gl=v.base==='sg'?v.vb*.05:0,nab=v.base==='sf'?v.vb*.154:0,Na=na*34+nab,K=k*25.6,Mg=mg*8.1;
+   v.rate=vf*n/24;v.gts=v.rate/3;v.mgts=v.rate;if(!ok(vf,n))return;const kgc=x=>isFinite(G.kg)?fmt(x/G.kg):'—';
+   m.push(`<table><tr><th></th><th>Por bolsa</th><th>Por dia (${fmt(n)} bolsas)</th><th>Por kg/dia</th></tr>
+    <tr><td>Volume final</td><td>${fmt(vf,0)} mL</td><td>${fmt(vf*n,0)} mL</td><td>${kgc(vf*n)} mL</td></tr>
+    <tr><td>Glicose</td><td>${fmt(gl,1)} g</td><td>${fmt(gl*n,1)} g</td><td>${kgc(gl*n)} g</td></tr>
+    <tr><td>Energia</td><td>${fmt(gl*4,0)} kcal</td><td>${fmt(gl*4*n,0)} kcal</td><td>${kgc(gl*4*n)} kcal</td></tr>
+    <tr><td>Sódio</td><td>${fmt(Na,1)} mEq</td><td>${fmt(Na*n,1)} mEq</td><td>${kgc(Na*n)} mEq</td></tr>
+    <tr><td>Potássio</td><td>${fmt(K,1)} mEq</td><td>${fmt(K*n,1)} mEq</td><td>${kgc(K*n)} mEq</td></tr>
+    <tr><td>Magnésio</td><td>${fmt(Mg,1)} mEq</td><td>${fmt(Mg*n,1)} mEq</td><td>${kgc(Mg*n)} mEq</td></tr></table>`);
+   m.push(`Potássio na bolsa: ${fmt(K/vf*1000,1)} mEq/L · ${fmt(K*n/24,1)} mEq/h`);
+   if(K/vf*1000>40)m.push(['add warn',ADD+'Concentração de potássio acima de 40 mEq/L (limite usual para acesso periférico).']);}})],
+ ['Composição original: SG 5% 1.000 mL + NaCl 20% 10 mL + KCl 19,1% 10 mL + MgSO4 10% 10 mL, via EV, a cada 12 h.',
+  '~Volume final, sem retirada de diluente: 1.030 mL. Por bolsa: glicose 50 g; sódio aproximadamente 34 mEq do NaCl 20%, além do conteúdo da solução-base; potássio aproximadamente 25,6 mEq; magnésio aproximadamente 8,1 mEq. Duas bolsas em 24 h: 2.060 mL, 100 g de glicose, 400 kcal, 68 mEq de sódio adicional, 51,2 mEq de potássio e 16,2 mEq de magnésio.',
+  '!Composição ilustrativa, não prescrição universal. A associação exige avaliação de compatibilidade, estabilidade, balanço hídrico e exames laboratoriais.'],{wide:1});
+B(T,'9.7 Conversões de infusão (gotejamento)','macrogotas fator 20 · microgotas fator 60',()=>[W({f:[{k:'vol',l:'Volume',u:'mL',v:500,d:0},{k:'h',l:'Tempo',u:'h',v:24,d:0},{k:'mi',l:'+ minutos',u:'min',v:0,d:0},
+   {k:'rate',l:'Velocidade',u:'mL/h',big:1,d:2},{k:'gts',l:'Macrogotas',u:'gts/min',big:1,d:2},{k:'mgts',l:'Microgotas',u:'mcgts/min',big:1,d:2}],
+  calc(v,ch,S,m){const src=S.newer('h','mi','vol','rate','gts','mgts');
+   if(['rate','gts','mgts'].includes(src)){const r=src==='rate'?v.rate:src==='gts'?v.gts*3:v.mgts;if(src!=='rate')v.rate=r;if(src!=='gts')v.gts=r/3;if(src!=='mgts')v.mgts=r;
+     const t=v.vol/r;if(ok(t)){v.h=Math.floor(t+1e-9);v.mi=Math.round((t-v.h)*60);if(v.mi===60){v.h++;v.mi=0;}}}
+   else{const t=v.h+(isFinite(v.mi)?v.mi:0)/60;v.rate=v.vol/t;v.gts=v.rate/3;v.mgts=v.rate;}}})],
+ ['1 mL = 20 gotas, para equipo macrogotas de fator 20. 1 mL = 60 microgotas, para equipo microgotas de fator 60.','1 gota/min = 3 mL/h, para macrogotas de fator 20. 1 gota/min = 3 microgotas/min, para os fatores descritos. 1 mg = 1.000 mcg.',
+  'Exemplo: 500 mL em 24 h = 20,83 mL/h ≈ 6,94 gotas/min ≈ 20,83 microgotas/min.']);
+
+/* ---------- 10. Correção hidroeletrolítica ---------- */
+T=TAB(10,'Correção hidroeletrolítica','#2B6CB0');
+const SOL=[['513','NaCl 3% (513)'],['342','NaCl 2% (342)'],['154','NaCl 0,9% (154)'],['130','Ringer lactato (130)'],['77','NaCl 0,45% (77)'],['0','SG 5% (0)'],['c','Outra']];
+B(T,'10.8 Água corporal total (ACT)','',()=>[W({f:[{k:'f',l:'Fator',out:1},{k:'act',l:'ACT estimada',u:'L',out:1,big:1,d:1}],calc(v,ch,S,m){v.f=actFactor();v.act=ACT();
+   if(!G.sex)m.push(['warn','Informe sexo (e idade) no topo. Sem isso, digite a ACT manualmente nas calculadoras de sódio.']);else if(!isFinite(G.age))m.push(['warn','Idade não informada: usando fator de adulto.']);needKg(m);}})],
+ ['Homens adultos: peso × 0,6. Mulheres adultas: peso × 0,5. Homens idosos: peso × 0,5. Mulheres idosas: peso × 0,45.',
+  '*São estimativas. Obesidade, desnutrição, edema e alterações importantes da composição corporal podem modificar a ACT real.','+Idoso considerado a partir de 60 anos, conforme sua resposta.']);
+B(T,'10.1 e 10.2 Sódio: Adrogué-Madias','ΔNa = (Na solução − Na sérico) ÷ (ACT + 1)',()=>[W({f:[{k:'na',l:'Na sérico',u:'mEq/L',big:1,d:1},{k:'sol',l:'Solução',opts:SOL},{k:'ns',l:'Na da solução',u:'mEq/L',d:1},
+   {k:'act',l:'ACT',u:'L',d:1},{k:'d1',l:'ΔNa por 1 L',u:'mEq/L',out:1},{k:'meta',l:'Variação desejada',u:'mEq/L',big:1},{k:'hrs',l:'Em',u:'h',v:24,d:1},
+   {k:'vol',l:'Volume',u:'mL',d:0,big:1},{k:'rate',l:'Velocidade',u:'mL/h',d:1,big:1},{k:'p24',l:'Projeção em 24 h',u:'mEq/L',out:1,d:1}],
+  calc(v,ch,S,m){if(ch==='init'||ch==='sol'){if(v.sol!=='c')v.ns=+v.sol;}else if(ch==='ns')v.sol=SOL.some(x=>x[0]===String(v.ns))?String(v.ns):'c';
+   if(!S.has('act')&&isFinite(ACT()))v.act=ACT();
+   v.d1=(v.ns-v.na)/(v.act+1);const a=Math.abs(v.d1),src=S.newer('meta','vol','rate','hrs');
+   if(src==='vol'){v.meta=v.vol/1000*a;v.rate=v.vol/v.hrs;}else if(src==='rate'){v.vol=v.rate*v.hrs;v.meta=v.vol/1000*a;}else{v.vol=Math.abs(v.meta)/a*1000;v.rate=v.vol/v.hrs;}
+   v.p24=Math.abs(v.meta)*24/v.hrs;
+   if(isFinite(v.na)){const hipo=v.na<135,hiper=v.na>145;
+     m.push(['res',hipo?`Hiponatremia ${v.na>=130?'leve (130 a 134)':v.na>=125?'moderada (125 a 129)':'profunda (inferior a 125)'}`:hiper?'Hipernatremia (superior a 145)':'Sódio entre 135 e 145 mEq/L']);
+     if(ok(v.d1)){if(hipo&&v.d1<=0)m.push(['bad','Esta solução não eleva o sódio sérico.']);if(hiper&&v.d1>=0)m.push(['bad','Esta solução não reduz o sódio sérico.']);
+       if(ok(v.p24)){if(hipo&&v.p24>8)m.push(['bad',`Ritmo equivalente a ${fmt(v.p24,1)} mEq/L em 24 h: ultrapassa 8 mEq/L em 24 h (limite na hiponatremia crônica com alto risco de desmielinização).`]);
+         if(hiper&&v.p24>12)m.push(['bad',`Ritmo equivalente a ${fmt(v.p24,1)} mEq/L em 24 h: ultrapassa a referência de 10 a 12 mEq/L em 24 h.`]);
+         else if(hiper&&v.p24>10)m.push(['warn',`Ritmo equivalente a ${fmt(v.p24,1)} mEq/L em 24 h: no limite superior da referência de 10 a 12 mEq/L em 24 h.`]);}}}
+   if(!isFinite(v.act))m.push(['warn','Informe peso e sexo no topo, ou digite a ACT.']);}})],
+ ['10.1 Hiponatremia: Na sérico inferior a 135 mEq/L. Leve 130 a 134; moderada 125 a 129; profunda inferior a 125.',
+  'Avaliação: confirmar hiponatremia hipotônica; avaliar sintomas neurológicos; determinar duração provável, aguda ou crônica; avaliar volemia; considerar osmolaridade sérica e urinária, sódio urinário, glicemia e função renal.',
+  'A fórmula estima a variação do sódio sérico após 1 litro de solução. Não substitui monitorização seriada. Pode apresentar imprecisão diante de perdas urinárias e mudanças na excreção de água.',
+  'Correção: com sintomas neurológicos graves, considerar NaCl 3% em bolus, conforme protocolo. Objetivo inicial: aumento de aproximadamente 4 a 6 mEq/L, suficiente para melhora de sintomas graves em muitos casos.',
+  '!Hiponatremia crônica com alto risco de desmielinização: limitar a correção a 8 mEq/L em 24 h. Demais pacientes: limites individualizados, com atenção à correção acumulada em 24 e 48 h.',
+  'Monitorização: sódio sérico frequente, diurese e evolução neurológica.',
+  '10.2 Hipernatremia: Na superior a 145 mEq/L. Avaliação: determinar se é aguda ou crônica; avaliar volemia; identificar perdas de água e fontes de sódio; avaliar diurese, osmolaridade urinária e função renal.',
+  'Soluções: NaCl 0,45% ≈ 77 mEq/L; Ringer lactato ≈ 130 mEq/L; SG 5% 0 mEq/L.',
+  'Correção: hipovolemia com instabilidade, restaurar inicialmente a perfusão com solução isotônica apropriada; após estabilização, corrigir o déficit de água livre e as perdas contínuas.',
+  '!Hipernatremia crônica ou de duração desconhecida: individualizar a velocidade; uma referência frequentemente utilizada é até 10 a 12 mEq/L em 24 h. Hipernatremia aguda: a velocidade pode diferir conforme mecanismo e tempo de instalação.',
+  'Monitorização: sódio sérico seriado, balanço hídrico e diurese.'],{wide:1});
+B(T,'10.1.3 Preparo de NaCl 3% e 2%','',()=>[
+  LIN({t:'NaCl 3% (≈ 513 mEq/L)',f:[{k:'vf',l:'Volume final',u:'mL',v:500,d:0,fac:()=>1},{k:'na',l:'NaCl 20%',u:'mL',big:1,d:1,fac:()=>.11},{k:'sf',l:'SF 0,9%',u:'mL',big:1,d:1,fac:()=>.89}]}),
+  LIN({t:'NaCl 2% (≈ 342 mEq/L)',f:[{k:'vf',l:'Volume final',u:'mL',v:500,d:0,fac:()=>1},{k:'na',l:'NaCl 20%',u:'mL',big:1,d:1,fac:()=>.1},{k:'ad',l:'Água para injeção',u:'mL',big:1,d:1,fac:()=>.9}]})],
+ ['NaCl 3%: preparo matematicamente equivalente, NaCl 20% 55 mL + SF 0,9% até volume final de 500 mL, com concentração aproximada de 3,0%.','NaCl 2%: NaCl 20% 50 mL + água para injeção até volume final de 500 mL.',
+  '!Soluções hipertônicas devem seguir preparações padronizadas pela farmácia, com conferência independente. A equivalência matemática não substitui a validação farmacotécnica.']);
+B(T,'Bolus de NaCl 3% e déficit de água livre','valores acrescentados',()=>[
+  W({t:'Bolus de NaCl 3%',f:[{k:'vol',l:'Volume do bolus',u:'mL',v:150,d:0,add:1,r:[100,150]},{k:'na',l:'Na sérico',u:'mEq/L',d:1},{k:'act',l:'ACT',u:'L',d:1},{k:'d',l:'Elevação estimada',u:'mEq/L',out:1,big:1}],
+   calc(v,ch,S,m){if(!S.has('act')&&isFinite(ACT()))v.act=ACT();v.d=(513-v.na)/(v.act+1)*v.vol/1000;
+    m.push(['add',ADD+'Referência usual: 100 a 150 mL de NaCl 3% em 10 a 20 min, podendo repetir até 2 a 3 vezes conforme sintomas e sódio de controle. Seguir o protocolo institucional.']);}}),
+  W({t:'Déficit de água livre',f:[{k:'na',l:'Na sérico',u:'mEq/L',d:1},{k:'alvo',l:'Na alvo',u:'mEq/L',v:140,d:1},{k:'act',l:'ACT',u:'L',d:1},{k:'def',l:'Déficit de água',u:'L',out:1,big:1,d:2}],
+   calc(v,ch,S,m){if(!S.has('act')&&isFinite(ACT()))v.act=ACT();v.def=v.act*(v.na/v.alvo-1);m.push(['add',ADD+'Fórmula usual: déficit (L) = ACT × (Na sérico ÷ Na alvo − 1). Não inclui perdas contínuas.']);}})],
+ ['+O conteúdo não traz o volume do bolus de NaCl 3% nem a fórmula de déficit de água livre; os valores acima são referências usuais incluídas a seu pedido.']);
+B(T,'10.3 Hipocalemia: reposição EV','KCl 19,1%, 10 mL ≈ 25,6 mEq/ampola',()=>[W({f:[{k:'meq',l:'Potássio',u:'mEq',big:1,d:1},{k:'ml',l:'KCl 19,1%',u:'mL',big:1,d:1},{k:'amp',l:'Ampolas',u:'amp',d:1},
+   {k:'bolsa',l:'Volume total da bolsa',u:'mL',d:0},{k:'ac',l:'Acesso',opts:[['p','Periférico'],['c','Central']]},{k:'hrs',l:'Correr em',u:'h',d:1},{k:'mh',l:'Velocidade',u:'mEq/h',big:1},
+   {k:'rate',l:'Velocidade',u:'mL/h',out:1,big:1,d:1},{k:'cl',l:'Concentração',u:'mEq/L',out:1,d:1}],
+  calc(v,ch,S,m){lin(v,S,{meq:1,ml:1/2.56,amp:1/25.6});if(S.newer('hrs','mh')==='mh')v.hrs=v.meq/v.mh;else v.mh=v.meq/v.hrs;v.rate=v.bolsa/v.hrs;v.cl=v.meq/v.bolsa*1000;
+   if(v.ac==='p'){if(v.mh>10)m.push(['bad','Acima de 10 mEq/h em acesso periférico. Velocidades superiores requerem condições específicas, frequentemente acesso central e monitorização cardíaca.']);
+     if(v.cl>40)m.push(['add warn',ADD+'Concentração acima de 40 mEq/L (limite usual para acesso periférico).']);}
+   else if(v.mh>20)m.push(['add bad',ADD+'Acima de 20 mEq/h (limite usual em acesso central, com monitorização cardíaca).']);
+   if(ok(v.bolsa,v.ml)&&v.ml>v.bolsa)m.push(['bad','O volume de KCl é maior que o volume total da bolsa.']);}})],
+ ['Definição: K inferior a 3,5 mEq/L.','10.3.1 Leve (3,0 a 3,4 mEq/L): via preferencial oral, quando possível. Solução original: xarope de potássio 6%. Dose: calcular em mEq de potássio, não apenas em mL. Confirmar o sal e a concentração real da formulação antes da conversão.',
+  '10.3.2 Condições que favorecem reposição EV: K inferior a 2,5 mEq/L; alterações eletrocardiográficas; arritmias; fraqueza importante; impossibilidade de reposição oral.',
+  '10.3.3 Velocidade usual por acesso periférico: até 10 mEq/h, conforme protocolo. Velocidades superiores requerem condições específicas, frequentemente acesso central e monitorização cardíaca.',
+  '*Corrigir hipomagnesemia associada. Monitorar função renal e diurese.','!Evitar diluições e velocidades fixas sem cálculo em mEq/h.',
+  '+Limites de 20 mEq/h em acesso central e 40 mEq/L em acesso periférico são valores usuais, não constam no conteúdo.'],{wide:1});
+B(T,'10.3.1 Xarope de potássio (via oral)','',()=>[W({f:[{k:'c',l:'Concentração',u:'mEq/mL',v:.8,add:1},{k:'meq',l:'Potássio',u:'mEq',big:1,d:1},{k:'ml',l:'Xarope',u:'mL',big:1,d:1}],
+  calc(v,ch,S){if(S.newer('meq','ml')==='ml')v.meq=v.ml*v.c;else v.ml=v.meq/v.c;}})],
+ ['+0,8 mEq/mL corresponde a cloreto de potássio 6% (60 mg/mL). Confirme o sal e a concentração real da formulação e edite o campo se for diferente.']);
+B(T,'10.4 Hipercalemia','definição: K superior a 5,0 mEq/L',()=>[
+  W({f:[{k:'k',l:'K sérico',u:'mEq/L',big:1,d:1}],calc(v,ch,S,m){const k=v.k;if(!isFinite(k))return;
+    m.push([k>=6?'bad res':k>=5.5?'warn res':'res',k<5?'Não é hipercalemia (K até 5,0 mEq/L)':k<5.5?'Leve: 5,0 a 5,4 mEq/L':k<6?'Moderada: 5,5 a 5,9 mEq/L':'Grave: igual ou superior a 6,0 mEq/L, conforme contexto e protocolo']);}}),
+  LIN({t:'Insulina regular 10 U EV + glicose',f:[{k:'g',l:'Glicose',u:'g',v:25,big:1,d:1,fac:()=>1},{k:'g50',l:'Glicose 50%',u:'mL',big:1,d:0,fac:()=>2},{k:'g10',l:'ou Glicose 10%',u:'mL',d:0,fac:()=>10},{k:'amp',l:'Ampolas G50% 10 mL',u:'amp',d:1,fac:()=>.2}]})],
+ ['10.4.1 Avaliação: confirmar resultado e excluir pseudohipercalemia quando apropriado; ECG imediato nos casos relevantes; procurar ondas T apiculadas, prolongamento do PR, alargamento do QRS, bradicardia e arritmias.','!ECG normal não exclui hipercalemia grave.',
+  '10.4.2 Estabilização miocárdica: indicação, alterações eletrocardiográficas ou situações de alto risco conforme protocolo. Opção: gluconato de cálcio 10% EV. Dose e velocidade: conforme apresentação e protocolo de emergência, com reavaliação eletrocardiográfica.',
+  '*O cálcio estabiliza a membrana miocárdica, mas não reduz o potássio sérico.',
+  '10.4.3 Redistribuição: insulina regular EV, esquema comum de 10 U EV associadas a 25 g de glicose; ajustar conforme glicemia inicial e protocolo; monitorar glicemia por várias horas devido ao risco de hipoglicemia.',
+  'Salbutamol nebulizado: 10 a 20 mg, conforme protocolo. Tratamento adjuvante, não substitui outras medidas.',
+  'Bicarbonato de sódio: considerar em situações selecionadas, especialmente com acidose metabólica importante. Não utilizar rotineiramente como única medida de redução do potássio.',
+  '10.4.4 Remoção: diuréticos de alça, se houver diurese e condição volêmica apropriadas; quelantes intestinais, conforme disponibilidade, indicação e início de ação; hemodiálise, em hipercalemia grave ou refratária, especialmente na insuficiência renal.',
+  '~O poliestireno de cálcio não deve ser considerado tratamento isolado de emergência.',
+  '10.4.5 Monitorização: ECG conforme gravidade; potássio sérico após intervenção e em intervalos subsequentes; glicemia seriada após insulina; vigilância para recorrência da hipercalemia.'],{wide:1});
+B(T,'10.5 Hipocalcemia','Ca corrigido = Ca total + 0,8 × (4 − albumina)',()=>[W({f:[{k:'ca',l:'Cálcio total',u:'mg/dL',big:1},{k:'alb',l:'Albumina',u:'g/dL'},{k:'cc',l:'Cálcio corrigido',u:'mg/dL',big:1}],
+  calc(v,ch,S,m){const k=.8*(4-v.alb);if(S.newer('ca','cc')==='cc')v.ca=v.cc-k;else v.cc=v.ca+k;
+   if(ok(v.cc))m.push([v.cc<8.5?'warn res':'res',v.cc<8.5?'Cálcio corrigido inferior a 8,5 mg/dL':'Cálcio corrigido igual ou superior a 8,5 mg/dL']);}})],
+ ['Definições de referência: cálcio total inferior a 8,5 mg/dL; cálcio ionizado abaixo do limite de referência laboratorial, frequentemente próximo de 1,1 mmol/L.',
+  'Avaliação: cálcio ionizado, preferencialmente em pacientes críticos; albumina; magnésio; fósforo; função renal; ECG e intervalo QT.',
+  '*A fórmula tem limitações importantes em pacientes críticos. O cálcio ionizado é preferível para decisões terapêuticas.',
+  'Reposição: gluconato de cálcio 10% EV, dose de referência 10 a 20 mL em administração lenta, conforme gravidade e protocolo. Monitorização: ECG e cálcio ionizado.','*Corrigir hipomagnesemia associada quando presente.']);
+B(T,'10.6 Hipomagnesemia','MgSO4 10%, 10 mL = 1 g por ampola',()=>[W({f:[{k:'g',l:'MgSO4',u:'g',v:2,big:1,r:[1,2]},{k:'ml',l:'MgSO4 10%',u:'mL',big:1,d:1},{k:'amp',l:'Ampolas',u:'amp',d:1},{k:'meq',l:'Magnésio',u:'mEq',d:1},
+   {k:'tot',l:'Volume total a infundir',u:'mL',d:0},{k:'hrs',l:'Correr em',u:'h',v:4,d:1},{k:'rate',l:'Velocidade',u:'mL/h',out:1,big:1,d:1},{k:'gh',l:'Taxa',u:'g/h',out:1}],
+  calc(v,ch,S,m){lin(v,S,{g:1,ml:10,amp:1,meq:8.1});if(!S.has('tot'))v.tot=v.ml;v.rate=v.tot/v.hrs;v.gh=v.g/v.hrs;}})],
+ ['Definição de referência: magnésio sérico inferior a aproximadamente 1,7 mg/dL, conforme laboratório.','Reposição EV: frequentemente 1 a 2 g em casos leves a moderados, com doses maiores conforme gravidade e protocolo. Exemplo do PDF: 20 mL de MgSO4 10% = 2 g, administrados em 4 h.',
+  'Ajustes: função renal; magnésio sérico; sintomas; arritmias; presença de hipocalemia ou hipocalcemia associadas.']);
+B(T,'10.7 Acidose metabólica','déficit (mEq) ≈ peso × 0,3 × (HCO3 desejado − HCO3 atual)',()=>[W({f:[{k:'at',l:'HCO3 atual',u:'mEq/L',big:1,d:1},{k:'des',l:'HCO3 desejado',u:'mEq/L',big:1,d:1},{k:'f',l:'Fator',v:.3},
+   {k:'def',l:'Déficit estimado',u:'mEq',out:1,big:1,d:0},{k:'fr',l:'Fração a repor',u:'%',v:50,add:1,d:0},{k:'rep',l:'A repor',u:'mEq',big:1,d:0},{k:'ml',l:'Bicarbonato 8,4%',u:'mL',big:1,d:0},{k:'po',l:'ou pó',u:'g',d:1}],
+  calc(v,ch,S,m){v.def=G.kg*v.f*(v.des-v.at);const src=S.newer('fr','rep','ml','po');let rep=src==='fr'?v.def*v.fr/100:src==='rep'?v.rep:src==='ml'?v.ml:v.po*11.9;
+   if(src!=='rep')v.rep=rep;if(src!=='ml')v.ml=rep;if(src!=='po')v.po=rep/11.9;if(src!=='fr')v.fr=rep/v.def*100;
+   if(isFinite(v.at)&&v.at<10)m.push(['warn','Bicarbonato inferior a 10 mEq/L: critério de gravidade do PDF; isoladamente, não é indicação universal de bicarbonato.']);
+   m.push(['add',ADD+'A fração a repor é uma escolha sua; o conteúdo apenas orienta não repor o déficit integral automaticamente.']);needKg(m);}})],
+ ['Critérios de gravidade utilizados no PDF: pH inferior a 7,20; bicarbonato inferior a 10 mEq/L. Esses valores não constituem, isoladamente, indicação universal de bicarbonato.',
+  'Avaliação: gasometria arterial ou venosa conforme contexto; bicarbonato; ânion gap; lactato; função renal; cetonas, quando indicadas; causa da acidose e compensação respiratória.',
+  'O fator 0,3 é uma aproximação para determinadas situações clínicas. O volume de distribuição efetivo varia conforme a gravidade da acidose.','!Não utilizar a fórmula como prescrição automática de reposição integral.',
+  'Apresentações: bicarbonato de sódio 8,4%, 1 mL = 1 mEq; bicarbonato de sódio em pó, 1 g = aproximadamente 11,9 mEq.',
+  'Administração: considerar bicarbonato em indicações específicas, como determinadas acidoses metabólicas graves associadas a disfunção renal ou perdas de bicarbonato. Individualizar dose e velocidade.',
+  'Monitorar: pH; bicarbonato; sódio; potássio; cálcio ionizado; estado volêmico; ventilação e eliminação de CO2.','~Não utilizar 100 mEq/h como limite universal de segurança.'],{wide:1});
+}
+
+/* ============ renderização ============ */
+let CUR=1,KITONLY=false;const KIT=[];
+function kitSummary(){const el=$('#kit');if(!el)return;const rows=KIT.filter(b=>b.chk.checked&&b._kit);
+  el.innerHTML=rows.length?'<table><tr><th>Droga</th><th>Dose/kg</th><th>Dose</th><th>Volume</th></tr>'+rows.map(b=>
+    `<tr><td><b>${b.title}</b></td><td>${fmt(b._kit.dkg)||'—'} ${b.mU}/kg</td><td>${fmt(b._kit.dose)||'—'} ${b.mU}</td><td><b>${fmt(b._kit.vol,1)||'—'} mL</b></td></tr>`).join('')+'</table>'
+    :'Marque "no kit" nas drogas desejadas para ver aqui só as escolhidas, com dose e volume.';
+  KIT.forEach(b=>b.el.classList.toggle('hide',KITONLY&&!b.chk.checked));}
+function render(){
+  ALL=[];KIT.length=0;buildData();const nav=$('#nav'),main=$('#main');nav.innerHTML='';main.innerHTML='';
+  TABS.forEach(T=>{
+    const bt=h('button','',`${T.n}. ${T.t}`);bt.style.setProperty('--c',T.c);bt.dataset.n=T.n;bt.onclick=()=>{CUR=T.n;$('#q').value='';filter();show();bt.scrollIntoView({block:'nearest',inline:'center'});};nav.append(bt);
+    const sec=h('section','tab');sec.dataset.n=T.n;sec.style.setProperty('--c',T.c);sec.append(h('h2','',`${T.n}. ${T.t}`));
+    if(T.kit){const bar=h('div','bar2','<span>Escolha dose e preparo de cada droga. Mostrar:</span>');const a=h('button','on','Todas'),b=h('button','','Só o kit');
+      a.onclick=()=>{KITONLY=false;a.className='on';b.className='';kitSummary();};b.onclick=()=>{KITONLY=true;b.className='on';a.className='';kitSummary();};bar.append(a,b);sec.append(bar);}
+    const grid=h('div','grid');sec.append(grid);
+    T.b.forEach(b=>{const el=h('article','blk'+(b.wide?' wide':''));b.el=el;
+      const bh=h('div','bh',`<b>${b.title}</b>`);
+      if(b.kit){const l=h('label','','<input type="checkbox"> no kit');b.chk=$('input',l);b.chk.onchange=kitSummary;bh.append(l);KIT.push(b);}
+      if(b.subt)bh.append(h('small','',b.subt));el.append(bh);
+      const bb=h('div','bb');el.append(bb);b.widgets(b).forEach(w=>bb.append(w));
+      if(b.notes.length){const d=h('details');if(b.open||!bb.children.length)d.open=true;d.append(h('summary','','Texto clínico'));
+        d.append(h('ul','',b.notes.map(n=>{const c={'!':'al','*':'tip','~':'nt','+':'add'}[n[0]];const pre=n[0]==='~'?'<b>Correção:</b> ':n[0]==='+'?ADD:'';
+          return `<li class="${c||'pl'}">${pre}${c?n.slice(1):n}</li>`;}).join('')));bb.append(d);}
+      el.dataset.s=norm(b.title+' '+(b.subt||'')+' '+T.t+' '+b.notes.join(' '));grid.append(el);});
+    main.append(sec);});
+  show();kitSummary();
+}
+function show(){document.querySelectorAll('.tab').forEach(s=>s.classList.toggle('on',+s.dataset.n===CUR));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',+b.dataset.n===CUR));}
+function filter(){const q=norm($('#q').value.trim());document.body.classList.toggle('searching',!!q);let any=false;
+  document.querySelectorAll('.tab').forEach(s=>{let n=0;s.querySelectorAll('.blk').forEach(b=>{const hit=!q||b.dataset.s.includes(q);b.style.display=hit?'':'none';if(hit)n++;});s.classList.toggle('empty',!n);if(n)any=true;});
+  $('#none').style.display=q&&!any?'block':'none';}
+function globals(){G.kg=num($('#g_kg').value);if(!(G.kg>0))G.kg=NaN;G.sex=$('#g_sex').value;G.age=num($('#g_age').value);G.h=num($('#g_h').value);
+  const p=[],pi=ideal();if(isFinite(G.kg)&&isFinite(ACT()))p.push(`ACT ≈ ${fmt(ACT(),1)} L (peso × ${fmt(actFactor())})`);
+  if(isFinite(pi)){p.push(`Peso ideal ≈ ${fmt(pi,1)} kg`);if(isFinite(G.kg))p.push(`Peso ajustado ≈ ${fmt(pi+.4*(G.kg-pi),1)} kg`);p.push('(Devine; acrescentado, só informativo)');}
+  $('#der').textContent=p.length?p.join(' · '):'Sexo, idade e altura são opcionais. Os cálculos usam o peso informado.';
+  ALL.forEach(f=>f());}
+['g_kg','g_sex','g_age','g_h'].forEach(id=>{$('#'+id).addEventListener('input',globals);$('#'+id).addEventListener('change',globals);});
+$('#q').addEventListener('input',filter);
+$('#clr').onclick=()=>{['g_kg','g_age','g_h','q'].forEach(id=>$('#'+id).value='');$('#g_sex').value='';KITONLY=false;render();filter();globals();};
+render();globals();
+</script>
+</body>
+</html>
