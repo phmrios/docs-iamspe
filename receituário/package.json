@@ -1,0 +1,38 @@
+{
+  "name": "receituario-medico-html",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Editor offline de receituários médicos simples: edição direta em páginas A4 e exportação de PDF vetorial.",
+  "type": "module",
+  "scripts": {
+    "fonts": "node scripts/build/font-metrics.mjs",
+    "build": "node scripts/build/build.mjs",
+    "dev": "node scripts/build/build.mjs --watch",
+    "test": "vitest run",
+    "test:unit": "vitest run tests/unit",
+    "test:integration": "vitest run tests/integration",
+    "test:e2e": "playwright test --project=chromium --project=firefox --project=webkit",
+    "test:visual": "playwright test --project=visual",
+    "audit:offline": "node scripts/validation/audit-offline.mjs",
+    "validate:pdf": "node scripts/validation/validate-pdf.mjs",
+    "validate": "npm run build && npm run audit:offline && npm test && npm run test:e2e && npm run test:visual"
+  },
+  "dependencies": {
+    "@pdf-lib/fontkit": "1.1.1",
+    "hyphen": "1.14.1",
+    "pdf-lib": "1.17.1",
+    "prosemirror-commands": "1.7.2",
+    "prosemirror-keymap": "1.2.3",
+    "prosemirror-model": "1.25.12",
+    "prosemirror-state": "1.4.4",
+    "prosemirror-transform": "1.12.2",
+    "prosemirror-view": "1.42.6"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.0",
+    "dejavu-fonts-ttf": "2.37.3",
+    "esbuild": "0.28.2",
+    "pdfjs-dist": "6.4.299",
+    "vitest": "5.0.4"
+  }
+}

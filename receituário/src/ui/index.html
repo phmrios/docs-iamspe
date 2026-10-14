@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src blob: data:; font-src data: blob:; frame-src blob:; object-src blob:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex">
+<title>Receituário médico</title>
+<style>/*__CSS__*/</style>
+</head>
+<body>
+<header class="rx-topbar" id="rx-topbar" role="toolbar" aria-label="Comandos do receituário">
+  <a class="rx-return" href="../../ferramentas/index.html" title="Voltar para Ferramentas" aria-label="Voltar para Ferramentas">← Voltar</a>
+  <div class="rx-group">
+    <button type="button" class="rx-btn" data-action="new" title="Nova receita (__MOD__+Shift+N ou Alt+Shift+N)">Nova receita</button>
+  </div>
+  <div class="rx-group" aria-label="Edição">
+    <button type="button" class="rx-btn rx-btn-icon" data-action="undo" title="Desfazer (__MOD__+Z)" aria-label="Desfazer">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4 3 8.5 7.5 13M3.5 8.5h8a4.5 4.5 0 0 1 0 9H9"/></svg>
+    </button>
+    <button type="button" class="rx-btn rx-btn-icon" data-action="redo" title="Refazer (__MOD__+Shift+Z)" aria-label="Refazer">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4 17 8.5 12.5 13M16.5 8.5h-8a4.5 4.5 0 0 0 0 9H11"/></svg>
+    </button>
+  </div>
+  <div class="rx-group rx-group-context" aria-label="Comandos da prescrição">
+    <button type="button" class="rx-btn" data-action="page-break" title="Quebra de página manual (__MOD__+Enter)">Quebra de página</button>
+    <button type="button" class="rx-btn" data-action="split-block" title="Começar um novo bloco no parágrafo do cursor (Alt+Shift+D)">Dividir bloco</button>
+    <button type="button" class="rx-btn" data-action="join-blocks" title="Unir o bloco do cursor ao bloco vizinho (Alt+Shift+U)">Unir blocos</button>
+  </div>
+  <div class="rx-group" aria-label="Zoom">
+    <button type="button" class="rx-btn rx-btn-icon" data-action="zoom-out" title="Reduzir (__MOD__+−)" aria-label="Reduzir zoom">−</button>
+    <input class="rx-zoom-input" id="rx-zoom" type="text" inputmode="numeric" list="rx-zoom-list" value="100%" aria-label="Zoom em porcentagem" title="Zoom: digite um valor ou escolha da lista">
+    <datalist id="rx-zoom-list"><option value="50%"><option value="75%"><option value="100%"><option value="125%"><option value="150%"><option value="200%"></datalist>
+    <button type="button" class="rx-btn rx-btn-icon" data-action="zoom-in" title="Ampliar (__MOD__++)" aria-label="Ampliar zoom">+</button>
+    <button type="button" class="rx-btn" data-action="zoom-fit" title="Ajustar a folha à largura da janela">Ajustar à largura</button>
+    <button type="button" class="rx-btn" data-action="zoom-reset" title="Restaurar a escala original (__MOD__+0)">100%</button>
+  </div>
+  <div class="rx-group rx-group-end">
+    <button type="button" class="rx-btn rx-btn-warn" id="rx-warnings" data-action="warnings" hidden></button>
+    <button type="button" class="rx-btn" data-action="preview" title="Ver o documento sem elementos de edição">Prévia</button>
+    <button type="button" class="rx-btn" data-action="print" title="Imprimir (__MOD__+P)">Imprimir</button>
+    <button type="button" class="rx-btn rx-btn-primary" data-action="export" title="Exportar PDF (__MOD__+Shift+E)">Exportar PDF</button>
+    <button type="button" class="rx-btn rx-btn-icon" data-action="help" title="Atalhos de teclado" aria-label="Atalhos de teclado">?</button>
+  </div>
+</header>
+<main class="rx-workspace" id="rx-workspace">
+  <div class="rx-sizer" id="rx-sizer">
+    <div class="rx-layer" id="rx-layer">
+      <div class="rx-body-host" id="rx-body-host"></div>
+    </div>
+  </div>
+</main>
+<div id="rx-overlays"></div>
+<div id="rx-toasts" aria-live="polite"></div>
+<p class="rx-loading" id="rx-loading">Carregando o editor…</p>
+<noscript><p class="rx-loading">Este editor precisa de JavaScript ativado.</p></noscript>
+<script>/*__FONTS__*/</script>
+<script>/*__JS__*/</script>
+</body>
+</html>

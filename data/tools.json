@@ -38,5 +38,10 @@
     "title": "Calculadora de Manejo de Drogas e Distúrbios Clínicos — IAMSPE",
     "description": "Versão interativa do guia de bolso: cálculo bidirecional de dose, diluição e vazão por peso para drogas vasoativas, sedação, IOT, anticoagulação, insulina e correção hidroeletrolítica, com busca por droga.",
     "url": "../calculadora-manejo-iamspe/index.html"
+  },
+  {
+    "title": "Receituário Médico — Editor A4 com PDF",
+    "description": "Editor de receituário simples direto na folha A4, com paginação automática, assinatura em imagem e exportação ou impressão em PDF vetorial. Nada é gravado nem enviado.",
+    "url": "../receituário/dist/receituario.html"
   }
 ]
