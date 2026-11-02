@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Página não encontrada — Docs IAMSPE</title>
+    <script>
+      // As ferramentas ficavam na raiz do site e agora estão em /ferramentas/.
+      // Redireciona favoritos e links antigos para o novo endereço.
+      (function () {
+        var MOVED = [
+          "HNF",
+          "INSULINA",
+          "VANCO",
+          "calculadora-manejo-iamspe",
+          "manejo-iamspe-cards",
+          "receituário",
+        ];
+        var match = location.pathname.match(/^\/([^\/]+)(\/.*)?$/);
+        if (!match) return;
+
+        var folder;
+        try {
+          folder = decodeURIComponent(match[1]).normalize("NFC");
+        } catch (error) {
+          return;
+        }
+        if (MOVED.indexOf(folder) === -1) return;
+
+        location.replace(
+          "/ferramentas/" +
+            encodeURIComponent(folder) +
+            (match[2] || "/") +
+            location.search +
+            location.hash,
+        );
+      })();
+    </script>
+    <link rel="stylesheet" href="/assets/css/style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+        <h1>Docs IAMSPE</h1>
+        <p class="author">Dr. Pedro Rios</p>
+        <nav class="site-tabs" aria-label="Seções do site">
+          <a href="/index.html" class="site-tab">Documentos</a>
+          <a href="/ferramentas/index.html" class="site-tab">Ferramentas</a>
+        </nav>
+      </header>
+
+      <main>
+        <p class="status-message">Página não encontrada.</p>
+      </main>
+    </div>
+  </body>
+</html>

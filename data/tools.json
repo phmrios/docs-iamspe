@@ -2,46 +2,31 @@
   {
     "title": "Protocolo de Heparinização EV — UTI IAMSPE",
     "description": "Calculadora de dose inicial, titulação por TTPa, vigilância de TIH e reversão com Protamina.",
-    "url": "../HNF/index.html"
-  },
-  {
-    "title": "Evolução Alastair — Enfermaria",
-    "description": "Gerador do texto de evolução diária por leito, com destaque das alterações e cópia rápida.",
-    "url": "../EVO/index.html"
-  },
-  {
-    "title": "Evolução B — Enfermaria",
-    "description": "Gerador alternativo (opção B) do texto de evolução diária por leito, com local, estado geral, queixas e cópia rápida.",
-    "url": "../EVO-B/index.html"
-  },
-  {
-    "title": "Evolução UTI — Terapia Intensiva",
-    "description": "Gerador do texto de evolução diária por leito na UTI, com destaque das alterações e cópia rápida.",
-    "url": "../EVO-UTI/index.html"
+    "url": "./HNF/index.html"
   },
   {
     "title": "Vancomicina — Monitorização Sérica (POP IAMSPE 2012)",
     "description": "Calculadora de dose inicial, ajuste por vancocinemia, dose em hemodiálise e horário da coleta.",
-    "url": "../VANCO/index.html"
+    "url": "./VANCO/index.html"
   },
   {
     "title": "Insulinoterapia e Controle Glicêmico — UTI IAMSPE",
     "description": "Protocolo de insulina Lispro em BIC, titulação por glicemia, escala de correção SC, transição EV→SC e hipoglicemia.",
-    "url": "../INSULINA/index.html"
+    "url": "./INSULINA/index.html"
   },
   {
     "title": "Manejo de Drogas e Distúrbios Clínicos — Cards IAMSPE",
     "description": "Guia de bolso em 10 cards: drogas vasoativas, bloqueio neuromuscular, IOT, sedação, FA, anticoagulação, insulina, anticonvulsivantes, aporte basal e correção hidroeletrolítica.",
-    "url": "../manejo-iamspe-cards/index.html"
+    "url": "./manejo-iamspe-cards/index.html"
   },
   {
     "title": "Calculadora de Manejo de Drogas e Distúrbios Clínicos — IAMSPE",
     "description": "Versão interativa do guia de bolso: cálculo bidirecional de dose, diluição e vazão por peso para drogas vasoativas, sedação, IOT, anticoagulação, insulina e correção hidroeletrolítica, com busca por droga.",
-    "url": "../calculadora-manejo-iamspe/index.html"
+    "url": "./calculadora-manejo-iamspe/index.html"
   },
   {
     "title": "Receituário Médico — Editor A4 com PDF",
     "description": "Editor de receituário simples direto na folha A4, com paginação automática, assinatura em imagem e exportação ou impressão em PDF vetorial. Nada é gravado nem enviado.",
-    "url": "../receituário/dist/receituario.html"
+    "url": "./receituário/dist/receituario.html"
   }
 ]
